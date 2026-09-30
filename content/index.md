@@ -1,24 +1,18 @@
-# Welcome to Nuxt Content Starter
+# Witamy w nowej wersji strony
 
-This is the main page displaying Markdown located at [content/index.md](https://github.com/nuxt/starter/blob/content/content/index.md).
+Strona przeszla migracje z WordPress do Nuxt. Ponizej znajdziesz wybrane materiauly z bloga.
 
-Move to [about](/about) page.
+## Najnowsze tematy
 
-## Manage your Contents
+- [Wprowadzenie do baz](blog/wprowadzenie-do-baz)
+- [MySQL - Tabele](blog/mysql-tabele)
+- [MySQL - Data Types](blog/mysql-data-types)
+- [MySQL - Constraints](blog/mysql-constraints)
+- [MySQL - Operatory](blog/mysql-operatory-draft)
+- [MySQL dane](blog/mysql-dane)
+- [MySQL Workbench instalacja](blog/mysql-workbench-instalacja)
+- [Matura 2025 zadanie 3](blog/matura-2025-zadanie-3)
+- [Ostatnia chwila na maturze: C++](blog/ostatnia-chwila-na-matur-c)
+- [Ostatnia chwila na maturze: Teoria](blog/ostatnia-chwila-na-matur-teoria)
 
-Create new pages or modify the existing ones in `content/` directory.
-
-## Query & Render Pages
-
-You can find an example of querying contents and rendering them in a [catch-all page](https://github.com/nuxt/starter/blob/content/app/pages/%5B...slug%5D.vue)
-
-## Integrate Vue Component
-
-::alert{color="green"}
-The current [alert](https://github.com/nuxt/starter/blob/content/app/components/Alert.vue) and the [counter](https://github.com/nuxt/starter/blob/content/app/components/Counter.vue) below are `Vue` components integrated into the Markdown.
-::
-
-::counter
-::
-
-Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more.
+Zobacz wszystkie wpisy w [blogu](/blog).

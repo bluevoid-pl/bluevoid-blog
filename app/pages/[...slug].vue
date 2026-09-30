@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'default'
+})
+
 const route = useRoute()
 
 const { data: page } = await useAsyncData('page-' + route.path, () => {
@@ -11,8 +15,10 @@ if (!page.value) {
 </script>
 
 <template>
-  <ContentRenderer
-    v-if="page"
-    :value="page"
-  />
+  <div class="prose prose-invert max-w-none">
+    <ContentRenderer
+      v-if="page"
+      :value="page"
+    />
+  </div>
 </template>
