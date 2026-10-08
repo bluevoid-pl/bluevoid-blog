@@ -33,11 +33,6 @@ function formatDate(d: any): string {
       </div>
 
       <div class="hero-inner">
-        <span class="hero-badge">
-          <span class="badge-dot" aria-hidden="true" />
-          {{ landing.count }} posts on the blog
-        </span>
-
         <h1 class="hero-title" v-if="landing.latest">
           Latest on the blog: {{ landing.latest.title }}
         </h1>

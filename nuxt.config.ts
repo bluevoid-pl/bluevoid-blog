@@ -13,9 +13,9 @@ export default defineNuxtConfig({
     ],
 
   },
-  nitro: {
-  noExternals:true
-  },
+  // nitro: {
+  // noExternals:true
+  // },
   app: {
     layoutTransition: { name: 'page', mode: 'out-in' }
   },
