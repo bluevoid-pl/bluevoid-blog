@@ -1,7 +1,7 @@
 <template>
   <header class="navbar">
     <div class="navbar-container">
-      <a href="/" class="navbar-brand">Test Nuxt</a>
+      <a href="/" class="navbar-brand"><img src="/logo.png" />Blue Void</a>
       <nav class="navbar-links">
         <a href="/" class="navbar-link">Home</a>
         <a href="/blog" class="navbar-link">Blog</a>
@@ -26,6 +26,7 @@
   padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
+  flex-direction: row;
   justify-content: space-between;
 }
 .navbar-brand {
@@ -33,6 +34,13 @@
   font-size: 1.25rem;
   color: #f8fafc;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap:0.5rem;
+
+}
+.navbar-brand > img {
+    height: 2.5rem;
 }
 .navbar-links {
   display: flex;
