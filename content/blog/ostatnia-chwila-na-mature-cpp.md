@@ -1,3 +1,13 @@
+---
+title: "Ostatnia chwila na maturze: C++"
+description: "Quick-reference C++ snippets for the matura exam: file I/O, vectors, sorting, and common algorithmic patterns."
+date: "2025-03-05"
+tags:
+  - "C++"
+  - "Matura"
+  - "Reference"
+---
+
 ### Podstawy
 
 #### Wczytywanie plików bez znanego rozmiaru, pojedyncze elementy

@@ -1,3 +1,12 @@
+---
+title: "MySQL - Data Types"
+description: "Reference of MySQL data types: numeric (INT, DECIMAL, FLOAT), string (CHAR, VARCHAR, TEXT), date/time, boolean, and binary types with ranges and byte sizes."
+date: "2025-02-20"
+tags:
+  - "MySQL"
+  - "SQL"
+  - "Data Types"
+---
 
 #### TLDR
 

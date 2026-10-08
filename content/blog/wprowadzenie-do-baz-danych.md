@@ -1,3 +1,13 @@
+---
+title: "Wprowadzenie do baz danych"
+description: "Overview of relational (SQL) vs non-relational (noSQL) databases, their core concepts, and the functional operations available in SQL."
+date: "2025-02-14"
+tags:
+  - "SQL"
+  - "Baza danych"
+  - "Teoria"
+---
+
 #### SQL - relacyjne
 
 - Oparte na tabelach

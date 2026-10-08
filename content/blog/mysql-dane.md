@@ -1,3 +1,13 @@
+---
+title: "MySQL dane"
+description: "Working with data in MySQL: INSERT INTO, SELECT, UPDATE, DELETE, WHERE, ORDER BY, LIMIT, and practical query patterns."
+date: "2025-02-24"
+tags:
+  - "MySQL"
+  - "SQL"
+  - "Queries"
+---
+
 #### INSERT INTO
 
 Dodaje rekord do tabeli

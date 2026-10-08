@@ -1,3 +1,12 @@
+---
+title: "Ostatnia chwila na maturze: Teoria"
+description: "Exam-prep theory notes: web protocols (HTTP/HTTPS/FTP), file formats, encoding, and computer science fundamentals."
+date: "2025-03-05"
+tags:
+  - "Matura"
+  - "Teoria"
+---
+
 ## Protokoły
 
 Protokoły stron internetowych

@@ -1,3 +1,13 @@
+---
+title: "Ostatnia chwila na maturze: Python"
+description: "Quick-reference Python snippets for the matura exam: file I/O, list operations, sorting, and common algorithmic patterns."
+date: "2025-03-05"
+tags:
+  - "Python"
+  - "Matura"
+  - "Reference"
+---
+
 ### Podstawy
 #### Wczytywanie plików bez znanego rozmiaru, pojedyncze elementy
 

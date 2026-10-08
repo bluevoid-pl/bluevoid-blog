@@ -1,3 +1,13 @@
+---
+title: "MySQL - Constraints"
+description: "MySQL column constraints: NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, DEFAULT, AUTO_INCREMENT, and CHECK with practical examples."
+date: "2025-02-22"
+tags:
+  - "MySQL"
+  - "SQL"
+  - "Constraints"
+---
+
 #### TLDR
 
 - NOT NULL - Wymusza aby wartość nie była NULL

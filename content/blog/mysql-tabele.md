@@ -1,3 +1,12 @@
+---
+title: "MySQL - Tabele"
+description: "Working with tables in MySQL: quoting identifiers, comments, CREATE/ALTER/DROP statements, and table management."
+date: "2025-02-18"
+tags:
+  - "MySQL"
+  - "SQL"
+---
+
 #### Podstawy
 
 Pojedyncze cudzysłowy (`' '`) służą głównie do obejmowania wartości tekstowych.

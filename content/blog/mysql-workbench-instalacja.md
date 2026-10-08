@@ -1,3 +1,12 @@
+---
+title: "MySQL Workbench instalacja"
+description: "Step-by-step guide to installing MySQL Server, MySQL Workbench, and MySQL Shell on Windows as a complete development environment."
+date: "2025-02-10"
+tags:
+  - "MySQL"
+  - "Setup"
+---
+
 # Mysql workbench instalacja
 
 Ten przewodnik poprowadzi cię w szybkiej instalacji MySQL server, MySQL router, MySQL workbench, MySQL Shell oraz konfigurację tych komponentów jako środowiska programistycznego.
