@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+
+  },
+  nitro: {
+  noExternals:true
   },
   app: {
     layoutTransition: { name: 'page', mode: 'out-in' }
