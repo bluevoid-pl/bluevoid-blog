@@ -5,6 +5,7 @@
       <nav class="navbar-links">
         <a href="/" class="navbar-link">Home</a>
         <a href="/blog" class="navbar-link">Blog</a>
+        <a href="/projects" class="navbar-link">Projects</a>
         <a href="/about" class="navbar-link">About</a>
       </nav>
     </div>

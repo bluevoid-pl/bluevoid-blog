@@ -21,6 +21,12 @@ const { data: landing } = await useAsyncData('landing', async () => {
 function formatDate(d: any): string {
   return new Date(d).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })
 }
+
+function isNew(d: any): boolean {
+  const oneMonthAgo = new Date()
+  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
+  return new Date(d) >= oneMonthAgo
+}
 </script>
 
 <template>
@@ -46,6 +52,7 @@ function formatDate(d: any): string {
           <time class="hero-date" :datetime="landing.latest.date">
             {{ formatDate(landing.latest.date) }}
           </time>
+          <span v-if="isNew(landing.latest.date)" class="hero-new">New</span>
           <span v-for="tag in landing.latest.tags" :key="tag" class="hero-tag">{{ tag }}</span>
         </div>
 
@@ -68,6 +75,7 @@ function formatDate(d: any): string {
           <div class="card-body">
             <div class="card-meta">
               <time class="card-date" :datetime="post.date">{{ formatDate(post.date) }}</time>
+              <span v-if="isNew(post.date)" class="card-new">New</span>
             </div>
             <h3 class="card-title">{{ post.title }}</h3>
             <p class="card-description">{{ post.description }}</p>
@@ -190,6 +198,17 @@ function formatDate(d: any): string {
   color: #7dd3fc;
   font-weight: 500;
 }
+.hero-new {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+}
 .hero-tag {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -236,8 +255,13 @@ function formatDate(d: any): string {
 }
 .latest-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
+}
+@media (max-width: 900px) {
+  .latest-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .latest-card {
   display: block;
@@ -261,6 +285,17 @@ function formatDate(d: any): string {
 }
 .card-meta { display: flex; align-items: center; }
 .card-date { font-size: 0.8rem; color: #64748b; font-weight: 500; }
+.card-new {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
 .card-title { font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0; }
 .card-description { font-size: 0.9rem; color: #94a3b8; line-height: 1.55; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }

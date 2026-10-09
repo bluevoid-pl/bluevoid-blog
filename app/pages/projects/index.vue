@@ -3,46 +3,41 @@ definePageMeta({
   layout: 'default'
 })
 
-const { data: posts } = await useAsyncData('blog-posts', () => {
-  return queryCollection('blog').all()
+const { data: projects } = await useAsyncData('projects-list', () => {
+  return queryCollection('projects')
+    .order('date', 'DESC')
+    .all()
 })
 
 function formatDate(d: any): string {
   return new Date(d).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })
 }
-
-function isNew(d: any): boolean {
-  const oneMonthAgo = new Date()
-  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
-  return new Date(d) >= oneMonthAgo
-}
 </script>
 
 <template>
-  <div class="blog-page">
-    <header class="blog-header">
-      <h1 class="blog-title">Blog</h1>
-      <p class="blog-subtitle">Notes on databases, programming, and exam preparation.</p>
+  <div class="projects-page">
+    <header class="projects-header">
+      <h1 class="projects-title">Projects</h1>
+      <p class="projects-subtitle">Games, apps and experiments built along the way.</p>
     </header>
 
-    <section class="post-grid">
+    <section class="project-grid">
       <a
-        v-for="post in posts"
-        :key="post.path"
-        :href="post.path"
-        class="post-card"
+        v-for="project in projects"
+        :key="project.path"
+        :href="project.path"
+        class="project-card"
       >
         <div class="card-body">
           <div class="card-meta">
-            <time class="card-date" :datetime="post.date">
-              {{ formatDate(post.date) }}
+            <time class="card-date" :datetime="project.date">
+              {{ formatDate(project.date) }}
             </time>
-            <span v-if="isNew(post.date)" class="card-new">New</span>
           </div>
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-description">{{ post.description }}</p>
+          <h2 class="card-title">{{ project.title }}</h2>
+          <p class="card-description">{{ project.description }}</p>
           <div class="card-tags">
-            <span v-for="tag in post.tags" :key="tag" class="card-tag">{{ tag }}</span>
+            <span v-for="tag in project.tags" :key="tag" class="card-tag">{{ tag }}</span>
           </div>
         </div>
       </a>
@@ -51,16 +46,16 @@ function isNew(d: any): boolean {
 </template>
 
 <style scoped>
-.blog-page {
+.projects-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }
-.blog-header {
+.projects-header {
   text-align: center;
   padding-bottom: 2rem;
 }
-.blog-title {
+.projects-title {
   font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(90deg, #60a5fa, #a78bfa);
@@ -69,17 +64,17 @@ function isNew(d: any): boolean {
   color: transparent;
   margin-bottom: 0.75rem;
 }
-.blog-subtitle {
+.projects-subtitle {
   font-size: 1.1rem;
   color: #94a3b8;
 }
-.post-grid {
+.project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
-.post-card {
+.project-card {
   display: block;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -89,7 +84,7 @@ function isNew(d: any): boolean {
   color: inherit;
   text-decoration: none;
 }
-.post-card:hover {
+.project-card:hover {
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(96, 165, 250, 0.4);
 }
@@ -106,17 +101,6 @@ function isNew(d: any): boolean {
   font-size: 0.8rem;
   color: #64748b;
   font-weight: 500;
-}
-.card-new {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.3);
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
 }
 .card-title {
   font-size: 1.2rem;

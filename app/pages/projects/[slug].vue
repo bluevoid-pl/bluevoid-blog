@@ -5,43 +5,35 @@ definePageMeta({
 
 const route = useRoute()
 
-const { data: post } = await useAsyncData('blog-' + route.path, () => {
-  return queryCollection('blog').path(route.path).first()
+const { data: project } = await useAsyncData('projects-' + route.path, () => {
+  return queryCollection('projects').path(route.path).first()
 })
 
-if (!post.value) {
+if (!project.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
 const readingTime = computed(() => {
-  const body = post.value?.bodyPlain || ''
+  const body = project.value?.bodyPlain || ''
   const words = body.split(/\s+/).filter(Boolean).length
   return Math.max(1, Math.ceil(words / 200))
 })
-
-function isNew(d: any): boolean {
-  const oneMonthAgo = new Date()
-  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
-  return new Date(d) >= oneMonthAgo
-}
 </script>
 
 <template>
-  <div class="article-layout mx-auto max-w-[1250px] px-8 pt-10 pb-12">
-    <BlogSidebar />
-    <div class="article-page">
+  <div class="article-page mx-auto max-w-[1250px] px-8 pt-10 pb-12">
     <header class="article-header">
       <div class="header-meta">
-        <time class="header-date" :datetime="post.date">
-          {{ new Date(post.date).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+        <time class="header-date" :datetime="project.date">
+          {{ new Date(project.date).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) }}
         </time>
-        <span v-if="isNew(post.date)" class="header-new">New</span>
         <span class="header-reading">{{ readingTime }} min read</span>
+        <span v-if="project.client" class="header-client">{{ project.client }}</span>
       </div>
-      <h1 class="header-title">{{ post.title }}</h1>
-      <p class="header-description">{{ post.description }}</p>
+      <h1 class="header-title">{{ project.title }}</h1>
+      <p class="header-description">{{ project.description }}</p>
       <div class="header-tags">
-        <span v-for="tag in post.tags" :key="tag" class="header-tag">{{ tag }}</span>
+        <span v-for="tag in project.tags" :key="tag" class="header-tag">{{ tag }}</span>
       </div>
     </header>
 
@@ -49,28 +41,14 @@ function isNew(d: any): boolean {
 
     <div class="article-body prose prose-invert max-w-none">
       <ContentRenderer
-        v-if="post"
-        :value="post"
+        v-if="project"
+        :value="project"
       />
-    </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.article-layout {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-.article-page {
-  flex: 1;
-}
-@media (max-width: 1024px) {
-  .article-layout {
-    flex-direction: column;
-  }
-}
 .article-header {
   padding-bottom: 1.5rem;
 }
@@ -85,20 +63,14 @@ function isNew(d: any): boolean {
   color: #64748b;
   font-weight: 500;
 }
-.header-new {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.3);
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-}
 .header-reading {
   font-size: 0.8rem;
   color: #475569;
+}
+.header-client {
+  font-size: 0.8rem;
+  color: #93c5fd;
+  font-weight: 500;
 }
 .header-title {
   font-size: 2rem;
