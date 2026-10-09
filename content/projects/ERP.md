@@ -1,19 +1,17 @@
 ---
-title: "ShirtERP - webapp"
+title: "ERP - webapp"
 client: "Self"
 date: "2021-12-29"
 img: "/assets/ShirtERP2.png"
-description: "System zarządzania zleceniami dla drukarni koszulek, wykorzystywany przez firmę Wentaprint in Gdańsku."
+description: "System zarządzania zleceniami dla drukarni koszulek."
 tags:
   - "React"
   - "Mantine"
-  - "Strapi"
-  - "Recoil"
 ---
 
-![ShirtERP](/assets/ShirtERP_logo.png)
+![ERP](/assets/ShirtERP_logo.png)
 
-# ShirtERP
+# ERP
 
 System do zażądania drukarnią koszulek.
 
@@ -23,13 +21,6 @@ System do zażądania drukarnią koszulek.
 ### Licencja komercyjna
 
 ### License Proprietary
-
-Wszystkie licencje na ShirtDipERP są ważne w ShirtERP, na identycznych zasadach.
-All licenses for ShirtDipERP carries out to ShirtERP, with the same terms.
-
-### W przypadku chęci kupna systemu proszę o kontakt przez mail: kifner.mateusz(αt)gmail.com
-
-### For business deals please contact me via mail: kifner.mateusz(αt)gmail.com
 
 ## Installation instructions
 
@@ -42,10 +33,10 @@ All licenses for ShirtDipERP carries out to ShirtERP, with the same terms.
    - In frontend specify server url
 
    ```
-   SERVER_URL=http://api.shirterp.ct8.pl:1337
+   SERVER_URL=http://api.erp.ct8.pl:1337
    ```
 
-   - In backend specify, JWT Secret for strapi and application
+   - In backend specify, JWT Secret for application
 
    ```
    ADMIN_JWT_SECRET=secret_must_be_secure_and_random
@@ -64,5 +55,3 @@ All licenses for ShirtDipERP carries out to ShirtERP, with the same terms.
    ```
 
 6. Server is now ready and can be started with `yarn prod` command
-
-ShirtERP is Copyright (c) Mateusz Kifner kifner.mateusz(αt)gmail.com

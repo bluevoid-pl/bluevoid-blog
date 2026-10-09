@@ -28,7 +28,6 @@ function isNew(d: any): boolean {
 
 <template>
   <div class="article-layout mx-auto max-w-[1250px] px-8 pt-10 pb-12">
-    <BlogSidebar />
     <div class="article-page">
     <header class="article-header">
       <div class="header-meta">
@@ -54,6 +53,7 @@ function isNew(d: any): boolean {
       />
     </div>
     </div>
+    <BlogSidebar :body="post.body" />
   </div>
 </template>
 

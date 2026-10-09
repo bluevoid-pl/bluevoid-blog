@@ -33,8 +33,25 @@ ollama run hf.co/bluevoid-pl/zeta-2.1-GGUF:Q4_K_M
 
 #### Quantizations
 
-| Quant  | Size   |
-| ------ | ------ |
-| Q4_K_M | 5.07 GB |
-| Q8_0   | 8.77 GB |
-| BF16   | 16.5 GB |
+| Quant   | Size    |
+| ------- | ------- |
+| IQ2_XXS | 2.51 GB |
+| IQ2_XS  | 2.72 GB |
+| IQ2_S   | 2.88 GB |
+| IQ2_M   | 3.07 GB |
+| Q2_K_S  | 3.11 GB |
+| Q2_K    | 3.30 GB |
+| IQ3_XXS | 3.40 GB |
+| IQ3_XS  | 3.65 GB |
+| Q3_K_S  | 3.80 GB |
+| IQ3_S   | 3.82 GB |
+| IQ3_M   | 3.92 GB |
+| Q3_K_M  | 4.15 GB |
+| Q3_K_L  | 4.46 GB |
+| IQ4_XS  | 4.59 GB |
+| Q4_0    | 4.83 GB |
+| IQ4_NL  | 4.83 GB |
+| Q4_K_S  | 4.84 GB |
+| Q4_K_M  | 5.07 GB |
+| Q8_0    | 8.77 GB |
+| BF16    | 16.5 GB |

@@ -1,20 +1,52 @@
 <script setup lang="ts">
-const { data: posts } = await useAsyncData('blog-sidebar-posts', async () => {
-  const posts = await queryCollection('blog').order('date', 'DESC').all()
-  return posts.map(({ path, title }) => ({ path, title }))
+const { body } = defineProps({
+  body: {
+    type: Object,
+    default: null
+  }
 })
+
+const links = (() => {
+  const result: { id: string; depth: number; text: string }[] = []
+  const textOf = (node: any): string => {
+    if (typeof node === 'string') {
+      return node
+    }
+    if (Array.isArray(node)) {
+      return node.slice(2).map(textOf).join('')
+    }
+    if (node.type === 'text') {
+      return node.value || ''
+    }
+    return (node.children || []).map(textOf).join('')
+  }
+  const tagOf = (node: any) => Array.isArray(node) ? String(node[0] || '') : (node.tag || '')
+  const isHeading = (node: any) => /^h[1-6]$/.test(tagOf(node))
+  const idOf = (node: any) => Array.isArray(node) ? (node[1]?.id ?? null) : (node.props?.id ?? null)
+  const childrenOf = (node: any) => Array.isArray(node) ? node.slice(2) : (node.children || [])
+  const walk = (nodes: any[]) => {
+    for (const node of nodes) {
+      if (isHeading(node)) {
+        const id = idOf(node)
+        if (id) {
+          result.push({ id, depth: Number(tagOf(node).charAt(1)), text: textOf(node) })
+        }
+      }
+      walk(childrenOf(node))
+    }
+  }
+  walk(body?.value || body?.children || [])
+  return result
+})()
 </script>
 
 <template>
   <aside class="blog-sidebar">
-    <h3>Blog</h3>
+    <h3>Contents</h3>
     <nav>
       <ul>
-        <li>
-          <NuxtLink to="/blog">All posts</NuxtLink>
-        </li>
-        <li v-for="post in posts" :key="post.path">
-          <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
+        <li v-for="link in links" :key="link.id" :class="link.depth > 2 ? 'sidebar-sub' : ''">
+          <a :href="'#' + link.id">{{ link.text }}</a>
         </li>
       </ul>
     </nav>
@@ -51,6 +83,14 @@ const { data: posts } = await useAsyncData('blog-sidebar-posts', async () => {
 }
 .blog-sidebar a:hover {
   color: #93c5fd;
+  text-decoration: underline;
+}
+.blog-sidebar .sidebar-sub a {
+  color: #94a3b8;
+  padding-left: 0.75rem;
+}
+.blog-sidebar .sidebar-sub a:hover {
+  color: #cbd5e1;
   text-decoration: underline;
 }
 </style>

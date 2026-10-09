@@ -41,8 +41,25 @@ ollama run hf.co/bluevoid-pl/Muse-Glimmer-30B-pruned-GGUF:Q4_K_M
 
 #### Quantizations
 
-| Quant  | Size   |
-| ------ | ------ |
-| Q4_K_M | 16.3 GB |
-| Q8_0   | 28.7 GB |
-| BF16   | 53.9 GB |
+| Quant   | Size    |
+| ------- | ------- |
+| IQ2_XXS | 7.5 GB  |
+| IQ2_XS  | 8.26 GB |
+| IQ2_S   | 8.63 GB |
+| IQ2_M   | 9.35 GB |
+| Q2_K_S  | 9.51 GB |
+| Q2_K    | 10.2 GB |
+| IQ3_XXS | 10.6 GB |
+| IQ3_XS  | 11.4 GB |
+| Q3_K_S  | 12.0 GB |
+| IQ3_S   | 12.0 GB |
+| IQ3_M   | 12.3 GB |
+| Q3_K_M  | 13.1 GB |
+| Q3_K_L  | 14.1 GB |
+| IQ4_XS  | 14.6 GB |
+| Q4_0    | 15.5 GB |
+| Q4_K_S  | 15.5 GB |
+| Q4_K_M  | 16.3 GB |
+| Q4_1    | 17.0 GB |
+| Q8_0    | 28.7 GB |
+| BF16    | 53.9 GB |
