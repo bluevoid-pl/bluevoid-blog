@@ -13,9 +13,11 @@ export default defineNuxtConfig({
     ],
 
   },
-  // nitro: {
-  // noExternals:true
-  // },
+  nitro: {
+        externals: {
+        traceOptions: { base: process.cwd() }
+      }
+  },
   app: {
     layoutTransition: { name: 'page', mode: 'out-in' }
   },
