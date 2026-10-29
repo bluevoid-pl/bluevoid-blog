@@ -7,7 +7,7 @@ import { cn } from "cn";
 import { DropdownMenuSubTrigger, useForwardProps } from "reka-ui";
 
 const props = defineProps<
-	/* @vue-ignore */ DropdownMenuSubTriggerProps & {
+	DropdownMenuSubTriggerProps & {
 		class?: HTMLAttributes["class"];
 		inset?: boolean;
 	}

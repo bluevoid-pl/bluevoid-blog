@@ -18,7 +18,7 @@ defineOptions({
 
 const props = withDefaults(
 	defineProps<
-		/* @vue-ignore */ DropdownMenuContentProps & {
+		DropdownMenuContentProps & {
 			class?: HTMLAttributes["class"];
 		}
 	>(),
@@ -26,7 +26,7 @@ const props = withDefaults(
 		sideOffset: 4,
 	},
 );
-const emits = defineEmits</* @vue-ignore */ DropdownMenuContentEmits>();
+const emits = defineEmits<DropdownMenuContentEmits>();
 
 const delegatedProps = reactiveOmit(props, "class");
 

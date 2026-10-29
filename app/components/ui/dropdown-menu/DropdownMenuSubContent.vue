@@ -9,11 +9,11 @@ import { cn } from "cn";
 import { DropdownMenuSubContent, useForwardPropsEmits } from "reka-ui";
 
 const props = defineProps<
-	/* @vue-ignore */ DropdownMenuSubContentProps & {
+	DropdownMenuSubContentProps & {
 		class?: HTMLAttributes["class"];
 	}
 >();
-const emits = defineEmits</* @vue-ignore */ DropdownMenuSubContentEmits>();
+const emits = defineEmits<DropdownMenuSubContentEmits>();
 
 const delegatedProps = reactiveOmit(props, "class");
 

@@ -6,7 +6,7 @@ import { cn } from "cn";
 import { DropdownMenuSeparator } from "reka-ui";
 
 const props = defineProps<
-	/* @vue-ignore */ DropdownMenuSeparatorProps & {
+	DropdownMenuSeparatorProps & {
 		class?: HTMLAttributes["class"];
 	}
 >();

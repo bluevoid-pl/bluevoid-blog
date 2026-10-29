@@ -14,11 +14,11 @@ import {
 } from "reka-ui";
 
 const props = defineProps<
-	/* @vue-ignore */ DropdownMenuCheckboxItemProps & {
+	DropdownMenuCheckboxItemProps & {
 		class?: HTMLAttributes["class"];
 	}
 >();
-const emits = defineEmits</* @vue-ignore */ DropdownMenuCheckboxItemEmits>();
+const emits = defineEmits<DropdownMenuCheckboxItemEmits>();
 
 const delegatedProps = reactiveOmit(props, "class");
 

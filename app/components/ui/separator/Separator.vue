@@ -7,7 +7,7 @@ import { Separator } from "reka-ui";
 
 const props = withDefaults(
 	defineProps<
-		/* @vue-ignore */ SeparatorProps & { class?: HTMLAttributes["class"] }
+		SeparatorProps & { class?: HTMLAttributes["class"] }
 	>(),
 	{
 		orientation: "horizontal",

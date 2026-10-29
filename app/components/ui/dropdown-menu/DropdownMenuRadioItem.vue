@@ -14,12 +14,12 @@ import {
 } from "reka-ui";
 
 const props = defineProps<
-	/* @vue-ignore */ DropdownMenuRadioItemProps & {
+	DropdownMenuRadioItemProps & {
 		class?: HTMLAttributes["class"];
 	}
 >();
 
-const emits = defineEmits</* @vue-ignore */ DropdownMenuRadioItemEmits>();
+const emits = defineEmits<DropdownMenuRadioItemEmits>();
 
 const delegatedProps = reactiveOmit(props, "class");
 

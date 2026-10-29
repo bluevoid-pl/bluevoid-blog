@@ -6,7 +6,7 @@ import { cn } from "cn";
 import { DropdownMenuItem, useForwardProps } from "reka-ui";
 const props = withDefaults(
 	defineProps<
-		/* @vue-ignore */ DropdownMenuItemProps & {
+		DropdownMenuItemProps & {
 			class?: HTMLAttributes["class"];
 			inset?: boolean;
 			variant?: "default" | "destructive";
