@@ -10,11 +10,24 @@ const { data: landing } = await useAsyncData('landing', async () => {
     .all()
   const uniqueTags = [...new Set(list.flatMap((post: any) => post.tags ?? []))]
 
+  const projects = await queryCollection('projects')
+    .select('path', 'title', 'description', 'date', 'tags', 'img')
+    .all()
+  const erp = projects.find((p: any) => p.path?.toLowerCase() === '/projects/erp' || p.title === 'ERP - webapp') ?? projects[0]
+
+  const aiArticles = list.filter((post: any) => {
+    const tags = post.tags ?? []
+    return tags.includes('Model') || tags.includes('GGUF')
+  })
+  const aiSlots = Array.from({ length: 3 }, (_, i) => aiArticles[i] ?? null)
+
   return {
     latest: list[0],
     featured: list.slice(0, 3),
     count: list.length,
-    tags: uniqueTags.slice(0, 8)
+    tags: uniqueTags.slice(0, 8),
+    erp,
+    aiSlots
   }
 })
 
@@ -31,35 +44,51 @@ function isNew(d: any): boolean {
 
 <template>
   <div class="landing">
-    <section class="hero">
-      <div class="hero-aurora" aria-hidden="true">
-        <span class="aurora-blob" />
-        <span class="aurora-blob" />
-        <span class="aurora-blob" />
+    <section id="showcase" class="showcase">
+      <div class="showcase-inner">
+        <div class="showcase-copy">
+          <h2 class="showcase-title">{{ landing.erp?.title ?? 'ERP - webapp' }}</h2>
+          <p class="showcase-description">{{ landing.erp?.description ?? 'System zażądania drukarni koszulek.' }}</p>
+          <div class="showcase-tags">
+            <span v-for="tag in (landing.erp?.tags ?? [])" :key="tag" class="showcase-tag">{{ tag }}</span>
+          </div>
+          <a v-if="landing.erp" :href="landing.erp.path" class="btn btn-primary">View project</a>
+        </div>
+        <div class="showcase-image">
+          <img
+            v-if="landing.erp?.img"
+            :src="landing.erp.img"
+            :alt="landing.erp.title"
+            class="showcase-screenshot"
+          />
+        </div>
       </div>
+    </section>
 
-      <div class="hero-inner">
-        <h1 class="hero-title" v-if="landing.latest">
-          Latest on the blog: {{ landing.latest.title }}
-        </h1>
-        <h1 class="hero-title" v-else>Blog</h1>
-
-        <p class="hero-subtitle" v-if="landing.latest">
-          {{ landing.latest.description }}
-        </p>
-
-        <div class="hero-meta" v-if="landing.latest">
-          <time class="hero-date" :datetime="landing.latest.date">
-            {{ formatDate(landing.latest.date) }}
-          </time>
-          <span v-if="isNew(landing.latest.date)" class="hero-new">New</span>
-          <span v-for="tag in landing.latest.tags" :key="tag" class="hero-tag">{{ tag }}</span>
-        </div>
-
-        <div class="hero-actions">
-          <a v-if="landing.latest" :href="landing.latest.path" class="btn">Read the latest</a>
-          <a href="/blog" class="btn btn-secondary">Browse all posts</a>
-        </div>
+    <section id="ai-models" class="ai-models">
+      <h2 class="section-title">AI model articles</h2>
+      <div class="ai-grid">
+        <template v-for="(slot, i) in landing.aiSlots" :key="i">
+          <a
+            v-if="slot"
+            :href="slot.path"
+            class="ai-card"
+          >
+            <div class="ai-card-body">
+              <h3 class="ai-card-title">{{ slot.title }}</h3>
+              <p class="ai-card-description">{{ slot.description }}</p>
+              <div class="ai-card-tags">
+                <span v-for="tag in (slot.tags ?? [])" :key="tag" class="ai-card-tag">{{ tag }}</span>
+              </div>
+            </div>
+          </a>
+          <div v-else class="ai-card ai-placeholder">
+            <div class="ai-card-body">
+              <h3 class="ai-card-title">More coming soon</h3>
+              <p class="ai-card-description">Another AI model article will appear here shortly.</p>
+            </div>
+          </div>
+        </template>
       </div>
     </section>
 
@@ -106,71 +135,28 @@ function isNew(d: any): boolean {
   flex-direction: column;
   gap: 3rem;
 }
-.hero {
+.showcase {
   position: relative;
   overflow: hidden;
   border-radius: 1.5rem;
-  padding: 3.5rem 2rem;
+  padding: 2rem;
   background: radial-gradient(120% 100% at 50% 0%, rgba(56, 189, 248, 0.14), transparent 60%),
     rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.hero-aurora {
-  position: absolute;
-  inset: -20%;
-  filter: blur(60px);
-  opacity: 0.55;
-  pointer-events: none;
+.showcase-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
 }
-.aurora-blob {
-  position: absolute;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  animation: drift 18s ease-in-out infinite alternate;
-}
-.aurora-blob:nth-child(1) { left: -10%; top: -10%; background: rgba(56, 189, 248, 0.35); animation-delay: -2s; }
-.aurora-blob:nth-child(2) { left: 45%; top: 10%; background: rgba(167, 139, 250, 0.35); animation-duration: 22s; }
-.aurora-blob:nth-child(3) { left: 10%; top: 50%; background: rgba(244, 114, 182, 0.25); animation-duration: 26s; }
-@keyframes drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(6rem, -4rem, 0) scale(1.25); }
-}
-.hero-inner {
-  position: relative;
+.showcase-copy {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
+  gap: 0.75rem;
 }
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #7dd3fc;
-  background: rgba(125, 211, 252, 0.08);
-  border: 1px solid rgba(125, 211, 252, 0.25);
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-}
-.badge-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: #34d399;
-  animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.35); }
-}
-.hero-title {
-  font-size: clamp(2rem, 5vw, 3.75rem);
+.showcase-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -180,46 +166,95 @@ function isNew(d: any): boolean {
   color: transparent;
   margin: 0;
 }
-.hero-subtitle {
+.showcase-description {
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   color: #cbd5e1;
-  max-width: 46rem;
+  line-height: 1.55;
   margin: 0;
 }
-.hero-meta {
+.showcase-tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
+}
+.showcase-tag {
+  font-size: 0.75rem;
   color: #94a3b8;
-}
-.hero-date {
-  color: #7dd3fc;
-  font-weight: 500;
-}
-.hero-new {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.3);
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-}
-.hero-tag {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
 }
-.hero-actions {
+.showcase-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 100%;
+  min-height: 16rem;
+}
+.showcase-screenshot {
+  display: block;
+  width: 200%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+.btn-primary {
+  color: #7dd3fc;
+}
+.ai-models {
   display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+@media (max-width: 900px) {
+  .ai-grid {
+    grid-template-columns: 1fr;
+  }
+  .showcase-inner {
+    grid-template-columns: 1fr;
+  }
+}
+.ai-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.4rem;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.ai-card:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  background: rgba(125, 211, 252, 0.07);
+  border-color: rgba(125, 211, 252, 0.45);
+}
+.ai-placeholder {
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+}
+.ai-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ai-card-title { font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0; }
+.ai-card-description { font-size: 0.9rem; color: #94a3b8; line-height: 1.55; }
+.ai-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+.ai-card-tag {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.375rem;
 }
 .btn {
   display: inline-block;
@@ -320,7 +355,6 @@ function isNew(d: any): boolean {
   border-radius: 999px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob, .badge-dot { animation: none; }
-  .latest-card:hover, .btn:hover { transform: none; }
+  .ai-card:hover, .btn:hover { transform: none; }
 }
 </style>

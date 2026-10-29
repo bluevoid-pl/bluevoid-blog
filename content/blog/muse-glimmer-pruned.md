@@ -9,7 +9,7 @@ tags:
   - "Pruning"
 ---
 
-### Muse Glimmer 30B - pruned
+# Muse Glimmer 30B - pruned GGUF
 
 Pruned GGUF build of [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B), published by bluevoid-pl.
 

@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <header class="navbar header-complementary">
     <div class="navbar-container">
       <a href="/" class="navbar-brand"><img src="/logo.png" />Blue Void</a>
       <nav class="navbar-links">
