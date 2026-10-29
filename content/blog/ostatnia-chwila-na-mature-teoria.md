@@ -2,9 +2,11 @@
 title: "Ostatnia chwila na maturze: Teoria"
 description: "Exam-prep theory notes: web protocols (HTTP/HTTPS/FTP), file formats, encoding, and computer science fundamentals."
 date: "2025-03-05"
+img: "/placeholder.png"
 tags:
   - "Matura"
   - "Teoria"
+enabled: true
 ---
 
 ## Protokoły
@@ -62,10 +64,10 @@ Bob udostępnia swój klucz publiczny. Alicja szyfruje wiadomość kluczem publi
 Rodzaje kompresji
 
 - **Kompresja bezstratna**  
-    Pozwala na odzyskanie oryginalnych danych w 100% po dekompresji. Stosowana jest tam, gdzie ważna jest integralność danych, np. w dokumentach tekstowych, archiwach, programach czy niektórych formatach graficznych (PNG, ZIP, FLAC).  
-    Przykładowy algorytm kompresji bezstratnej to **Huffman Coding** przypisuje on krótsze kody częściej występującym symbolom, co zmniejsza rozmiar pliku.
+  Pozwala na odzyskanie oryginalnych danych w 100% po dekompresji. Stosowana jest tam, gdzie ważna jest integralność danych, np. w dokumentach tekstowych, archiwach, programach czy niektórych formatach graficznych (PNG, ZIP, FLAC).  
+  Przykładowy algorytm kompresji bezstratnej to **Huffman Coding** przypisuje on krótsze kody częściej występującym symbolom, co zmniejsza rozmiar pliku.
 - **Kompresja stratna**  
-    Osiąga większe zmniejszenie rozmiaru pliku kosztem utraty części informacji, często niezauważalnej dla użytkownika. Wykorzystywana głównie w multimediach (obrazy, dźwięk, wideo), gdzie pewna utrata jakości jest akceptowalna (JPEG, MP3, MP4)
+  Osiąga większe zmniejszenie rozmiaru pliku kosztem utraty części informacji, często niezauważalnej dla użytkownika. Wykorzystywana głównie w multimediach (obrazy, dźwięk, wideo), gdzie pewna utrata jakości jest akceptowalna (JPEG, MP3, MP4)
 
 ## Zestawienie typów komunikacji sieciowej
 

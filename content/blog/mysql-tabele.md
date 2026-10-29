@@ -2,9 +2,11 @@
 title: "MySQL - Tabele"
 description: "Working with tables in MySQL: quoting identifiers, comments, CREATE/ALTER/DROP statements, and table management."
 date: "2025-02-18"
+img: "/placeholder.png"
 tags:
   - "MySQL"
   - "SQL"
+enabled: true
 ---
 
 #### Podstawy
@@ -14,6 +16,7 @@ Pojedyncze cudzysłowy (`' '`) służą głównie do obejmowania wartości tekst
 Podwójne cudzysłowy (`" "`) są podobne, ale rzadziej używane.
 
 Odwrotne apostrofy (`` ` ` ``) służą do obejmowania identyfikatorów, takich jak nazwy tabel lub kolumn.
+
 ```SQL
 -- komentarz jedno liniowy
 SELECT * FROM `przyklad`; -- komentarz jedno liniowy
@@ -26,11 +29,13 @@ SELECT * FROM `przyklad`; /*
 komentarz wieloliniowy
 */ SELECT * FROM `przyklad`;
 ```
+
 <br>
 
 #### CREATE TABLE
 
 Tworzy tabelę z podanymi kolumnami
+
 ```sql
 CREATE TABLE nazwa_tabeli(
    kolumna1 typ_danych,
@@ -40,6 +45,7 @@ CREATE TABLE nazwa_tabeli(
    PRIMARY KEY( kolumna? )
 );
 ```
+
 <br>
 Przykład:
 ```SQL
@@ -58,9 +64,11 @@ CREATE TABLE uczen(
 #### DROP TABLE
 
 Usuwa tabelę z bazy danych
+
 ```SQL
 DROP TABLE nazwa_tabeli;
 ```
+
 <br>
 Przykład:
 ```SQL
@@ -71,6 +79,7 @@ DROP TABLE uczen;
 #### ALTER TABLE
 
 Pozwala na modyfikację kolumn w tabeli.
+
 ```SQL
 -- Dodaje nową kolumnę
 ALTER TABLE nazwa_tabeli ADD kolumna typ_danych;
@@ -81,6 +90,7 @@ ALTER TABLE nazwa_tabeli DROP COLUMN kolumna;
 -- Modyfikuje kolumnę w tabeli
 ALTER TABLE nazwa_tabeli MODIFY COLUMN kolumna typ_danych;
 ```
+
 <br>
 Przykład:
 
@@ -95,6 +105,7 @@ ALTER TABLE uczen DROP COLUMN obecnosci;
 -- Zmienia typ kolumny srednia_ocen w tabeli uczen z DECIMAL(10,2) na FLOAT
 ALTER TABLE uczen MODIFY COLUMN srednia_ocen FLOAT;
 ```
+
 <br>
 #### Zadanie
 
@@ -111,7 +122,6 @@ Uczen
 | IdKlasy  | INT          |
 
 Klasa
-
 
 |Nazwa|typ|
 |---|---|
@@ -189,7 +199,9 @@ Ustaw constraint na tabeli Uczen kolumnie wiek na DEFAULT 18
 #### ALTER TABLE - RENAME
 
 Modyfikuje kolumnę w tabeli.
+
 ```SQL
 ALTER TABLE nazwa_tabeli RENAME COLUMN stara_nazwa_kolumny TO nowa_nazwa_kolumny;
 ```
+
 <br>

@@ -2,10 +2,12 @@
 title: "MySQL dane"
 description: "Working with data in MySQL: INSERT INTO, SELECT, UPDATE, DELETE, WHERE, ORDER BY, LIMIT, and practical query patterns."
 date: "2025-02-24"
+img: "/placeholder.png"
 tags:
   - "MySQL"
   - "SQL"
   - "Queries"
+enabled: true
 ---
 
 #### INSERT INTO
@@ -16,6 +18,7 @@ INSERT INTO nazwa_tabeli (kolumna1, kolumna2, kolumna3, ...)
   VALUES (wartosc1, wartosc2, wartosc3, ...);
 
 Przykład:
+
 ```SQL
 /*
 CREATE TABLE uczen(
@@ -39,9 +42,9 @@ INSERT INTO uczen VALUES
   ( 3, 'Mateusz', 'Kifner', '2000-01-01', Null, Null ),
   ( 4, 'Jan', 'Kowalski', '2000-01-01', 4.2, 'ul. Kameliowa 123/45' );
 ```
+
 <br>
 ####  SELECT
-
 
 Polecenie to służy do pobierania danych z bazy danych.
 
@@ -52,8 +55,9 @@ SELECT * FROM nazwa_tabeli;
 -- Pobierz dane z kolumn kolumna1, kolumna2, kolumna3, ... z tabeli
 SELECT kolumna1, kolumna2, kolumna3, ... FROM nazwa_tabeli;
 ```
+
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -69,6 +73,7 @@ SELECT imie, nazwisko, adres FROM przyklad;
 #### SELECT - DISTINCT
 
 Klauzula jest używana do usuwania duplikujących się wyników w zapytaniach. Pozwala na zwrócenie tylko unikalnych wartości w kolumnie lub zestawie kolumn.
+
 ```SQL
 -- Pobierz wszystkie dane z tabeli
 SELECT DISTINCT * FROM nazwa_tabeli;
@@ -88,6 +93,7 @@ SELECT DISTINCT * FROM `przyklad`;
 -- Pobierz dane z kolumn imie, nazwisko, adres z tabeli przyklad
 SELECT DISTINCT imie, nazwisko, adres FROM przyklad;
 ```
+
 <br>
 
 #### SELECT - WHERE
@@ -103,8 +109,9 @@ SELECT kolumna1, kolumna2, kolumna3, ...
   FROM nazwa_tabeli
   WHERE warunek;
 ```
+
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -130,8 +137,9 @@ SELECT kolumna1, kolumna2, ...
 FROM nazwa_tabeli
 WHERE kolumna BETWEEN value1 AND value2;
 ```
+
 <br>
-  
+
 Przykład:
 
 ```SQL
@@ -152,8 +160,9 @@ SELECT kolumna1, kolumna2, ...
   FROM nazwa_tabeli
   WHERE kolumna IN (value1, value2, ...);
 ```
+
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -177,11 +186,11 @@ Operator **`LIKE`** w MySQL służy do wyszukiwania danych w kolumnach tekstowyc
 ```SQL
 SELECT kolumna1, kolumna2, ...
   FROM nazwa_tabeli
-  WHERE kolumna LIKE 'wzorzec'; 
+  WHERE kolumna LIKE 'wzorzec';
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -212,7 +221,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -222,8 +231,9 @@ SELECT * FROM `uczen`
 SELECT * FROM `uczen`
   WHERE data_urodzenia IS NOT NULL;
 ```
+
 <br>
-    
+
 #### INSERT INTO
 
 Dodaje rekord do tabeli
@@ -258,7 +268,7 @@ INSERT INTO uczen VALUES
 ```
 
 <br>
-    
+
 #### SELECT
 
 Polecenie to służy do pobierania danych z bazy danych.
@@ -272,7 +282,7 @@ SELECT kolumna1, kolumna2, kolumna3, ... FROM nazwa_tabeli;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -298,7 +308,7 @@ SELECT DISTINCT kolumna1, kolumna2, kolumna3, ... FROM nazwa_tabeli;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -326,7 +336,7 @@ SELECT kolumna1, kolumna2, kolumna3, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -343,7 +353,6 @@ SELECT imie, nazwisko, adres
 
 <br>
 
-
 #### SELECT - WHERE - BETWEEN
 
 Klauzula **`BETWEEN`** służy do wyszukiwania wartości w określonym zakresie (np. liczbowym, datowym). Zawiera wartości **początkową i końcową** (włącznie).
@@ -355,7 +364,7 @@ WHERE kolumna BETWEEN value1 AND value2;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -377,7 +386,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -401,11 +410,11 @@ Operator **`LIKE`** w MySQL służy do wyszukiwania danych w kolumnach tekstowyc
 ```SQL
 SELECT kolumna1, kolumna2, ...
   FROM nazwa_tabeli
-  WHERE kolumna LIKE 'wzorzec'; 
+  WHERE kolumna LIKE 'wzorzec';
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -420,7 +429,7 @@ SELECT * FROM uczen
 ```
 
 <br>
-    
+
 #### SELECT - WHERE - NULL, NOT NULL
 
 **`NULL`** w SQL oznacza brak wartości lub brak danych w kolumnie. Jest to specjalna wartość, która wskazuje, że brak jest konkretnej wartości (np. dla daty urodzenia osoby, której data nie została wprowadzona).
@@ -436,7 +445,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -464,7 +473,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -476,7 +485,7 @@ SELECT * FROM `uczen`
 ```
 
 <br>
-    
+
 #### Operatory
 
 #### Matematyczne
@@ -489,7 +498,9 @@ SELECT * FROM `uczen`
 | <        | mniejsze       |
 | >=       | większe równe  |
 | <=       | mniejsze równe |
+
 <> nierówność w access
+
 #### Logiczne
 
 |Operator|Opis|
@@ -497,7 +508,6 @@ SELECT * FROM `uczen`
 |AND|i (oba warunki muszą być spełnione)|
 |OR|lub (przynajmniej jeden warunek musi być spełniony)|
 |NOT|nie (negacja warunku)|
-
 
 #### UPDATE
 
@@ -510,7 +520,7 @@ WHERE warunek;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -528,11 +538,11 @@ UPDATE uczen
 Polecenie to służy do usuwania rekordów z tabeli bazy danych. Możesz usunąć wybrane wiersze przy użyciu klauzuli **WHERE**. **W przypadku pominięcia klauzuli WHERE usunięte zostaną wszystkie rekordy.**
 
 ```SQL
-DELETE FROM table_name WHERE condition; 
+DELETE FROM table_name WHERE condition;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -543,12 +553,10 @@ DELETE FROM uczen WHERE imie = 'Jan';
 
 <br>
 
-
 #### Zadanie
 
-- Dodaj 3 rekordy do tabeli ``uczen``
+- Dodaj 3 rekordy do tabeli `uczen`
 - Usuń przedostatni rekord z użyciem `id`
-
 
 #### SELECT - `LIMIT`
 
@@ -565,11 +573,11 @@ SELECT kolumna1, kolumna2, kolumna3, ...
 SELECT kolumna1, kolumna2, kolumna3, ...
   FROM nazwa_tabeli
   WHERE warunek
-  LIMIT liczba_rekordow OFFSET ilosc_rekordow_do_pominiencia; 
+  LIMIT liczba_rekordow OFFSET ilosc_rekordow_do_pominiencia;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -603,7 +611,7 @@ SELECT alias1.kolumna1, alias2.kolumna2
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -614,7 +622,6 @@ SELECT u.imie, u.nazwisko, k.profil_klasy
 ```
 
 <br>
-
 
 #### SELECT - ORDER BY
 
@@ -631,7 +638,7 @@ ORDER BY kolumna1, kolumna2, ... DESC;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -679,7 +686,6 @@ SELECT imie, nazwisko, adres
 |**ROUND(liczba, miejsca_po_przecinku);**|zaokrągla liczbę do określonej liczby miejsc po przecinku.|
 |SIN(kat)|oblicza sinus kąta w radianach.|
 
-
 #### SELECT - `GROUP BY`
 
 Klauzula jest używana do grupowania wyników na podstawie wartości jednej lub kilku kolumn. Jest szczególnie przydatne w połączeniu z funkcjami agregującymi, takimi jak `COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`, które operują na grupach danych.
@@ -696,7 +702,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -715,11 +721,11 @@ SELECT Count(*), sreadnia_ocen
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
 INNER JOIN tabela2
-ON tabela1.kolumna1 = tabela2.kolumna1; 
+ON tabela1.kolumna1 = tabela2.kolumna1;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -729,7 +735,7 @@ JOIN ewidencja AS e ON u.uczen_id = e.uczen_id;
 ```
 
 <br>
-    
+
 #### SELECT - LEFT JOIN
 
 Zwróci wszystkie rekordy z tabeli po lewej (np. `uczen`), nawet jeśli nie ma pasujących rekordów w tabeli po prawej (np. `ewidencja`).
@@ -738,11 +744,11 @@ Zwróci wszystkie rekordy z tabeli po lewej (np. `uczen`), nawet jeśli nie ma p
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
 LEFT JOIN tabela2
-ON tabela1.kolumna1 = tabela2.kolumna2; 
+ON tabela1.kolumna1 = tabela2.kolumna2;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -752,7 +758,7 @@ LEFT JOIN ewidencja AS e ON u.uczen_id = e.uczen_id;
 ```
 
 <br>
-    
+
 #### SELECT - RIGHT JOIN
 
 Zwróci wszystkie rekordy z tabeli po prawej (np. `ewidencja`), nawet jeśli nie ma pasujących rekordów w tabeli po lewej (np. `uczen`).
@@ -761,11 +767,11 @@ Zwróci wszystkie rekordy z tabeli po prawej (np. `ewidencja`), nawet jeśli nie
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
 RIGHT JOIN tabela2
-ON tabela1.kolumna1 = tabela2.kolumna2; 
+ON tabela1.kolumna1 = tabela2.kolumna2;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -776,7 +782,6 @@ RIGHT JOIN ewidencja AS e ON u.uczen_id = e.uczen_id;
 
 <br>
 
-
 #### SELECT - `CROSS JOIN`
 
 Klauzula ta **`CROSS JOIN`** to typ łączenia tabel, który zwraca iloczyn kartezjański obu tabel, czyli wszystkie możliwe kombinacje rekordów z obu tabel, bez względu na warunki dopasowania. do ograniczenia liczby rekordów które zostaną zwrócone.
@@ -784,11 +789,11 @@ Klauzula ta **`CROSS JOIN`** to typ łączenia tabel, który zwraca iloczyn kart
 ```SQL
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
-CROSS JOIN tabela2; 
+CROSS JOIN tabela2;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -813,10 +818,11 @@ WHERE t1.id IS NULL
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
+
 ```
 
 <br>
@@ -832,7 +838,7 @@ SELECT * FROM tabela1 WHERE kolumna1 in (SELECT kolumna1 FROM tabela2);
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -851,8 +857,6 @@ WHERE id_uczen IN
 
 <br>
 
-
-
 #### SELECT - WHERE - NULL, NOT NULL
 
 **`NULL`** w SQL oznacza brak wartości lub brak danych w kolumnie. Jest to specjalna wartość, która wskazuje, że brak jest konkretnej wartości (np. dla daty urodzenia osoby, której data nie została wprowadzona).
@@ -868,7 +872,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -902,7 +906,6 @@ SELECT * FROM `uczen`
 |OR|lub (przynajmniej jeden warunek musi być spełniony)|
 |NOT|nie (negacja warunku)|
 
-
 #### UPDATE
 
 Polecenie to służy do modyfikowania istniejących rekordów w tabeli bazy danych. Pozwala na zmianę wartości w jednej lub kilku kolumnach, a warunek **WHERE** określa, które wiersze mają zostać zaktualizowane. **W przypadku pominięcia klauzuli WHERE zmodyfikowane zostaną wszystkie rekordy.**
@@ -914,7 +917,7 @@ WHERE warunek;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -932,11 +935,11 @@ UPDATE uczen
 Polecenie to służy do usuwania rekordów z tabeli bazy danych. Możesz usunąć wybrane wiersze przy użyciu klauzuli **WHERE**. **W przypadku pominięcia klauzuli WHERE usunięte zostaną wszystkie rekordy.**
 
 ```SQL
-DELETE FROM table_name WHERE condition; 
+DELETE FROM table_name WHERE condition;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -949,10 +952,8 @@ DELETE FROM uczen WHERE imie = 'Jan';
 
 #### Zadanie
 
-- Dodaj 3 rekordy do tabeli ``uczen``
+- Dodaj 3 rekordy do tabeli `uczen`
 - Usuń przedostatni rekord z użyciem `id`
-
-
 
 #### SELECT - `LIMIT`
 
@@ -969,11 +970,11 @@ SELECT kolumna1, kolumna2, kolumna3, ...
 SELECT kolumna1, kolumna2, kolumna3, ...
   FROM nazwa_tabeli
   WHERE warunek
-  LIMIT liczba_rekordow OFFSET ilosc_rekordow_do_pominiencia; 
+  LIMIT liczba_rekordow OFFSET ilosc_rekordow_do_pominiencia;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -993,7 +994,6 @@ SELECT imie, nazwisko, adres
 
 <br>
 
-
 #### SELECT - table aliasy
 
 **Alias** w SQL to tymczasowa nazwa nadana tabeli lub kolumnie w celu ułatwienia odczytu i skrócenia zapytań. Alias nie zmienia struktury bazy danych – działa tylko podczas wykonywania zapytania.
@@ -1008,7 +1008,7 @@ SELECT alias1.kolumna1, alias2.kolumna2
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1035,7 +1035,7 @@ ORDER BY kolumna1, kolumna2, ... DESC;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1051,8 +1051,8 @@ SELECT imie, nazwisko, adres
   FROM uczen
   ORDER BY imie, nazwisko DESC;
 ```
-<br>
 
+<br>
 
 #### Funkcje
 
@@ -1099,7 +1099,7 @@ SELECT kolumna1, kolumna2, ...
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1119,11 +1119,11 @@ SELECT Count(*), sreadnia_ocen
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
 INNER JOIN tabela2
-ON tabela1.kolumna1 = tabela2.kolumna1; 
+ON tabela1.kolumna1 = tabela2.kolumna1;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1132,9 +1132,7 @@ FROM uczen AS u
 JOIN ewidencja AS e ON u.uczen_id = e.uczen_id;
 ```
 
-  
 <br>
-  
 
 #### SELECT - LEFT JOIN
 
@@ -1144,7 +1142,7 @@ Zwróci wszystkie rekordy z tabeli po lewej (np. `uczen`), nawet jeśli nie ma p
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
 LEFT JOIN tabela2
-ON tabela1.kolumna1 = tabela2.kolumna2; 
+ON tabela1.kolumna1 = tabela2.kolumna2;
 ```
 
 <br>
@@ -1158,7 +1156,6 @@ LEFT JOIN ewidencja AS e ON u.uczen_id = e.uczen_id;
 
 <br>
 
-
 #### SELECT - RIGHT JOIN
 
 Zwróci wszystkie rekordy z tabeli po prawej (np. `ewidencja`), nawet jeśli nie ma pasujących rekordów w tabeli po lewej (np. `uczen`).
@@ -1167,11 +1164,11 @@ Zwróci wszystkie rekordy z tabeli po prawej (np. `ewidencja`), nawet jeśli nie
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
 RIGHT JOIN tabela2
-ON tabela1.kolumna1 = tabela2.kolumna2; 
+ON tabela1.kolumna1 = tabela2.kolumna2;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1181,7 +1178,7 @@ RIGHT JOIN ewidencja AS e ON u.uczen_id = e.uczen_id;
 ```
 
 <br>
-    
+
 #### SELECT - `CROSS JOIN`
 
 Klauzula ta **`CROSS JOIN`** to typ łączenia tabel, który zwraca iloczyn kartezjański obu tabel, czyli wszystkie możliwe kombinacje rekordów z obu tabel, bez względu na warunki dopasowania. do ograniczenia liczby rekordów które zostaną zwrócone.
@@ -1189,11 +1186,11 @@ Klauzula ta **`CROSS JOIN`** to typ łączenia tabel, który zwraca iloczyn kart
 ```SQL
 SELECT kolumna1, kolumna2, ...
 FROM tabela1
-CROSS JOIN tabela2; 
+CROSS JOIN tabela2;
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1203,7 +1200,7 @@ CROSS JOIN ewidencja AS e;
 ```
 
 <br>
-    
+
 #### SELECT - `FULL OUTER JOIN` ----
 
 **`FULL OUTER JOIN`** to typ łączenia tabel, który zwraca wszystkie rekordy z obu tabel, łącząc je na podstawie warunku, a dla rekordów, które nie mają pasujących danych w drugiej tabeli, wstawia wartości **NULL**.
@@ -1218,10 +1215,11 @@ WHERE t1.id IS NULL
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
+
 ```
 
 <br>
@@ -1237,7 +1235,7 @@ SELECT * FROM tabela1 WHERE kolumna1 in (SELECT kolumna1 FROM tabela2);
 ```
 
 <br>
-    
+
 Przykład:
 
 ```SQL
@@ -1252,4 +1250,4 @@ WHERE id_uczen IN
     FROM ewidencja
     GROUP BY id_uczen
     HAVING AVG(ocena) > 4.0);
-``` 
+```

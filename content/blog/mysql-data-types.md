@@ -2,10 +2,12 @@
 title: "MySQL - Data Types"
 description: "Reference of MySQL data types: numeric (INT, DECIMAL, FLOAT), string (CHAR, VARCHAR, TEXT), date/time, boolean, and binary types with ranges and byte sizes."
 date: "2025-02-20"
+img: "/placeholder.png"
 tags:
   - "MySQL"
   - "SQL"
   - "Data Types"
+enabled: true
 ---
 
 #### TLDR
@@ -35,8 +37,6 @@ tags:
 | **VARCHAR(M)** | M = [1-65535]   | NIE                   |
 | **TEXT**       | Max: 65535      | NIE                   |
 
-
-
 #### Numeryczne - Całkowite (Integer)
 
 | Typ           | Min (signed)                       | Max (signed)                         | Min - (unsigned) | Max - (unsigned)                  | Bajty |
@@ -61,11 +61,7 @@ tags:
 | ---------------- | ------------------------- | --------------------------- | ----------- |
 | **DECIMAL(M,D)** | M = [1-38]                | 0                           | **NUMERIC** |
 
-
-
 #### Data i czas
-
-
 
 | Typ           | Format              | Min                     | Max                        |
 | ------------- | ------------------- | ----------------------- | -------------------------- |
@@ -85,8 +81,6 @@ tags:
 | **MEDIUMTEXT** | Max: 16777215   | NIE                   |
 | **LONGTEXT**   | Max:4294967295  | NIE                   |
 
-
-
 #### Boolean
 
 |Typ|Wartości|Alias|
@@ -96,8 +90,6 @@ tags:
 Wartości w boolean nie uwzględniają wielkości liter.  
 Wartość 0 jest interpretowana jako False, a 1 jako True.
 
-
-
 #### Dodatkowe typy danych
 
 - JSON
@@ -105,8 +97,6 @@ Wartość 0 jest interpretowana jako False, a 1 jako True.
 - SET
 - BIT
 - BLOB
-
-
 
 #### Ograniczenia - Constraints
 

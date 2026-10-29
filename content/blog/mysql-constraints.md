@@ -2,10 +2,12 @@
 title: "MySQL - Constraints"
 description: "MySQL column constraints: NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, DEFAULT, AUTO_INCREMENT, and CHECK with practical examples."
 date: "2025-02-22"
+img: "/placeholder.png"
 tags:
   - "MySQL"
   - "SQL"
   - "Constraints"
+enabled: true
 ---
 
 #### TLDR
@@ -18,13 +20,12 @@ tags:
 - AUTO_INCREMENT - Automatycznie przydziela nowym rekordom _wartość poprzedniego_+1
 - CHECK - Wymusza aby dodawane dane spełniały podany warunek
 
-
-
 #### NOT NULL
 
 Wymusza aby wartość nie była NULL
 
 Przykład:
+
 ```SQL
 CREATE TABLE przyklad(
     id INT NOT NULL,
@@ -33,14 +34,15 @@ CREATE TABLE przyklad(
 
 ALTER TABLE przyklad MODIFY COLUMN wiek INT NOT NULL;
 ```
-<br>
 
+<br>
 
 #### UNIQUE
 
 Wymusza aby wartkość była unikalna, nie jest wymagane jeśli używasz PRIMARY KEY na kolumnie.
 
 Przykład:
+
 ```SQL
 CREATE TABLE przyklad(
     id INT UNIQUE,
@@ -49,14 +51,15 @@ CREATE TABLE przyklad(
 
 ALTER TABLE przyklad MODIFY COLUMN numer_bagazu INT UNIQUE;
 ```
-<br>
 
+<br>
 
 #### PRIMARY KEY
 
 Klucz główny, unikalnie identyfikuje rekord w tabeli. Kolumny użyte w PRIMARY KEY muszą mieć nadane ograniczenie NOT NULL.
 
 Przykład:
+
 ```SQL
 CREATE TABLE przyklad(
     id INT NOT NULL,
@@ -80,14 +83,15 @@ ALTER TABLE przyklad ADD CONSTRAINT PK_id_nick PRIMARY KEY (id,nick);
 -- Usuń klucz główny
 ALTER TABLE przyklad DROP PRIMARY KEY;
 ```
-<br>
 
+<br>
 
 #### FOREIGN KEY
 
 Klucz obcy, identyfikuje rekord w tabeli.
 
 Przykład:
+
 ```SQL
 CREATE TABLE temp(
     id int NOT NULL,
@@ -110,14 +114,15 @@ ALTER TABLE przyklad ADD FOREIGN KEY (id_temp) REFERENCES temp(id);
 -- Dodaj klucz obcy z nazwą
 ALTER TABLE przyklad ADD CONSTRAINT FK_temp2 FOREIGN KEY (id_temp2) REFERENCES temp(id);
 ```
-<br>
 
+<br>
 
 #### DEFAULT
 
 Ustala wartość domyślną dla danych, która zostanie użyta, jeśli kolumna zostanie pominięta podczas wprowadzania danych.
 
 Przykład:
+
 ```SQL
 CREATE TABLE przyklad(
     id INT NOT NULL,
@@ -136,16 +141,17 @@ ALTER TABLE przyklad ALTER wiek SET DEFAULT 18;
 ALTER TABLE przyklad MODIFY COLUMN wiek INT;
 
 -- Usuń wartość domyślna bezpośrednio
-ALTER TABLE przyklad ALTER wiek DROP DEFAULT; 
+ALTER TABLE przyklad ALTER wiek DROP DEFAULT;
 ```
-<br>
 
+<br>
 
 #### AUTO_INCREMENT
 
 Automatycznie zwiększa nowe rekordy o 1, jeśli nie podano danych przy wstawianiu.
 
 Przykład:
+
 ```SQL
 CREATE TABLE przyklad(
     id INT AUTO_INCREMENT,
@@ -154,20 +160,22 @@ CREATE TABLE przyklad(
 
 ALTER TABLE przyklad MODIFY COLUMN numer_bagazu INT AUTO_INCREMENT;
 ```
+
 <br>
 Pierwszą wartością domyślnie jest 1, aby to zmienić można użyć:
 
 ```SQL
 ALTER TABLE przyklad AUTO_INCREMENT=100;
 ```
-<br>
 
+<br>
 
 #### CHECK
 
 Wymusza aby dodawane dane spełniały podany warunek
 
 Przykład:
+
 ```SQL
 CREATE TABLE przyklad(
     id INT UNIQUE,
@@ -183,6 +191,7 @@ ALTER TABLE przyklad ADD CHECK (wiek>=18);
 ALTER TABLE przyklad ADD CONSTRAINT CHK_wiek_profil CHECK (wiek>=18 AND jest_studentem=TRUE);
 
 -- Usuń warunek z nazwą
-ALTER TABLE przyklad DROP CHECK CHK_wiek_profil; 
+ALTER TABLE przyklad DROP CHECK CHK_wiek_profil;
 ```
+
 <br>

@@ -2,15 +2,18 @@
 title: "Ostatnia chwila na maturze: C++"
 description: "Quick-reference C++ snippets for the matura exam: file I/O, vectors, sorting, and common algorithmic patterns."
 date: "2025-03-05"
+img: "/placeholder.png"
 tags:
   - "C++"
   - "Matura"
   - "Reference"
+enabled: true
 ---
 
 ### Podstawy
 
 #### Wczytywanie plików bez znanego rozmiaru, pojedyncze elementy
+
 ```cpp
 #include <iostream>
 #include <fstream>
@@ -52,7 +55,9 @@ int main(){
   return 0;
 }
 ```
+
 #### Wczytywanie plików bez znanego rozmiaru, pary
+
 ```cpp
 #include <iostream>
 #include <fstream>
@@ -89,7 +94,9 @@ int main() {
     return 0;
 }
 ```
+
 #### Wczytywanie plików bez znanego rozmiaru, pary alternatywnie
+
 ```cpp
 
 #include <iostream>
@@ -122,10 +129,12 @@ int main() {
     return 0;
 }
 ```
+
 #### Wczytywanie plików bez znanego rozmiaru, strukt-y
 
 Strukt-y działają podobnie do par, ale jest utrudnione używanie std::sort z nimi. Ich największą zaletą jest możliwość nadania nazw zmiennym w środku obiektów, mogą one przechowywać dowolną ilość zmiennych, w tym tablic i innych strukt-ów i par.  
 Przykład:
+
 ```cpp
 struct Vector3 {
     double x;
@@ -133,7 +142,6 @@ struct Vector3 {
     double z;
 }
 ```
-
 
 ```cpp
 #include <iostream>
@@ -179,7 +187,9 @@ int main() {
     return 0;
 }
 ```
+
 #### Wczytywanie plików z znanym rozmiarem, tablica std::array 3 wymiarowa.
+
 ```cpp
 
 #include <iostream>
@@ -221,9 +231,11 @@ int main()
     return 0;
 }
 ```
+
 ### Zliczanie elementów
 
 #### Liczenie liczb w tablicy o małym zakresie (do około 100000)
+
 ```cpp
 
 #include <iostream>
@@ -257,7 +269,9 @@ int main() {
     return 0;
 }
 ```
+
 #### Liczenie liczb w tablicy o dużym zakresie
+
 ```cpp
 #include <iostream>
 #include <vector>
@@ -309,9 +323,11 @@ int main() {
     return 0;
 }
 ```
+
 #### Liczenie liter w słowie o stałej wielkości liter
 
 Ten kod można znacznie skrócić i nie jest to blędem, tutaj jest przedstawiony przypadek z dokładnym omówieniem.
+
 ```cpp
 
 #include <iostream>
@@ -348,9 +364,11 @@ int main() {
     return 0;
 }
 ```
+
 #### Liczenie znaków w zdaniu
 
 Ten kod można znacznie skrócić i nie jest to blędem, tutaj jest przedstawiony przypadek z dokładnym omówieniem.
+
 ```cpp
 
 #include <iostream>
@@ -390,7 +408,9 @@ int main() {
     return 0;
 }
 ```
+
 #### Przykładowa konwersja z systemu liczbowego piątkowego na dziesiętny.
+
 ```cpp
 
 int pent_to_dec(string a)
@@ -422,7 +442,9 @@ string dec_to_pent(int a)
   return wynik;
 }
 ```
+
 #### Funkcja do rozkładania napisu z użyciem separatora
+
 ```cpp
 
 std::vector<std::string> split(std::string str, std::string separator) {
@@ -460,7 +482,9 @@ std::vector<std::string> split(std::string str, std::string separator) {
     return result;
 }
 ```
+
 #### Czy liczba jest pierwsza
+
 ```cpp
 
 bool czy_pierwsza(int n) {
@@ -477,7 +501,9 @@ bool czy_pierwsza(int n) {
 
 // Sprawdzamy dla 2,4,11,22
 ```
+
 #### NWD euklidesa
+
 ```cpp
 
 int NWD(int a, int b) {
@@ -491,7 +517,9 @@ int NWD(int a, int b) {
     return a;
 }
 ```
+
 #### NWD z definicji
+
 ```cpp
 int NWD(int a, int b) {
     int i;

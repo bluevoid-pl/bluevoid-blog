@@ -2,10 +2,12 @@
 title: "Matura 2025 zadanie 3"
 description: "Solution walkthrough for Matura 2025 task 3 in C++: vector geometry, GCD, and file I/O patterns for the exam."
 date: "2025-03-01"
+img: "/placeholder.png"
 tags:
   - "C++"
   - "Matura"
   - "Algorithms"
+enabled: true
 ---
 
 # Matura 2025 zadanie 3
