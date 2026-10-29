@@ -6,7 +6,7 @@ img: "/placeholder.png"
 tags:
   - "LLM"
   - "GGUF"
-  - "Pruning"
+  - "Pruned"
   - "llama.cpp"
   - "RAM"
 enabled: true
@@ -23,7 +23,7 @@ Running a capable large language model locally without a high-end GPU is possibl
 - ~12GB free RAM + disk space for the model.
 - Optional: `mmproj` file for vision support.
 
-## Why Pruning Helps
+## Why Pruned Helps
 
 Pruning removes rarely used characters/scripts from the tokenizer, reducing model size by ~25% without significant quality loss for English/Polish use. Combined with aggressive quantization (IQ3_XXS), the model fits in limited VRAM/RAM.
 

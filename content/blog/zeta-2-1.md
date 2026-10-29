@@ -6,7 +6,6 @@ img: "/placeholder.png"
 tags:
   - "Zeta"
   - "GGUF"
-  - "Model"
   - "Code"
 enabled: true
 ---

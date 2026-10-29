@@ -6,8 +6,7 @@ img: "/placeholder.png"
 tags:
   - "Muse"
   - "GGUF"
-  - "Model"
-  - "Pruning"
+  - "Pruned"
 enabled: true
 ---
 
