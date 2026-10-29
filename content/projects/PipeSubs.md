@@ -7,6 +7,7 @@ tags:
   - "Python"
   - "dearPyGui"
   - "sqlite3"
+enabled: true
 ---
 
 # PipeSubs

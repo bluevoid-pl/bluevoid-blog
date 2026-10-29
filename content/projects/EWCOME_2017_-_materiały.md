@@ -5,6 +5,7 @@ img: "/assets/EWCOME%202017_pacman.png"
 description: "Materiały z mojej prezentacji na konferencji EWCOME2017(East - West Conference on Mathematics Education)"
 tags:
   - "EWCOME2017"
+enabled: true
 ---
 
 #### Prezentacje:

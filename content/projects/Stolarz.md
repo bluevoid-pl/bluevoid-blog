@@ -6,6 +6,7 @@ description: "MVP web aplikasi dla stolarza do zleceń, listy zakupów i podlicz
 tags:
   - "React"
   - "MaterialUI"
+enabled: true
 ---
 
 # Stolarz

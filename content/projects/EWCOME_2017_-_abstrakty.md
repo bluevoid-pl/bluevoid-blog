@@ -5,6 +5,7 @@ img: "/assets/EWCOME2017.png"
 description: "Abstrakty na konferencję EWCOME2017 (East - West Conference on Mathematics Education) są już gotowe i zaakceptowane. Zachęcam do lektury."
 tags:
   - "EWCOME2017"
+enabled: true
 ---
 
 # EWCOME 2017 - abstrakty

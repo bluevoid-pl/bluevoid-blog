@@ -6,6 +6,7 @@ description: "Na prośbę grupy gamedev publikuję kopię flappy birda z rybą z
 tags:
   - "Godot 3"
   - "Demos"
+enabled: true
 ---
 
 # Flappy Fish

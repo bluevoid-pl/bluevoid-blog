@@ -6,13 +6,14 @@ description: "System zarządzania zleceniami dla drukarni koszulek."
 tags:
   - "React"
   - "Mantine"
+enabled: true
 ---
 
 ![ERP](/assets/ShirtERP_logo.png)
 
 # ERP
 
-System do zażądania drukarnią koszulek.
+System do zarządzania drukarnią koszulek.
 
 ![Produkty](/assets/ShirtERP.png)
 ![Zamówienia](/assets/ShirtERP2.png)

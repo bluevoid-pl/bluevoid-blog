@@ -6,6 +6,7 @@ description: "Dema shaderów"
 tags:
   - "WebGL"
   - "GLSL"
+enabled: true
 ---
 
 Shadery można znaleźć na [GitHub](https://mateusz-kifner.github.io/webgl-shaders/)

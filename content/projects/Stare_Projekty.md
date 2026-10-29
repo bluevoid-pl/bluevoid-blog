@@ -2,10 +2,11 @@
 title: "Flappy Fish"
 date: "2019-06-11"
 img: "/assets/numcount.png"
-description: "Będę tu umieszczał stare projekty in miarę porządkowania moich dysków twardych."
+description: "Będę tu umieszczał stare projekty w miarę porządkowania moich dysków twardych."
 tags:
   - "Game"
   - "p5"
+enabled: true
 ---
 
 # Stare Projekty
