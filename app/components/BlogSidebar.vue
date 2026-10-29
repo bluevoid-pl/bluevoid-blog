@@ -41,56 +41,14 @@ const links = (() => {
 </script>
 
 <template>
-  <aside class="blog-sidebar">
-    <h3>Contents</h3>
+  <aside class="sticky top-20 w-60 p-4 bg-white/5 border border-white/10 rounded-2xl mb-8">
+    <h3 class="mt-0 text-lg font-semibold text-slate-100">Contents</h3>
     <nav>
-      <ul>
-        <li v-for="link in links" :key="link.id" :class="link.depth > 2 ? 'sidebar-sub' : ''">
-          <a :href="'#' + link.id">{{ link.text }}</a>
+      <ul class="list-none p-0 m-0">
+        <li v-for="link in links" :key="link.id" class="my-2">
+          <a :href="'#' + link.id" class="text-sky-400 hover:text-sky-300 hover:underline" :class="link.depth > 2 ? 'text-slate-400 pl-3 hover:text-slate-300' : ''">{{ link.text }}</a>
         </li>
       </ul>
     </nav>
   </aside>
 </template>
-
-<style scoped>
-.blog-sidebar {
-  position: sticky;
-  top: 5rem;
-  width: 240px;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  margin-bottom: 2rem;
-}
-.blog-sidebar h3 {
-  margin-top: 0;
-  font-size: 1.1rem;
-  color: #f1f5f9;
-}
-.blog-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.blog-sidebar li {
-  margin: 0.5rem 0;
-}
-.blog-sidebar a {
-  color: #60a5fa;
-  text-decoration: none;
-}
-.blog-sidebar a:hover {
-  color: #93c5fd;
-  text-decoration: underline;
-}
-.blog-sidebar .sidebar-sub a {
-  color: #94a3b8;
-  padding-left: 0.75rem;
-}
-.blog-sidebar .sidebar-sub a:hover {
-  color: #cbd5e1;
-  text-decoration: underline;
-}
-</style>

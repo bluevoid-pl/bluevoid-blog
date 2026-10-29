@@ -19,127 +19,31 @@ function isNew(d: any): boolean {
 </script>
 
 <template>
-  <div class="blog-page">
-    <header class="blog-header">
-      <h1 class="blog-title">Blog</h1>
-      <p class="blog-subtitle">Notes on databases, programming, and exam preparation.</p>
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <header class="text-center pb-8">
+      <h1 class="text-4xl font-extrabold bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-transparent mb-3">Blog</h1>
+      <p class="text-lg text-slate-400">Notes on databases, programming, and exam preparation.</p>
     </header>
 
-    <section class="post-grid">
+    <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       <a
         v-for="post in posts"
         :key="post.path"
         :href="post.path"
-        class="post-card"
+        class="block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-sky-500/40 transition"
       >
-        <div class="card-body">
-          <div class="card-meta">
-            <time class="card-date" :datetime="post.date">
-              {{ formatDate(post.date) }}
-            </time>
-            <span v-if="isNew(post.date)" class="card-new">New</span>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <time class="text-xs text-slate-500 font-medium" :datetime="post.date">{{ formatDate(post.date) }}</time>
+            <span v-if="isNew(post.date)" class="text-[10px] font-bold uppercase tracking-wide text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full">New</span>
           </div>
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-description">{{ post.description }}</p>
-          <div class="card-tags">
-            <span v-for="tag in post.tags" :key="tag" class="card-tag">{{ tag }}</span>
+          <h2 class="text-xl font-bold text-slate-100">{{ post.title }}</h2>
+          <p class="text-sm text-slate-400 leading-relaxed">{{ post.description }}</p>
+          <div class="flex flex-wrap gap-2 mt-1">
+            <span v-for="tag in post.tags" :key="tag" class="text-xs text-slate-400 bg-white/5 px-2 py-0.5 rounded-md">{{ tag }}</span>
           </div>
         </div>
       </a>
     </section>
   </div>
 </template>
-
-<style scoped>
-.blog-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-}
-.blog-header {
-  text-align: center;
-  padding-bottom: 2rem;
-}
-.blog-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 0.75rem;
-}
-.blog-subtitle {
-  font-size: 1.1rem;
-  color: #94a3b8;
-}
-.post-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-.post-card {
-  display: block;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  transition: border-color 0.2s, background 0.2s;
-  color: inherit;
-  text-decoration: none;
-}
-.post-card:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(96, 165, 250, 0.4);
-}
-.card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.card-meta {
-  display: flex;
-  align-items: center;
-}
-.card-date {
-  font-size: 0.8rem;
-  color: #64748b;
-  font-weight: 500;
-}
-.card-new {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.3);
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-}
-.card-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #f1f5f9;
-  margin: 0;
-}
-.card-description {
-  font-size: 0.9rem;
-  color: #94a3b8;
-  line-height: 1.5;
-}
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.25rem;
-}
-.card-tag {
-  font-size: 0.75rem;
-  color: #64748b;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.375rem;
-}
-</style>
