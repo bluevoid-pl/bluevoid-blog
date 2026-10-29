@@ -34,12 +34,12 @@
     "vue-input-otp": "^0.4.0",
     "vue-router": "^5.4.0",
     "vue-sonner": "^2.0.9",
-    "zod": "3.25.76"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^4.1.0",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "dotenv": "^18.0.9",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^4.3.3",

@@ -24,6 +24,7 @@ export default defineNuxtConfig({
 					key: "theme-init",
 					innerHTML: THEME_INIT_SCRIPT,
 					tagPriority: "critical",
+
 				},
 			],
 		},
