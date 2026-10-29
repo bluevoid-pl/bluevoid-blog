@@ -183,11 +183,11 @@
   background-size: 180px 180px;
 }
 
-.header-complementary {
+.header {
     @apply bg-background;
 }
 
-.header-complementary:before {
+.header:before {
     inset:0;
     position: absolute;
     content:'';
