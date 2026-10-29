@@ -2,14 +2,18 @@
 title: "Muse Glimmer 30B - pruned GGUF"
 description: "Simple description of bluevoid-pl/Muse-Glimmer-30B-pruned-GGUF: a pruned, latin-only quantized build of Meta's Muse Glimmer 30B agentic model."
 date: "2026-08-26"
+img: "/placeholder.png"
 tags:
   - "Muse"
   - "GGUF"
   - "Model"
   - "Pruning"
+enabled: true
 ---
 
 # Muse Glimmer 30B - pruned GGUF
+
+> **Deprecated**: This model has been superseded by the newer V2.5 EN-PL version with vision support. See [Muse Glimmer 30B - pruned V2.5 EN-PL GGUF](/blog/muse-glimmer-pruned-v2-5-en-pl).
 
 Pruned GGUF build of [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B), published by bluevoid-pl.
 
@@ -19,7 +23,7 @@ Pruned GGUF build of [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-
 - License: Apache 2.0
 - HF: [bluevoid-pl/Muse-Glimmer-30B-pruned-GGUF](https://huggingface.co/bluevoid-pl/Muse-Glimmer-30B-pruned-GGUF)
 
-#### Czym is
+#### Overview
 
 Muse Glimmer is a 30B causal language model built for autonomous agentic tasks on consumer hardware. It combines multi-step reasoning, reliable tool use, multimodal input (text + images) and failure recovery into a single model that runs locally without cloud infrastructure.
 

@@ -2,11 +2,13 @@
 title: "Zeta 2.1 - GGUF"
 description: "Simple description of bluevoid-pl/zeta-2.1-GGUF: a direct GGUF of zed-industries/zeta-2.1, an 8B code next-edit-suggestion model finetuned from Seed-Coder-8B-Base."
 date: "2026-08-26"
+img: "/placeholder.png"
 tags:
   - "Zeta"
   - "GGUF"
   - "Model"
   - "Code"
+enabled: true
 ---
 
 ### Zeta 2.1 - GGUF
@@ -19,7 +21,7 @@ Direct GGUF of [zed-industries/zeta-2.1](https://huggingface.co/zed-industries/z
 - License: Apache 2.0
 - HF: [bluevoid-pl/zeta-2.1-GGUF](https://huggingface.co/bluevoid-pl/zeta-2.1-GGUF)
 
-#### Czym is
+#### Overview
 
 Zeta 2.1 is a code edit prediction model (next-edit suggestion). Given code context, edit history and an editable region around the cursor, it predicts the rewritten content for that region.
 
