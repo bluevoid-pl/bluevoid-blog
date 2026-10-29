@@ -9,6 +9,7 @@
         <a href="/about" class="navbar-link">About</a>
       </nav>
     </div>
+    <ThemeToggle />
   </header>
 </template>
 

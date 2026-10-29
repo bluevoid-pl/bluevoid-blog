@@ -3,8 +3,8 @@ import type { PaginationEllipsisProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconDots } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 import { PaginationEllipsis } from "reka-ui"
-import { cn } from "@/lib/utils"
 
 const props = defineProps<PaginationEllipsisProps & { class?: HTMLAttributes["class"] }>()
 

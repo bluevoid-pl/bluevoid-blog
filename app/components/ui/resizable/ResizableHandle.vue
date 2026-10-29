@@ -3,8 +3,8 @@ import type { SplitterResizeHandleEmits, SplitterResizeHandleProps } from "reka-
 import type { HTMLAttributes } from "vue"
 import { IconGripVertical } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 import { SplitterResizeHandle, useForwardPropsEmits } from "reka-ui"
-import { cn } from "@/lib/utils"
 
 const props = defineProps<SplitterResizeHandleProps & { class?: HTMLAttributes["class"], withHandle?: boolean }>()
 const emits = defineEmits<SplitterResizeHandleEmits>()

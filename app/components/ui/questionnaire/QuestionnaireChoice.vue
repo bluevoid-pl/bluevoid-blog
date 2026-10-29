@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue"
 import { IconCheck } from '@tabler/icons-vue'
+import { cn } from "cn"
 import { computed, onBeforeUnmount, ref, useId, watch } from "vue"
-import { cn } from "@/lib/utils"
 import { getAnswerKeyShortcuts, injectQuestionnaireItemContext } from "./useQuestionnaire"
 
 const props = withDefaults(defineProps<{

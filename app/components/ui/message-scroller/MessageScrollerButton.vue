@@ -3,8 +3,8 @@ import type { HTMLAttributes } from "vue"
 import type { MessageScrollerButtonDirection } from "./useMessageScroller"
 import type { ButtonVariants } from '@/components/ui/button'
 import { IconArrowDown } from '@tabler/icons-vue'
+import { cn } from "cn"
 import { computed } from "vue"
-import { cn } from "@/lib/utils"
 import { Button } from '@/components/ui/button'
 import { useMessageScroller, useMessageScrollerScrollable } from "./useMessageScroller"
 

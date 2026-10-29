@@ -3,8 +3,8 @@ import type { TagsInputItemDeleteProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconX } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 import { TagsInputItemDelete, useForwardProps } from "reka-ui"
-import { cn } from "@/lib/utils"
 
 const props = defineProps<TagsInputItemDeleteProps & { class?: HTMLAttributes["class"] }>()
 

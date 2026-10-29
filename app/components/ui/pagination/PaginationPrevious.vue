@@ -4,8 +4,8 @@ import type { HTMLAttributes } from "vue"
 import type { ButtonVariants } from '@/components/ui/button'
 import { IconChevronLeft } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 import { PaginationPrev, useForwardProps } from "reka-ui"
-import { cn } from "@/lib/utils"
 import { buttonVariants } from '@/components/ui/button'
 
 const props = withDefaults(defineProps<PaginationPrevProps & {
