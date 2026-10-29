@@ -28,7 +28,7 @@ const readingTime = computed(() => {
 </script>
 
 <template>
-  <header class="pb-6">
+  <header class="pb-6 space-y-4">
     <DateMeta
       :date="item.date"
       :showNewBadge="showNewBadge"
@@ -37,8 +37,8 @@ const readingTime = computed(() => {
       :client="item.client"
       :showClient="showClient"
     />
-    <h1 class="text-3xl font-extrabold text-slate-100 mb-3">{{ item.title }}</h1>
-    <p v-if="item.description" class="text-base text-slate-400 leading-relaxed mb-4">{{ item.description }}</p>
+    <h1 class="text-3xl font-bold tracking-tight">{{ item.title }}</h1>
+    <p v-if="item.description" class="text-base text-muted-foreground leading-relaxed">{{ item.description }}</p>
     <TagList :tags="item.tags" variant="detail" />
   </header>
 </template>

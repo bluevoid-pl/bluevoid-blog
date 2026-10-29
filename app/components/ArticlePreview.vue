@@ -22,10 +22,10 @@ const showNewBadge = props.showNewBadge ?? true
 const size = props.size ?? 'default'
 
 const cardClass = size === 'compact'
-  ? 'bg-white/5 border border-white/10 rounded-2xl p-5 hover:-translate-y-1 hover:bg-cyan-500/10 hover:border-cyan-500/50 transition'
-  : 'bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-sky-500/40 transition'
+  ? 'bg-background/50 border border-border rounded-2xl p-5 hover:bg-accent/50 transition'
+  : 'bg-background/50 border border-border rounded-2xl p-6 hover:bg-accent/50 transition'
 
-const titleClass = size === 'compact' ? 'text-lg font-bold text-slate-100' : 'text-xl font-bold text-slate-100'
+const titleClass = size === 'compact' ? 'text-lg font-semibold' : 'text-xl font-semibold'
 </script>
 
 <template>
@@ -35,7 +35,7 @@ const titleClass = size === 'compact' ? 'text-lg font-bold text-slate-100' : 'te
         <div class="flex flex-col gap-2">
           <DateMeta v-if="showDate" :date="item.date" :showNewBadge="showNewBadge" />
           <CardTitle :class="[titleClass]">{{ item.title }}</CardTitle>
-          <CardDescription v-if="item.description" class="text-sm text-slate-400 leading-relaxed">{{ item.description }}</CardDescription>
+          <CardDescription v-if="item.description" class="text-sm text-muted-foreground leading-relaxed">{{ item.description }}</CardDescription>
           <TagList :tags="item.tags" variant="default" />
         </div>
       </CardContent>

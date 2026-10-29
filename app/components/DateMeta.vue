@@ -29,13 +29,13 @@ function isNew(d: any): boolean {
 
 <template>
   <div class="flex flex-wrap gap-4 items-center">
-    <time v-if="date" class="text-sm text-slate-500 font-medium" :datetime="date">
+    <time v-if="date" class="text-sm text-muted-foreground" :datetime="date">
       {{ formatDate(date) }}
     </time>
     <Badge v-if="showNewBadge && isNew(date)" variant="default" class="text-[10px] font-bold uppercase tracking-wide">
       New
     </Badge>
-    <span v-if="showReadingTime && readingTime !== undefined" class="text-sm text-slate-500">{{ readingTime }} min read</span>
-    <span v-if="showClient && client" class="text-sm text-sky-300 font-medium">{{ client }}</span>
+    <span v-if="showReadingTime && readingTime !== undefined" class="text-sm text-muted-foreground">{{ readingTime }} min read</span>
+    <span v-if="showClient && client" class="text-sm font-medium text-primary">{{ client }}</span>
   </div>
 </template>
