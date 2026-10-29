@@ -41,7 +41,7 @@ const currentColorScheme = computed(() => colorScheme.value);
 <template>
 	<DropdownMenu>
 		<DropdownMenuTrigger as-child>
-			<Button variant="outline" size="icon">
+			<Button variant="outline" size="icon" class="rounded-full">
 				<IconSun
 					class="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
 				/>
