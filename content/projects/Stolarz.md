@@ -1,6 +1,5 @@
 ---
 title: "Stolarz - projekt React"
-client: "Self"
 date: "2020-10-29"
 img: "/assets/Stolarz2.png"
 description: "MVP web aplikasi dla stolarza do zleceń, listy zakupów i podliczania finansów."

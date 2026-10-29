@@ -1,6 +1,5 @@
 ---
 title: "Flappy Fish"
-client: "Self"
 date: "2019-06-11"
 img: "/assets/fish.png"
 description: "Na prośbę grupy gamedev publikuję kopię flappy birda z rybą zamiast tytułowego ptaka."

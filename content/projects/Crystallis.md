@@ -1,6 +1,5 @@
 ---
 title: "Crystallis - Game"
-client: "Self"
 date: "2020-04-19"
 img: "/assets/Crystalis_cover_art.png"
 description: "Godot Wild Jam #20 entry"

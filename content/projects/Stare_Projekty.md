@@ -1,6 +1,5 @@
 ---
 title: "Flappy Fish"
-client: "Self"
 date: "2019-06-11"
 img: "/assets/numcount.png"
 description: "Będę tu umieszczał stare projekty in miarę porządkowania moich dysków twardych."

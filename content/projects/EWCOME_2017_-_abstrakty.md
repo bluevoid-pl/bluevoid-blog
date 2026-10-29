@@ -1,6 +1,5 @@
 ---
 title: "EWCOME 2017 - abstrakty"
-client: "Self"
 date: "2017-07-22"
 img: "/assets/EWCOME2017.png"
 description: "Abstrakty na konferencję EWCOME2017 (East - West Conference on Mathematics Education) są już gotowe i zaakceptowane. Zachęcam do lektury."

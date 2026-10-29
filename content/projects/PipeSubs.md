@@ -1,6 +1,5 @@
 ---
 title: "PipeSubs - aplikacja Python"
-client: "Self"
 date: "2022-03-20"
 img: "/assets/PipeSubs.png"
 description: "Feed group manager for NewPipe."

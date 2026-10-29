@@ -1,6 +1,5 @@
 ---
 title: "WebGL Shaders - Demos"
-client: "Self"
 date: "2019-11-11"
 img: "/assets/tank_render.png"
 description: "Dema shaderów"

@@ -1,6 +1,5 @@
 ---
 title: "EWCOME 2017 Geo-Pac, czyli jak tworzyć gry w GeoGebrze. - materiały"
-client: "Self"
 date: "2017-07-24"
 img: "/assets/EWCOME%202017_pacman.png"
 description: "Materiały z mojej prezentacji na konferencji EWCOME2017(East - West Conference on Mathematics Education)"

@@ -1,6 +1,5 @@
 ---
 title: "Quiz App"
-client: "Self"
 date: "2019-10-02"
 img: "/assets/quizapp_alpha01.png"
 description: "Abstrakty na konferencję EWCOME2017 (East - West Conference on Mathematics Education) są już gotowe i zaakceptowane. Zachęcam do lektury."

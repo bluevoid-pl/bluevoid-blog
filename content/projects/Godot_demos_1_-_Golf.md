@@ -1,6 +1,5 @@
 ---
 title: "Godot demos 1 - Golf"
-client: "Self"
 date: "2019-09-13"
 img: "/assets/golf.png"
 description: "Godot demos to będzie kompilacja prostych gier które można odtworzyć in less than 3h. Będę tu umieszczał dema gier, które inni mogą zrobić in ramach ćwiczeń. Celem jest zdobycie wiedzy o podstawach programowanie in GDscript, a nie ładna grafika"
@@ -22,12 +21,14 @@ Celem zadania jest zapoznanie się z kolizjami oraz silnikiem fizyki
 
 ::IframeLoader
 ---
+
 src: https://mateusz-kifner.github.io/goal/build/Goal.html
 img: /assets/Goal.png
 message: Kliknij aby załadować grę!
 style: 'background-image: url("/assets/Goal.png");'
 size: 720p
 ---
+
 ::
 
 ---
@@ -38,10 +39,12 @@ Celem zadania jest zapoznanie się z "quick time events" oraz konceptem maszyny 
 
 ::IframeLoader
 ---
+
 src: https://mateusz-kifner.github.io/golf/build/golf.html
 img: /assets/golf.png
 message: Kliknij aby załadować grę!
 style: 'background-image: url("/assets/golf.png");'
 size: 720p
 ---
+
 ::

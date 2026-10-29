@@ -1,6 +1,5 @@
 ---
 title: "ERP - webapp"
-client: "Self"
 date: "2021-12-29"
 img: "/assets/ShirtERP2.png"
 description: "System zarządzania zleceniami dla drukarni koszulek."
