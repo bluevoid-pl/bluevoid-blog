@@ -10,13 +10,18 @@
 
 		<Header />
 		<main class="app-main p-14 flex-1" id="main-content">
-			<slot />
+			<TooltipProvider>
+				<slot />
+			</TooltipProvider>
 		</main>
 		<Footer />
+		<Toaster />
 	</div>
 </template>
 
 <script setup lang="ts">
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 </script>
