@@ -3,6 +3,10 @@ definePageMeta({
   layout: 'default'
 })
 
+useHead({
+  title: 'Home'
+})
+
 import Showcase from '~/components/Showcase.vue'
 
 const { data: landing } = await useAsyncData('landing', async () => {

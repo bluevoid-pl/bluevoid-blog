@@ -3,6 +3,10 @@ definePageMeta({
   layout: 'default'
 })
 
+useHead({
+  title: 'Tests'
+})
+
 const modules = import.meta.glob('~/pages/test/*.vue', { eager: true })
 
 type Module = { default: import('vue').Component }

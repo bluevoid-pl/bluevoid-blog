@@ -14,6 +14,10 @@ const { data: post } = await useAsyncData("blog-" + route.path, () => {
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found" });
 }
+
+useHead(() => ({
+  title: post.value?.title
+}));
 </script>
 
 <template>

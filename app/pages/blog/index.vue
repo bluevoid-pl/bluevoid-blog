@@ -3,6 +3,10 @@ definePageMeta({
   layout: 'default'
 })
 
+useHead({
+  title: 'Blog'
+})
+
 const { data: posts } = await useAsyncData('blog-posts', () => {
   return queryCollection('blog').all()
 })

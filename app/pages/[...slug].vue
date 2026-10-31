@@ -12,6 +12,10 @@ const { data: page } = await useAsyncData("page-" + route.path, () => {
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: "Page not found" });
 }
+
+useHead(() => ({
+  title: page.value?.title
+}));
 </script>
 
 <template>

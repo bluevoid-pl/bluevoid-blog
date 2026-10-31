@@ -19,6 +19,8 @@ export default defineNuxtConfig({
 	},
 	app: {
 		head: {
+			title: 'BlueVoid.pl',
+			titleTemplate: 'BlueVoid.pl - %s',
 			script: [
 				{
 					key: "theme-init",

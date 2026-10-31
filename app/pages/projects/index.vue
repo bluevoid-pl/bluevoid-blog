@@ -3,6 +3,10 @@ definePageMeta({
   layout: 'default'
 })
 
+useHead({
+  title: 'Projects'
+})
+
 const { data: projects } = await useAsyncData('projects-list', () => {
   return queryCollection('projects')
     .order('date', 'DESC')

@@ -3,6 +3,10 @@ definePageMeta({
   layout: 'default'
 })
 
+useHead({
+  title: 'Shadcn Test'
+})
+
 import { defineAsyncComponent } from 'vue'
 
 const testNames = [
