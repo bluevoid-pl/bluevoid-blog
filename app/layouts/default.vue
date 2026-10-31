@@ -9,7 +9,7 @@
 		</div>
 
 		<Header />
-		<main class="app-main p-14 flex-1" id="main-content">
+		<main class="app-main p-4 sm:p-6 md:p-8 lg:p-10 flex-1" id="main-content">
 			<TooltipProvider>
 				<slot />
 			</TooltipProvider>

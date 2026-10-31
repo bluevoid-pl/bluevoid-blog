@@ -39,12 +39,12 @@ const { data: landing } = await useAsyncData('landing', async () => {
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-6 py-12 space-y-12">
+  <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-4 sm:space-y-6">
     <Showcase :item="landing.erp" fallback-title="ERP - webapp" fallback-description="System zażądania drukarni koszulek." />
 
-    <section id="ai-models" class="flex flex-col gap-6">
-      <h2 class="text-xl font-bold text-slate-200">AI model articles</h2>
-      <div class="grid md:grid-cols-3 gap-5">
+    <section id="ai-models" class="flex flex-col gap-4 sm:gap-6">
+      <h2 class="text-xl font-bold">AI model articles</h2>
+      <div class="grid md:grid-cols-3 gap-4 sm:gap-5">
         <template v-for="(slot, i) in landing.aiSlots" :key="i">
           <ArticlePreview
             v-if="slot"
@@ -53,19 +53,19 @@ const { data: landing } = await useAsyncData('landing', async () => {
             :show-date="false"
             :show-new-badge="false"
           />
-          <div v-else class="block bg-white/2 border-dashed border-white/20 rounded-2xl p-5">
+          <div v-else class="block bg-white/2 border-dashed border-white/20 rounded-2xl p-4 sm:p-5">
             <div class="flex flex-col gap-2">
-              <h3 class="text-lg font-bold text-slate-100">More coming soon</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">Another AI model article will appear here shortly.</p>
+              <h3 class="text-lg font-bold">More coming soon</h3>
+              <p class="text-sm leading-relaxed">Another AI model article will appear here shortly.</p>
             </div>
           </div>
         </template>
       </div>
     </section>
 
-    <section id="latest" class="flex flex-col gap-6">
-      <h2 class="text-xl font-bold text-slate-200">Latest from the blog</h2>
-      <div class="grid md:grid-cols-3 gap-5">
+    <section id="latest" class="flex flex-col gap-4 sm:gap-6">
+      <h2 class="text-xl font-bold">Latest from the blog</h2>
+      <div class="grid md:grid-cols-3 gap-4 sm:gap-5">
         <ArticlePreview
           v-for="post in landing.featured"
           :key="post.path"

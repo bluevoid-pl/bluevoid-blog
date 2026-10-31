@@ -39,7 +39,7 @@ const pages = Object.entries(modules)
         </a>
       </li>
     </ul>
-    <div v-if="pages.length === 0" class="text-slate-400 mt-8">
+    <div v-if="pages.length === 0" class="mt-8">
       No test pages found.
     </div>
   </div>

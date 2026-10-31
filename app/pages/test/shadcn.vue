@@ -22,7 +22,7 @@ for (const name of testNames) {
 <template>
   <div class="max-w-7xl mx-auto px-6 py-12 space-y-8">
     <h1 class="text-3xl font-bold">Shadcn Test Components</h1>
-    <p class="text-slate-400">
+    <p>
       Showcase of all test components from <code>app/components/ui-test</code>.
       Total: {{ testNames.length }}
     </p>
