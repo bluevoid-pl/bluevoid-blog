@@ -18,7 +18,7 @@ import ThemeToggle from '~/components/themeToggle.vue'
     <div class="mx-auto max-w-6xl flex h-16 items-center justify-between px-4 gap-4">
         <div class="flex items-center gap-2">
         <a href="/" class="flex items-center gap-3">
-        <img class="h-8 w-8" src="/logo.png" alt="Blue Void logo" />
+        <img class="h-8 w-8" src="/logo.png" alt="" />
         <span class="text-lg font-semibold tracking-tight">Blue Void</span>
       </a>
 

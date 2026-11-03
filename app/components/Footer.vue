@@ -5,7 +5,7 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="border-t bg-background/80 backdrop-blur">
+  <footer class="border-t backdrop-blur footer">
     <div class="container mx-auto max-w-6xl px-4 py-4 flex items-center justify-between gap-4">
       <p class="text-sm text-muted-foreground">
         BlueVoid &copy; {{ year }} &middot; Mateusz Kifner

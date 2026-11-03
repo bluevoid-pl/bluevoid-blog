@@ -15,7 +15,7 @@ const { data: posts } = await useAsyncData('blog-posts', () => {
 <template>
   <div class="max-w-6xl mx-auto px-6 py-12">
     <header class="text-center pb-8">
-      <h1 class="text-4xl font-extrabold bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-transparent mb-3">Blog</h1>
+      <h1 class="text-4xl font-bold tracking-tight mb-3">Blog</h1>
       <p class="text-lg">Notes on databases, programming, and exam preparation.</p>
     </header>
 

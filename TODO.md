@@ -16,6 +16,6 @@ Next:
       4. showcase should be neet and take full with of content
       5. AI artcles should be directly after showcase
  - [x] Add iframe loader and replace all games launchers with it 
- - [ ] Add App title to all pages `BlueVoid.pl - <article_title>`
+ - [x] Add App title to all pages `BlueVoid.pl - <article_title>`
  - [ ] Find a way to run react app side by side in small.pl hosting
  - [x] Add article for upcoming dyn icon picker in react
