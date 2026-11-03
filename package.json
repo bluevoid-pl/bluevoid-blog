@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --no-tui",
+    "dev": "nuxt dev",
+    "devnt": "nuxt dev --no-tui",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "pkg-up": "ncu -u -i -c 1d -p pnpm",
@@ -21,7 +22,7 @@
     "clsx": "^2.1.1",
     "cn": "^0.5.2",
     "embla-carousel-vue": "^8.6.0",
-    "nuxt": "^4.6.4",
+    "nuxt": "~4.6.4",
     "reka-ui": "^2.11.0",
     "shadcn-nuxt": "2.9.0",
     "shadcn-vue": "^2.9.0",

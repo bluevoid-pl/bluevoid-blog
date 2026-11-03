@@ -7,7 +7,7 @@
 		"defaultBranch": "dev"
 	},
 	"files": {
-		"includes": ["src/**/*.{vue,ts,js,css,less}", "!!**/dist"],
+		"includes": ["app/**/*.{vue,ts,js,css,less}", "!!**/dist"],
 		"ignoreUnknown": true,
 		"maxSize": 1048576
 	},
@@ -102,7 +102,7 @@
 	},
 	"overrides": [
 		{
-			"includes": ["src/**/*.vue"],
+			"includes": ["app/**/*.vue"],
 			"linter": {},
 			"javascript": {
 				"globals": [

@@ -11,7 +11,8 @@ export default defineNuxtConfig({
 	css: ["~/assets/css/main.css"],
 	vite: {
 		plugins: [tailwindcss()],
-	},
+  },
+	devServer: { host: '0.0.0.0' },
 	nitro: {
 		externals: {
 			traceOptions: { base: process.cwd() },
