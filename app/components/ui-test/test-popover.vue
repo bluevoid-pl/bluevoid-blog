@@ -6,7 +6,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 </script>
 
 <template>
-  <Popover>
+  
+  <div class="flex flex-col gap-2">
+<Popover>
     <PopoverTrigger as-child>
       <Button variant="outline">Open popover</Button>
     </PopoverTrigger>
@@ -37,4 +39,5 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
       </div>
     </PopoverContent>
   </Popover>
+  </div>
 </template>

@@ -19,12 +19,14 @@ const show = ref(false);
 </script>
 
 <template>
-  <div v-if="!show" class="w-full max-h-[500px] overflow-auto border rounded-lg p-4">
+  
+  <div class="flex flex-col gap-2">
+<div v-if="!show" class="w-full max-h-[500px] overflow-auto border rounded-lg p-4">
     <Button @click="show = true">Open Sidebar</Button>
   </div>
   <div v-else class="w-full max-h-[500px] overflow-auto border rounded-lg">
     <SidebarProvider>
-      <div class="flex h-[400px] w-full">
+      <div class="flex h-[400px] w-full gap-2">
         <Sidebar>
           <SidebarHeader>
             <div class="p-2">
@@ -76,7 +78,7 @@ const show = ref(false);
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
-        <div class="flex flex-1 flex-col">
+        <div class="flex flex-1 flex-col gap-2">
           <header class="flex items-center justify-between p-4 border-b">
             <span>Main content</span>
             <SidebarInput placeholder="Search..." />
@@ -87,5 +89,6 @@ const show = ref(false);
         </div>
       </div>
     </SidebarProvider>
+  </div>
   </div>
 </template>

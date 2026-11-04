@@ -4,7 +4,9 @@ import { Spinner } from "@/components/ui/spinner";
 </script>
 
 <template>
-  <Card class="p-4">
+  
+  <div class="flex flex-col gap-2">
+<Card class="p-4">
     <div class="flex items-center gap-6">
       <div class="flex flex-col items-center gap-2">
         <Spinner />
@@ -20,4 +22,5 @@ import { Spinner } from "@/components/ui/spinner";
       </div>
     </div>
   </Card>
+  </div>
 </template>

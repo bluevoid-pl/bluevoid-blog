@@ -8,7 +8,9 @@ import {
 </script>
 
 <template>
-  <InputOTP maxLength="6">
+  
+  <div class="flex flex-col gap-2">
+<InputOTP :maxlength="6">
     <InputOTPGroup>
       <InputOTPSlot :index="0" />
       <InputOTPSlot :index="1" />
@@ -21,4 +23,5 @@ import {
       <InputOTPSlot :index="5" />
     </InputOTPGroup>
   </InputOTP>
+  </div>
 </template>

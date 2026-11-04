@@ -4,7 +4,9 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 </script>
 
 <template>
-  <Alert class="m-auto w-96">
+  
+  <div class="flex flex-col gap-2">
+<Alert class="m-auto w-96">
     <IconAlertCircle class="h-4 w-4" />
     <AlertTitle>Alert</AlertTitle>
     <AlertDescription>Alert description</AlertDescription>
@@ -14,4 +16,5 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
     <AlertTitle>Alert</AlertTitle>
     <AlertDescription>Alert description</AlertDescription>
   </Alert>
+  </div>
 </template>

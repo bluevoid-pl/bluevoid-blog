@@ -13,7 +13,9 @@ import { Label } from "@/components/ui/label";
 </script>
 
 <template>
-  <Card class="flex gap-4 p-4">
+  
+  <div class="flex flex-col gap-2">
+<Card class="flex gap-4 p-4">
     <Card class="w-96">
       <CardHeader>
         <CardTitle>Card Title</CardTitle>
@@ -34,7 +36,7 @@ import { Label } from "@/components/ui/label";
       <CardContent>
         <form>
           <div class="grid w-full items-center gap-4">
-            <div class="flex flex-col space-y-1.5">
+            <div class="flex flex-col space-y-1.5 gap-2">
               <Label for="name1">Name</Label>
               <Input id="name1" placeholder="Name of your project" />
               <Input id="name2" placeholder="Name of your project" />
@@ -49,4 +51,5 @@ import { Label } from "@/components/ui/label";
       </CardFooter>
     </Card>
   </Card>
+  </div>
 </template>

@@ -13,7 +13,9 @@ import { SheetTrigger } from "@/components/ui/sheet";
 </script>
 
 <template>
-  <Sheet>
+  
+  <div class="flex flex-col gap-2">
+<Sheet>
     <SheetTrigger as-child>
       <Button variant="outline">Open</Button>
     </SheetTrigger>
@@ -45,4 +47,5 @@ import { SheetTrigger } from "@/components/ui/sheet";
       </SheetFooter>
     </SheetContent>
   </Sheet>
+  </div>
 </template>

@@ -33,7 +33,9 @@ function onClick(adjustment: number) {
 </script>
 
 <template>
-  <Drawer>
+  
+  <div class="flex flex-col gap-2">
+<Drawer>
     <DrawerTrigger as-child>
       <Button variant="outline">Open Drawer</Button>
     </DrawerTrigger>
@@ -61,12 +63,12 @@ function onClick(adjustment: number) {
           <DrawerDescription>Set your daily activity goal.</DrawerDescription>
         </DrawerHeader>
         <div class="p-4 pb-0">
-          <div class="flex items-center justify-center space-x-2">
+          <div class="flex items-center justify-center space-x-2 gap-2">
             <Button variant="outline" size="icon" class="h-8 w-8 shrink-0 rounded-full" :disabled="goal <= 200" @click="onClick(-10)">
               <IconMinus class="h-4 w-4" />
               <span class="sr-only">Decrease</span>
             </Button>
-            <div class="flex-1 text-center">
+            <div class="flex-1 text-center gap-2">
               <div class="font-bold text-7xl tracking-tighter">{{ goal }}</div>
               <div class="text-[0.70rem] text-muted-foreground uppercase">Calories/day</div>
             </div>
@@ -88,4 +90,5 @@ function onClick(adjustment: number) {
       </div>
     </DrawerContent>
   </Drawer>
+  </div>
 </template>

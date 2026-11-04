@@ -12,7 +12,9 @@ import {
 </script>
 
 <template>
-  <Empty>
+  
+  <div class="flex flex-col gap-2">
+<Empty>
     <EmptyHeader>
       <EmptyMedia variant="icon">
         <IconFolderCode />
@@ -27,4 +29,5 @@ import {
       <Button variant="outline">Import Project</Button>
     </EmptyContent>
   </Empty>
+  </div>
 </template>

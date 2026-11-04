@@ -11,7 +11,9 @@ import {
 </script>
 
 <template>
-  <NavigationMenu>
+  
+  <div class="flex flex-col gap-2">
+<NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
         <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
@@ -88,4 +90,5 @@ import {
       </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
+  </div>
 </template>

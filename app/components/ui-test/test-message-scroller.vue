@@ -11,14 +11,16 @@ import { Message, MessageAvatar, MessageContent, MessageHeader } from "@/compone
 </script>
 
 <template>
-  <MessageScrollerProvider>
+  
+  <div class="flex flex-col gap-2">
+<MessageScrollerProvider>
   <MessageScroller class="h-[400px]">
     <MessageScrollerViewport>
       <MessageScrollerContent>
         <MessageScrollerItem v-for="i in 20" :key="i">
           <Message :align="i % 2 === 0 ? 'start' : 'end'">
             <MessageAvatar v-if="i % 2 === 0">
-              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground gap-2">
                 {{ i }}
               </div>
             </MessageAvatar>
@@ -35,4 +37,5 @@ import { Message, MessageAvatar, MessageContent, MessageHeader } from "@/compone
     <MessageScrollerButton />
   </MessageScroller>
   </MessageScrollerProvider>
+  </div>
 </template>

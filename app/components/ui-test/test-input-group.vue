@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 </script>
 
 <template>
-  <InputGroup>
+  
+  <div class="flex flex-col gap-2">
+<InputGroup>
     <InputGroupAddon align="inline-start">
       <IconSearch />
     </InputGroupAddon>
@@ -25,4 +27,5 @@ import { Button } from "@/components/ui/button";
       </Button>
     </InputGroupAddon>
   </InputGroup>
+  </div>
 </template>

@@ -12,8 +12,8 @@ const date2 = ref(today());
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 p-4">
-    <Calendar :model-value="date" @update:model-value="date = $event" class="rounded-md border" />
+  <div class="flex flex-col gap-4 p-4 w-full max-w-[320px]">
+    <Calendar :model-value="date" @update:model-value="date = $event" class="rounded-md border w-full" />
     <Popover>
       <PopoverTrigger as-child>
         <Button variant="outline" :class="cn('w-[240px] pl-3 text-left font-normal')">
@@ -25,6 +25,7 @@ const date2 = ref(today());
         <Calendar
           :model-value="date2"
           @update:model-value="date2 = $event"
+          class="w-[320px]"
         />
       </PopoverContent>
     </Popover>

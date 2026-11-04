@@ -10,26 +10,17 @@ import {
 </script>
 
 <template>
-  <PaginationRoot>
+  
+  <div class="flex flex-col gap-2">
+<PaginationRoot>
     <PaginationContent>
-      <PaginationItem>
-        <PaginationPrevious />
-      </PaginationItem>
-      <PaginationItem>
-        <button>1</button>
-      </PaginationItem>
-      <PaginationItem>
-        <button>2</button>
-      </PaginationItem>
-      <PaginationItem>
-        <button>3</button>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationEllipsis />
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationNext />
-      </PaginationItem>
+      <PaginationPrevious />
+      <PaginationItem>1</PaginationItem>
+      <PaginationItem>2</PaginationItem>
+      <PaginationItem>3</PaginationItem>
+      <PaginationEllipsis />
+      <PaginationNext />
     </PaginationContent>
   </PaginationRoot>
+  </div>
 </template>

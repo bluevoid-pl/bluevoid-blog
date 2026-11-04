@@ -39,7 +39,9 @@ function handleSelect(currentValue: string) {
 </script>
 
 <template>
-  <Popover v-model:open="open">
+  
+  <div class="flex flex-col gap-2">
+<Popover v-model:open="open">
     <PopoverTrigger as-child>
       <Button variant="outline" role="combobox" :aria-expanded="open" class="w-[200px] justify-between">
         {{ value ? frameworks.find((framework) => framework.value === value)?.label : 'Select framework...' }}
@@ -61,4 +63,5 @@ function handleSelect(currentValue: string) {
       </Command>
     </PopoverContent>
   </Popover>
+  </div>
 </template>

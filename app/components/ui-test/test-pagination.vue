@@ -1,16 +1,25 @@
 <script setup lang="ts">
-// import { Pagination } from "@/components/ui/pagination";
+import {
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+  Pagination as PaginationRoot,
+} from "@/components/ui/pagination";
 </script>
 
 <template>
-  <!--
-    <Pagination initialPage={1} totalPages={10} onPageChange={() => {}} />
-    <Pagination initialPage={1} totalPages={40} onPageChange={() => {}} />
-    <Pagination
-      initialPage={1}
-      totalPages={40}
-      onPageChange={() => {}}
-      siblings={1}
-    />
-  -->
+  <div class="flex flex-col gap-2">
+    <PaginationRoot>
+      <PaginationContent>
+        <PaginationPrevious />
+        <PaginationItem>1</PaginationItem>
+        <PaginationItem>2</PaginationItem>
+        <PaginationItem>3</PaginationItem>
+        <PaginationEllipsis />
+        <PaginationNext />
+      </PaginationContent>
+    </PaginationRoot>
+  </div>
 </template>

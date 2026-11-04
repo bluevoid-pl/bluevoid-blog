@@ -17,7 +17,9 @@ import {
 </script>
 
 <template>
-  <Breadcrumb class="p-4">
+  
+  <div class="flex flex-col gap-2">
+<Breadcrumb class="p-4">
     <BreadcrumbList>
       <BreadcrumbItem>
         <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -46,4 +48,5 @@ import {
       </BreadcrumbItem>
     </BreadcrumbList>
   </Breadcrumb>
+  </div>
 </template>

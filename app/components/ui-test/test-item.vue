@@ -4,7 +4,9 @@ import { IconFolder } from "@tabler/icons-vue";
 </script>
 
 <template>
-  <div class="w-full max-w-md">
+  
+  <div class="flex flex-col gap-2">
+<div class="w-full max-w-md">
     <Item variant="outline">
       <ItemMedia variant="icon">
         <IconFolder />
@@ -23,5 +25,6 @@ import { IconFolder } from "@tabler/icons-vue";
         <ItemDescription>Manage your preferences and account details.</ItemDescription>
       </ItemContent>
     </Item>
+  </div>
   </div>
 </template>

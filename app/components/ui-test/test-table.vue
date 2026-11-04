@@ -55,7 +55,9 @@ const invoices = [
 </script>
 
 <template>
-  <Table>
+  
+  <div class="flex flex-col gap-2">
+<Table>
     <TableCaption>A list of your recent invoices.</TableCaption>
     <TableHeader>
       <TableRow>
@@ -80,4 +82,5 @@ const invoices = [
       </TableRow>
     </TableFooter>
   </Table>
+  </div>
 </template>

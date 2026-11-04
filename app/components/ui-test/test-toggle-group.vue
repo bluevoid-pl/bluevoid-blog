@@ -5,7 +5,9 @@ import { ToggleGroupItem } from "@/components/ui/toggle-group";
 </script>
 
 <template>
-  <Card class="p-4">
+  
+  <div class="flex flex-col gap-2">
+<Card class="p-4">
     <div class="flex flex-col gap-4">
       <div>
         <h4 class="mb-2 text-sm font-medium">Multiple</h4>
@@ -44,4 +46,5 @@ import { ToggleGroupItem } from "@/components/ui/toggle-group";
       </div>
     </div>
   </Card>
+  </div>
 </template>

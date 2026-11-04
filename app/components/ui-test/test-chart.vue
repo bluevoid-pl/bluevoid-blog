@@ -57,25 +57,27 @@ const multiConfig = {
 </script>
 
 <template>
-  <div class="space-y-6">
+  
+  <div class="flex flex-col gap-2">
+<div class="space-y-6">
     <Card class="w-full">
       <CardHeader>
         <CardTitle>Bar Chart - Interactive</CardTitle>
       </CardHeader>
       <CardContent>
-        <ChartContainer :config="barConfig" class="min-h-[300px] w-full">
+        <ChartContainer :config="barConfig" class="min-h-[150px] w-full">
           <VisXYContainer :data="barData">
             <VisGroupedBar
-              :x="(d) => d.month"
+              :x="(_, i) => i"
               :y="[(d) => d.desktop, (d) => d.mobile]"
               :color="[barConfig.desktop.color, barConfig.mobile.color]"
             />
-            <VisAxis type="x" :x="(d) => d.month" />
+            <VisAxis type="x" :tick-values="barData.map((_, i) => i)" :tick-format="(tick) => barData[tick].month" />
             <VisAxis type="y" />
             <ChartTooltip />
             <ChartCrosshair
               :template="componentToString(barConfig, ChartTooltipContent, {
-                labelFormatter: (d) => d,
+                labelFormatter: (d) => barData[d]?.month ?? String(d),
               })"
             />
             <ChartLegendContent />
@@ -89,7 +91,7 @@ const multiConfig = {
         <CardTitle>Line Chart - Time Series</CardTitle>
       </CardHeader>
       <CardContent>
-        <ChartContainer :config="lineConfig" class="min-h-[300px] w-full">
+        <ChartContainer :config="lineConfig" class="min-h-[150px] w-full">
           <VisXYContainer :data="lineData">
             <VisLine
               :x="(d) => d.date"
@@ -121,21 +123,24 @@ const multiConfig = {
         <CardTitle>Grouped Bar - Multiple Series</CardTitle>
       </CardHeader>
       <CardContent>
-        <ChartContainer :config="multiConfig" class="min-h-[300px] w-full">
+        <ChartContainer :config="multiConfig" class="min-h-[150px] w-full">
           <VisXYContainer :data="multiData">
             <VisGroupedBar
-              :x="(d) => d.name"
+              :x="(_, i) => i"
               :y="[(d) => d.series1, (d) => d.series2, (d) => d.series3]"
               :color="[multiConfig.series1.color, multiConfig.series2.color, multiConfig.series3.color]"
             />
-            <VisAxis type="x" :x="(d) => d.name" />
+            <VisAxis type="x" :tick-values="multiData.map((_, i) => i)" :tick-format="(tick) => multiData[tick].name" />
             <VisAxis type="y" />
             <ChartTooltip />
-            <ChartCrosshair :template="componentToString(multiConfig, ChartTooltipContent)" />
+            <ChartCrosshair :template="componentToString(multiConfig, ChartTooltipContent, {
+              labelFormatter: (d) => multiData[d]?.name ?? String(d),
+            })" />
             <ChartLegendContent />
           </VisXYContainer>
         </ChartContainer>
       </CardContent>
     </Card>
+  </div>
   </div>
 </template>

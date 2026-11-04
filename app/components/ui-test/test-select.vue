@@ -9,7 +9,9 @@ import { SelectValue } from "@/components/ui/select";
 </script>
 
 <template>
-  <Select>
+  
+  <div class="flex flex-col gap-2">
+<Select>
     <SelectTrigger class="w-[180px]">
       <SelectValue placeholder="Select a fruit" />
     </SelectTrigger>
@@ -73,4 +75,5 @@ import { SelectValue } from "@/components/ui/select";
       </SelectGroup>
     </SelectContent>
   </Select>
+  </div>
 </template>

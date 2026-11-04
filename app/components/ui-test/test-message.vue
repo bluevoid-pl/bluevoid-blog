@@ -10,10 +10,12 @@ import {
 </script>
 
 <template>
-  <MessageGroup>
+  
+  <div class="flex flex-col gap-2">
+<MessageGroup>
     <Message>
       <MessageAvatar>
-        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground gap-2">
           A
         </div>
       </MessageAvatar>
@@ -36,7 +38,7 @@ import {
 
     <Message>
       <MessageAvatar>
-        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground gap-2">
           A
         </div>
       </MessageAvatar>
@@ -47,4 +49,5 @@ import {
       </MessageContent>
     </Message>
   </MessageGroup>
+  </div>
 </template>

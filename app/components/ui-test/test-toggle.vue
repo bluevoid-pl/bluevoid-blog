@@ -5,7 +5,9 @@ import { Toggle } from "@/components/ui/toggle";
 </script>
 
 <template>
-  <Card class="p-2">
+  
+  <div class="flex flex-col gap-2">
+<Card class="p-2">
     <div class="flex gap-2">
       <Toggle aria-label="Toggle italic">
         <IconAlertCircle class="h-4 w-4" />
@@ -29,4 +31,5 @@ import { Toggle } from "@/components/ui/toggle";
       </Toggle>
     </div>
   </Card>
+  </div>
 </template>

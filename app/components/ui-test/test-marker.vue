@@ -4,7 +4,9 @@ import { IconCircleCheck } from "@tabler/icons-vue";
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 max-w-md">
+  
+  <div class="flex flex-col gap-2">
+<div class="flex flex-col gap-4 max-w-md">
     <Marker>
       <MarkerIcon>
         <IconCircleCheck />
@@ -19,5 +21,6 @@ import { IconCircleCheck } from "@tabler/icons-vue";
     <Marker variant="border">
       <MarkerContent>Bordered marker with content spanning multiple lines.</MarkerContent>
     </Marker>
+  </div>
   </div>
 </template>

@@ -17,10 +17,13 @@ const showToastWithOptions = () => {
 </script>
 
 <template>
-  <Button variant="outline" @click="showToast">
+  
+  <div class="flex flex-col gap-2">
+<Button variant="outline" @click="showToast">
     Show Toast
   </Button>
   <Button variant="outline" @click="showToastWithOptions">
     Show Toast
   </Button>
+  </div>
 </template>

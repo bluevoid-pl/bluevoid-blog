@@ -10,7 +10,9 @@ import { lorem } from "./lorem";
 </script>
 
 <template>
-  <Card class="w-full p-2">
+  
+  <div class="flex flex-col gap-2">
+<Card class="w-full p-2">
     <Accordion type="multiple" class="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger>Test</AccordionTrigger>
@@ -22,4 +24,5 @@ import { lorem } from "./lorem";
       </AccordionItem>
     </Accordion>
   </Card>
+  </div>
 </template>

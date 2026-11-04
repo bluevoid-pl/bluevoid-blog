@@ -27,7 +27,9 @@ const showPanel = ref(false);
 </script>
 
 <template>
-  <DropdownMenu>
+  
+  <div class="flex flex-col gap-2">
+<DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="outline">Open</Button>
     </DropdownMenuTrigger>
@@ -144,4 +146,5 @@ const showPanel = ref(false);
       </DropdownMenuRadioGroup>
     </DropdownMenuContent>
   </DropdownMenu>
+  </div>
 </template>

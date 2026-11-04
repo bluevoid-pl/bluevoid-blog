@@ -15,7 +15,9 @@ import { lorem } from './lorem';
 </script>
 
 <template>
-  <Card class="w-full p-2">
+  
+  <div class="flex flex-col gap-2">
+<Card class="w-full p-2">
     <div class="mx-auto flex w-full max-w-sm flex-col gap-3">
       <AttachmentGroup>
         <Attachment orientation="vertical">
@@ -58,4 +60,5 @@ import { lorem } from './lorem';
       </Attachment>
     </div>
   </Card>
+  </div>
 </template>

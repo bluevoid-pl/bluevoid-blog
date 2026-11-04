@@ -13,7 +13,9 @@ import {
 </script>
 
 <template>
-  <Command class="rounded-lg border shadow-md">
+  
+  <div class="flex flex-col gap-2">
+<Command class="rounded-lg border shadow-md">
     <CommandInput placeholder="Type a command or search..." />
     <CommandList>
       <CommandEmpty>No results found.</CommandEmpty>
@@ -51,4 +53,5 @@ import {
       </CommandGroup>
     </CommandList>
   </Command>
+  </div>
 </template>

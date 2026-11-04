@@ -7,7 +7,9 @@ import { TooltipTrigger } from "@/components/ui/tooltip";
 </script>
 
 <template>
-  <TooltipProvider>
+  
+  <div class="flex flex-col gap-2">
+<TooltipProvider>
   <div class="flex gap-2">
     <Tooltip>
       <TooltipTrigger as-child>
@@ -69,4 +71,5 @@ import { TooltipTrigger } from "@/components/ui/tooltip";
     </Tooltip>
   </div>
   </TooltipProvider>
+  </div>
 </template>

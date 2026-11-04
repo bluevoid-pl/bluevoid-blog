@@ -3,7 +3,9 @@ import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  
+  <div class="flex flex-col gap-2">
+<div class="flex flex-col gap-4">
     <NativeSelect>
       <NativeSelectOption value="apple">Apple</NativeSelectOption>
       <NativeSelectOption value="banana">Banana</NativeSelectOption>
@@ -22,5 +24,6 @@ import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
     <NativeSelect disabled>
       <NativeSelectOption value="disabled">Disabled Select</NativeSelectOption>
     </NativeSelect>
+  </div>
   </div>
 </template>

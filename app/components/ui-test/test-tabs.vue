@@ -15,7 +15,9 @@ import { TabsTrigger } from "@/components/ui/tabs";
 </script>
 
 <template>
-  <Tabs default-value="account" class="w-[400px]">
+  
+  <div class="flex flex-col gap-2">
+<Tabs default-value="account" class="w-[400px]">
     <TabsList class="grid w-full grid-cols-2">
       <TabsTrigger value="account">Account</TabsTrigger>
       <TabsTrigger value="password">Password</TabsTrigger>
@@ -67,4 +69,5 @@ import { TabsTrigger } from "@/components/ui/tabs";
       </Card>
     </TabsContent>
   </Tabs>
+  </div>
 </template>

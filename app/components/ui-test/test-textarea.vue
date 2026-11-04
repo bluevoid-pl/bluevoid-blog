@@ -4,7 +4,9 @@ import { Textarea } from "@/components/ui/textarea";
 </script>
 
 <template>
-  <Textarea placeholder="Type your message here." />
+  
+  <div class="flex flex-col gap-2">
+<Textarea placeholder="Type your message here." />
   <Textarea placeholder="Type your message here." disabled />
   <div class="grid w-full gap-1.5">
     <Label for="message-2">Your Message</Label>
@@ -12,5 +14,6 @@ import { Textarea } from "@/components/ui/textarea";
     <p class="text-muted-foreground text-sm">
       Your message will be copied to the support team.
     </p>
+  </div>
   </div>
 </template>

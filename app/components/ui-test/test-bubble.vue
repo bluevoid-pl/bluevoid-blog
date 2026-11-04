@@ -5,7 +5,9 @@ import { lorem } from './lorem';
 </script>
 
 <template>
-  <Card class="w-full p-2">
+  
+  <div class="flex flex-col gap-2">
+<Card class="w-full p-2">
     <BubbleGroup>
       <Bubble variant="default" align="start">
         <BubbleContent>{{ lorem }}</BubbleContent>
@@ -21,4 +23,5 @@ import { lorem } from './lorem';
       </Bubble>
     </BubbleGroup>
   </Card>
+  </div>
 </template>

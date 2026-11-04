@@ -15,7 +15,9 @@ import { buttonVariants } from '@/components/ui/button';
 </script>
 
 <template>
-  <AlertDialog>
+  
+  <div class="flex flex-col gap-2">
+<AlertDialog>
     <AlertDialogTrigger :class="buttonVariants({})">Test Alert Dialog</AlertDialogTrigger>
     <AlertDialogContent>
       <div class="flex gap-2">
@@ -51,4 +53,5 @@ import { buttonVariants } from '@/components/ui/button';
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
+  </div>
 </template>

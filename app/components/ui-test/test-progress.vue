@@ -9,8 +9,15 @@ onMounted(() => {
     progress.value = 66;
   }, 500);
 });
+
+const handleClick = () => {
+  progress.value = progress.value - 20 > 0 ? progress.value - 20 : 100;
+};
 </script>
 
 <template>
-  <Progress :value="progress" class="w-[60%]" @click="progress = progress - 20 > 0 ? progress - 20 : 100" />
+  
+  <div class="flex flex-col gap-2">
+<Progress :modelValue="progress" class="w-[60%]" @click="handleClick" />
+  </div>
 </template>

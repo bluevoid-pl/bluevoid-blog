@@ -5,7 +5,9 @@ import { Label } from "@/components/ui/label";
 </script>
 
 <template>
-  <div>
+  
+  <div class="flex flex-col gap-2">
+<div>
     <Input type="email" placeholder="Email" />
   </div>
   <div class="grid w-full max-w-sm items-center gap-1.5">
@@ -16,8 +18,9 @@ import { Label } from "@/components/ui/label";
     <Input disabled type="email" placeholder="Email" />
   </div>
 
-  <div class="flex w-full max-w-sm items-center space-x-2">
+  <div class="flex w-full max-w-sm items-center space-x-2 gap-2">
     <Input type="email" placeholder="Email" />
     <Button type="submit">Subscribe</Button>
+  </div>
   </div>
 </template>

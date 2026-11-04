@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 </script>
 
 <template>
-  <div class="flex gap-2">
+  
+  <div class="flex flex-col gap-2">
+<div class="flex gap-2">
     <Button>primary</Button>
     <Button variant="secondary">secondary</Button>
     <Button variant="outline">outline</Button>
@@ -51,5 +53,6 @@ import { Button } from "@/components/ui/button";
     <Button disabled size="icon">
       <IconAlertCircle />
     </Button>
+  </div>
   </div>
 </template>

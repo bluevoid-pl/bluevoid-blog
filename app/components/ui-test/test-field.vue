@@ -13,7 +13,9 @@ import { Input } from "@/components/ui/input";
 </script>
 
 <template>
-  <div class="w-full max-w-md">
+  
+  <div class="flex flex-col gap-2">
+<div class="w-full max-w-md">
     <FieldGroup>
       <FieldSet>
         <FieldLegend>Profile</FieldLegend>
@@ -46,5 +48,6 @@ import { Input } from "@/components/ui/input";
         </FieldGroup>
       </FieldSet>
     </FieldGroup>
+  </div>
   </div>
 </template>

@@ -5,7 +5,9 @@ import { Label } from "@/components/ui/label";
 </script>
 
 <template>
-  <form class="w-2/3 space-y-6">
+  
+  <div class="flex flex-col gap-2">
+<form class="w-2/3 space-y-6">
     <div class="space-y-2">
       <Label for="username">Username</Label>
       <Input id="username" placeholder="shadcn" />
@@ -13,4 +15,5 @@ import { Label } from "@/components/ui/label";
     </div>
     <Button type="submit">Submit</Button>
   </form>
+  </div>
 </template>

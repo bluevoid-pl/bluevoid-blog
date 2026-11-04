@@ -14,7 +14,9 @@ import {
 </script>
 
 <template>
-  <Questionnaire>
+  
+  <div class="flex flex-col gap-2">
+<Questionnaire>
     <QuestionnaireProgress>1 of 3</QuestionnaireProgress>
     <QuestionnaireItem name="favorite-color">
       <QuestionnaireTitle>What is your favorite color?</QuestionnaireTitle>
@@ -37,4 +39,5 @@ import {
     <QuestionnairePrevious>Back</QuestionnairePrevious>
     <QuestionnaireNext>Next</QuestionnaireNext>
   </Questionnaire>
+  </div>
 </template>

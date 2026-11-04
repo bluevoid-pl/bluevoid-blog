@@ -4,7 +4,9 @@ import { Switch } from "@/components/ui/switch";
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
+  
+  <div class="flex flex-col gap-2">
+<div class="flex flex-col items-center gap-2">
     <div class="flex items-center gap-2">
       <Switch id="airplane-mode" />
       <Label for="airplane-mode">Airplane Mode</Label>
@@ -13,5 +15,6 @@ import { Switch } from "@/components/ui/switch";
       <Switch id="color-mode" />
       <Label for="color-mode">Airplane Mode</Label>
     </div>
+  </div>
   </div>
 </template>

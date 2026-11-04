@@ -17,7 +17,9 @@ import {
 </script>
 
 <template>
-  <Menubar>
+  
+  <div class="flex flex-col gap-2">
+<Menubar>
     <MenubarMenu>
       <MenubarTrigger>File</MenubarTrigger>
       <MenubarContent>
@@ -102,4 +104,5 @@ import {
       </MenubarContent>
     </MenubarMenu>
   </Menubar>
+  </div>
 </template>

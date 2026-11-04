@@ -14,7 +14,9 @@ import { Label } from "@/components/ui/label";
 </script>
 
 <template>
-  <Dialog>
+  
+  <div class="flex flex-col gap-2">
+<Dialog>
     <DialogTrigger as-child>
       <Button variant="outline">Edit Profile</Button>
     </DialogTrigger>
@@ -44,4 +46,5 @@ import { Label } from "@/components/ui/label";
       </DialogFooter>
     </DialogContent>
   </Dialog>
+  </div>
 </template>
