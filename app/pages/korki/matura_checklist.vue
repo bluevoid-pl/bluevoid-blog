@@ -36,7 +36,7 @@ const state = ref<State>(
   }, {} as Record<number, YearData>)
 )
 
-const openItems = ref<string[]>(years.map(y => String(y)))
+const openItems = ref<string[]>([])
 
 const isDragging = ref(false)
 
@@ -67,20 +67,19 @@ onMounted(() => {
       // ignore
     }
   }
-  // open all except 100% completed
+  // open only if not 100% completed
   const initialOpen = years.filter(y => progress(y) !== 100).map(String)
   openItems.value = initialOpen
 })
 
 watch(state, () => {
   localStorage.setItem(storageKey, JSON.stringify(state.value))
-  // auto-close when a year reaches 100%
+  // auto-close when a year reaches 100%, reopen if unchecked
   years.forEach(y => {
     const str = String(y)
     if (progress(y) === 100 && openItems.value.includes(str)) {
       openItems.value = openItems.value.filter(v => v !== str)
     } else if (progress(y) < 100 && !openItems.value.includes(str)) {
-      // reopen if user unchecked something
       openItems.value = [...openItems.value, str]
     }
   })
@@ -118,11 +117,11 @@ const progress = (year: number) => {
 
 <template>
   <div class="mx-auto max-w-5xl px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">Matura check lista</h1>
+    <h1 class="text-3xl font-bold mb-6">Matura checklista</h1>
     <Card class="w-full py-0">
-      <Accordion type="multiple" :value="openItems" class="space-y-0">
+      <Accordion type="multiple" v-model="openItems" class="space-y-0">
         <div v-for="year in years" :key="year">
-          <AccordionItem :value="String(year)" class="!border-b">
+          <AccordionItem :value="String(year)" :class="year === years[years.length - 1] ? 'border-b-0' : '!border-b'">
             <AccordionTrigger class="flex items-center justify-between w-full px-4 py-3">
               <span class="text-xl font-semibold">Matura {{ year }}</span>
               <div class="flex items-center gap-3">
@@ -167,5 +166,8 @@ const progress = (year: number) => {
 }
 ::v-deep [data-slot="progress-indicator"] {
   background-color: rgb(34, 197, 94) !important;
+}
+::v-deep .space-y-0 > div:last-child [data-slot="accordion-content"] {
+  padding-bottom: 0 !important;
 }
 </style>
