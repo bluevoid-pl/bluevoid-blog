@@ -19,13 +19,13 @@ for (const name of testNames) {
   components[name] = defineAsyncComponent(() => import(`@/components/ui-test/test-${name}.vue`))
 }
 
-const rawModules = import.meta.glob('@/components/ui-test/test-*.vue', { as: 'raw', eager: true })
+const rawModules = import.meta.glob('~/components/ui-test/test-*.vue', { query: '?raw', import: 'default', eager: true })
 const sourceMap = Object.fromEntries(
   Object.entries(rawModules).map(([path, mod]) => {
-    const match = path.match(/test-(.+)\.vue$/)
+    const match = path.match(/test-(.+)\.vue(\?.*)?$/)
     const name = match?.[1]
-    return [name, mod.default]
-  })
+    return [name, mod]
+  }).filter(([name]) => name)
 )
 </script>
 
@@ -79,7 +79,7 @@ const sourceMap = Object.fromEntries(
               </div>
             </TabsContent>
             <TabsContent value="code">
-              <pre class="mt-4 overflow-auto text-sm bg-black/20 rounded-md p-4"><code>{{ sourceMap[name] }}</code></pre>
+              <pre class="mt-4 overflow-auto text-sm bg-black/20 rounded-md p-4"><code>{{ sourceMap[name] ?? 'Source code not found' }}</code></pre>
             </TabsContent>
           </Tabs>
         </div>
