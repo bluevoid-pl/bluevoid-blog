@@ -33,19 +33,17 @@ const size = props.size ?? 'default'
         :class="['w-full object-cover', size === 'compact' ? 'h-32' : 'h-40']"
         loading="lazy"
       />
-      <CardHeader>
+      <CardHeader class="break-words">
         <div class="flex items-center gap-2 mb-2">
           <DateMeta v-if="showDate" :date="item.date" :showNewBadge="showNewBadge" />
         </div>
-        <CardTitle class="text-xl">{{ item.title }}</CardTitle>
+        <CardTitle class="text-xl break-words overflow-wrap-anywhere w-full hyphens-auto">{{ item.title }}</CardTitle>
         <div class="flex flex-wrap gap-1.5">
           <TagList v-if="item.tags" :tags="item.tags" variant="secondary" />
         </div>
       </CardHeader>
-      <CardContent class="flex flex-col h-full">
-        <div class="flex flex-col gap-2 flex-1">
-          <CardDescription v-if="item.description" class="line-clamp-3 flex-1">{{ item.description }}</CardDescription>
-        </div>
+      <CardContent class="flex flex-col gap-2">
+        <CardDescription v-if="item.description" class="line-clamp-3 break-words">{{ item.description }}</CardDescription>
       </CardContent>
     </Card>
   </Button>
