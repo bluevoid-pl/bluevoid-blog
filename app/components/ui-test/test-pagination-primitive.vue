@@ -12,12 +12,12 @@ import {
 <template>
   
   <div class="flex flex-col gap-2">
-<PaginationRoot>
+<PaginationRoot :items-per-page="10" :total="30">
     <PaginationContent>
       <PaginationPrevious />
-      <PaginationItem>1</PaginationItem>
-      <PaginationItem>2</PaginationItem>
-      <PaginationItem>3</PaginationItem>
+      <PaginationItem :value="1">1</PaginationItem>
+      <PaginationItem :value="2">2</PaginationItem>
+      <PaginationItem :value="3">3</PaginationItem>
       <PaginationEllipsis />
       <PaginationNext />
     </PaginationContent>

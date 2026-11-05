@@ -161,13 +161,13 @@ const progress = (year: number) => {
 </template>
 
 <style scoped>
-::v-deep [data-slot="progress"] {
+:deep([data-slot="progress"]) {
   background-color: rgba(34, 197, 94, 0.2) !important;
 }
-::v-deep [data-slot="progress-indicator"] {
+:deep([data-slot="progress-indicator"]) {
   background-color: rgb(34, 197, 94) !important;
 }
-::v-deep .space-y-0 > div:last-child [data-slot="accordion-content"] {
+:deep(.space-y-0 > div:last-child [data-slot="accordion-content"]) {
   padding-bottom: 0 !important;
 }
 </style>
