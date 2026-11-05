@@ -30,7 +30,7 @@ const size = props.size ?? 'default'
         v-if="item.img"
         :src="item.img"
         :alt="item.title"
-        class="w-full h-40 object-cover"
+        :class="['w-full object-cover', size === 'compact' ? 'h-32' : 'h-40']"
         loading="lazy"
       />
       <CardHeader>

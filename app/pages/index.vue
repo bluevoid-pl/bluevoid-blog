@@ -11,7 +11,7 @@ import Showcase from '~/components/Showcase.vue'
 
 const { data: landing } = await useAsyncData('landing', async () => {
   const list = await queryCollection('blog')
-    .select('path', 'title', 'description', 'date', 'tags')
+    .select('path', 'title', 'description', 'date', 'tags', 'img')
     .order('date', 'DESC')
     .all()
   const uniqueTags = [...new Set(list.flatMap((post: any) => post.tags ?? []))]
