@@ -7,7 +7,7 @@ import { ResizableHandle } from "@/components/ui/resizable";
 <template>
   
   <div class="flex flex-col gap-2">
-<ResizablePanelGroup orientation="horizontal" class="max-w-md h-[400px] rounded-lg border">
+<ResizablePanelGroup direction="horizontal" class="max-w-md h-[400px] rounded-lg border">
     <ResizablePanel :default-size="50">
       <div class="flex h-[200px] items-center justify-center p-6 gap-2">
         <span class="font-semibold">One</span>
@@ -15,7 +15,7 @@ import { ResizableHandle } from "@/components/ui/resizable";
     </ResizablePanel>
     <ResizableHandle />
     <ResizablePanel :default-size="50">
-      <ResizablePanelGroup orientation="vertical">
+      <ResizablePanelGroup direction="vertical">
         <ResizablePanel :default-size="25">
           <div class="flex h-full items-center justify-center p-6 gap-2">
             <span class="font-semibold">Two</span>

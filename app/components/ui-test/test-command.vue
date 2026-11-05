@@ -20,32 +20,32 @@ import {
     <CommandList>
       <CommandEmpty>No results found.</CommandEmpty>
       <CommandGroup heading="Suggestions">
-        <CommandItem>
+        <CommandItem value="calendar">
           <IconAlertCircle class="mr-2 h-4 w-4" />
           <span>Calendar</span>
         </CommandItem>
-        <CommandItem>
+        <CommandItem value="search-emoji">
           <IconAlertCircle class="mr-2 h-4 w-4" />
           <span>Search Emoji</span>
         </CommandItem>
-        <CommandItem>
+        <CommandItem value="calculator">
           <IconAlertCircle class="mr-2 h-4 w-4" />
           <span>Calculator</span>
         </CommandItem>
       </CommandGroup>
       <CommandSeparator />
       <CommandGroup heading="Settings">
-        <CommandItem>
+        <CommandItem value="profile">
           <IconAlertCircle class="mr-2 h-4 w-4" />
           <span>Profile</span>
           <CommandShortcut>⌘P</CommandShortcut>
         </CommandItem>
-        <CommandItem>
+        <CommandItem value="billing">
           <IconAlertCircle class="mr-2 h-4 w-4" />
           <span>Billing</span>
           <CommandShortcut>⌘B</CommandShortcut>
         </CommandItem>
-        <CommandItem>
+        <CommandItem value="settings">
           <IconAlertCircle class="mr-2 h-4 w-4" />
           <span>Settings</span>
           <CommandShortcut>⌘S</CommandShortcut>
