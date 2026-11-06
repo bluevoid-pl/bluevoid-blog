@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { computed } from 'vue'
 
 const props = defineProps<{
   page: number
@@ -31,17 +32,13 @@ const totalPages = computed(() => Math.max(1, Math.ceil((props.total || 0) / pro
           <SelectItem v-for="opt in (pageSizeOptions || [5,10,20,50])" :key="opt" :value="opt">{{ opt }} per page</SelectItem>
         </SelectContent>
       </Select>
-      <Pagination>
+      <Pagination :items-per-page="pageSize" :total="total" :page="page" @update:page="(v) => emit('update:page', v)">
         <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious @click="emit('update:page', Math.max(1, page - 1))" :disabled="page <= 1" />
+          <PaginationPrevious />
+          <PaginationItem v-for="p in Array.from({ length: totalPages }, (_, i) => i + 1)" :key="p" :value="p" :is-active="page === p">
+            {{ p }}
           </PaginationItem>
-          <PaginationItem v-for="p in Array.from({ length: totalPages }, (_, i) => i + 1)" :key="p">
-            <button @click="emit('update:page', p)" :class="{ 'font-medium': page === p }">{{ p }}</button>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext @click="emit('update:page', Math.min(totalPages, page + 1))" :disabled="page >= totalPages" />
-          </PaginationItem>
+          <PaginationNext />
         </PaginationContent>
       </Pagination>
     </div>

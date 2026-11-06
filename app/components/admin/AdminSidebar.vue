@@ -7,6 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar'
+import { RouterLink } from 'vue-router'
 import { IconLayoutDashboard as LayoutDashboard, IconUsers as Users, IconMessage as MessageSquare, IconFileText as FileText } from '@tabler/icons-vue'
 
 const routes = [
@@ -26,9 +27,11 @@ const routes = [
   <SidebarContent>
     <SidebarMenu>
       <SidebarMenuItem v-for="route in routes" :key="route.to">
-        <SidebarMenuButton as="router-link" :to="route.to" :is-active="$route.path === route.to">
-          <component :is="route.icon" class="w-4 h-4" />
-          <span>{{ route.name }}</span>
+        <SidebarMenuButton asChild :is-active="$route.path === route.to">
+          <RouterLink :to="route.to">
+            <component :is="route.icon" class="w-4 h-4" />
+            <span>{{ route.name }}</span>
+          </RouterLink>
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>

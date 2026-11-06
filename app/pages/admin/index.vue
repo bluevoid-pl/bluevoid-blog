@@ -4,18 +4,11 @@ import AdminPageHeader from '~/components/admin/AdminPageHeader.vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Skeleton } from '@/components/ui/skeleton'
 import { IconUsers as Users, IconFileText as FileText, IconMessage as MessageSquare, IconActivity as Activity } from '@tabler/icons-vue'
-import { ref, onMounted } from 'vue'
 import { toast } from 'vue-sonner'
 
 definePageMeta({ layout: false })
 useHead({ title: 'Dashboard - Admin' })
-
-const loading = ref(true)
-onMounted(() => {
-  setTimeout(() => { loading.value = false }, 500)
-})
 
 const stats = [
   { label: 'Total Users', value: 128, icon: Users, change: '+12%' },
@@ -41,11 +34,9 @@ function quickAction(name: string) {
             <component :is="s.icon" class="w-4 h-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div v-if="!loading" class="text-2xl font-bold">{{ s.value }}</div>
-            <Skeleton v-else class="h-8 w-16" />
+            <div class="text-2xl font-bold">{{ s.value }}</div>
             <CardDescription class="text-xs">
-              <Badge v-if="!loading" variant="outline" class="mt-1">{{ s.change }}</Badge>
-              <Skeleton v-else class="h-4 w-12 mt-1" />
+              <Badge as="span" variant="outline" class="mt-1">{{ s.change }}</Badge>
             </CardDescription>
           </CardContent>
         </Card>

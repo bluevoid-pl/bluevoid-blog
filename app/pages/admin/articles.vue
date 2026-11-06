@@ -11,18 +11,15 @@ import { Badge } from '@/components/ui/badge'
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell, TableCaption } from '@/components/ui/table'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { IconPencil as Pencil, IconTrash as Trash2, IconEye as Eye, IconCirclePlus as PlusCircle, IconDots as MoreHorizontal, IconArrowsUpDown as ArrowUpDown } from '@tabler/icons-vue'
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { toast } from 'vue-sonner'
 
 definePageMeta({ layout: false })
 useHead({ title: 'Articles - Admin' })
 
-const loading = ref(true)
 const error = ref(false)
-onMounted(() => { setTimeout(() => { loading.value = false; error.value = false }, 400) })
 
 const articles = [
   { id: 1, title: 'Getting Started with Nuxt', slug: 'getting-started', status: 'Published', author: 'Alice', date: '2025-09-20' },
@@ -157,18 +154,7 @@ const statusVariant = (s: string) => s === 'Published' ? 'default' : s === 'Draf
               </TableRow>
             </TableHeader>
             <TableBody>
-              <template v-if="loading">
-                <TableRow v-for="i in 5" :key="'skeleton-'+i">
-                  <TableCell><Skeleton class="h-4 w-4"/></TableCell>
-                  <TableCell><Skeleton class="h-4 w-full"/></TableCell>
-                  <TableCell class="hidden md:table-cell"><Skeleton class="h-4 w-32"/></TableCell>
-                  <TableCell><Skeleton class="h-4 w-24"/></TableCell>
-                  <TableCell><Skeleton class="h-6 w-16"/></TableCell>
-                  <TableCell><Skeleton class="h-4 w-16"/></TableCell>
-                  <TableCell class="text-right"><Skeleton class="h-8 w-8"/></TableCell>
-                </TableRow>
-              </template>
-              <template v-else-if="paginated.length">
+              <template v-if="paginated.length">
                 <TableRow v-for="a in paginated" :key="a.id">
                   <TableCell>
                     <input type="checkbox" :checked="selectedIds.includes(a.id)" @change="selectedIds = $event.target.checked ? [...selectedIds, a.id] : selectedIds.filter(id=>id!==a.id)" />

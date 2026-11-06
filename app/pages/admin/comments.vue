@@ -4,25 +4,22 @@ import AdminPageHeader from '~/components/admin/AdminPageHeader.vue'
 import AdminFiltersBar from '~/components/admin/AdminFiltersBar.vue'
 import AdminBulkActions from '~/components/admin/AdminBulkActions.vue'
 import AdminEmptyState from '~/components/admin/AdminEmptyState.vue'
-import AdminPaginationControls from '~/components/admin/AdminPaginationControls.vue'
+import AdminPaginationControls from '@/components/admin/AdminPaginationControls.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell, TableCaption } from '@/components/ui/table'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { IconCheck as Check, IconTrash as Trash2, IconMessage as MessageSquare, IconDots as MoreHorizontal, IconArrowsUpDown as ArrowUpDown, IconX as X } from '@tabler/icons-vue'
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { toast } from 'vue-sonner'
 
 definePageMeta({ layout: false })
 useHead({ title: 'Comments - Admin' })
 
-const loading = ref(true)
 const error = ref(false)
-onMounted(() => { setTimeout(() => { loading.value = false; error.value = false }, 400) })
 
 const comments = [
   { id: 101, author: 'John Doe', article: 'Vue 3 Tips', content: 'Great article! Very helpful for beginners.', status: 'Approved', date: '2025-10-01' },
@@ -169,18 +166,7 @@ const statusVariant = (s: string) => s === 'Approved' ? 'default' : s === 'Pendi
               </TableRow>
             </TableHeader>
             <TableBody>
-              <template v-if="loading">
-                <TableRow v-for="i in 5" :key="'skeleton-'+i">
-                  <TableCell><Skeleton class="h-4 w-4"/></TableCell>
-                  <TableCell><Skeleton class="h-4 w-full"/></TableCell>
-                  <TableCell><Skeleton class="h-4 w-32"/></TableCell>
-                  <TableCell class="hidden md:table-cell"><Skeleton class="h-4 w-full"/></TableCell>
-                  <TableCell><Skeleton class="h-6 w-20"/></TableCell>
-                  <TableCell><Skeleton class="h-4 w-16"/></TableCell>
-                  <TableCell class="text-right"><Skeleton class="h-8 w-8"/></TableCell>
-                </TableRow>
-              </template>
-              <template v-else-if="paginated.length">
+              <template v-if="paginated.length">
                 <TableRow v-for="c in paginated" :key="c.id">
                   <TableCell>
                     <input type="checkbox" :checked="selectedIds.includes(c.id)" @change="selectedIds = $event.target.checked ? [...selectedIds, c.id] : selectedIds.filter(id=>id!==c.id)" />
