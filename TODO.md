@@ -1,10 +1,4 @@
-Current:
-  - [x] Add projects from _to_be_added_projects
- - [x] fetch models from https://huggingface.co/bluevoid-pl and add simple description article for pruned muse and zeta2.1
-  - [x] Add sidebar with index in all blog articles
-  - [x] Add `new` tag for articles from last month
- - [x] Fix articles wrap in main page
-
+- [ ] admin pages are too monolithic, please analize them and extract components from them.
 
 Next:
   - [x] Move sidebar in articles to right. It should list headers in article, not articles in blog.

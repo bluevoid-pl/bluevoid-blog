@@ -28,7 +28,7 @@ useHead(() => ({
 
         <hr class="border-t border-white/10 my-8" />
 
-        <div class="prose prose-invert max-w-none">
+        <div class="typeset typeset-blog max-w-3xl mx-auto">
           <ContentRenderer v-if="post" :value="post" />
         </div>
       </div>

@@ -3,6 +3,7 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./typeset.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -132,7 +133,6 @@
   }
 }
 
-
 .gradient-bg {
   position: fixed;
   isolation: isolate;
@@ -208,7 +208,6 @@
     top:0.01px;
     transform:translate(0,-100%);
 }
-
 
 /*.footer:after {
     content: '';

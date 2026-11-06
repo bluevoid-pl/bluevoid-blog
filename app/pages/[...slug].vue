@@ -19,7 +19,7 @@ useHead(() => ({
 </script>
 
 <template>
-	<div class="prose prose-invert max-w-none">
+	<div class="typeset typeset-korki max-w-3xl mx-auto px-6 py-10">
 		<ContentRenderer v-if="page" :value="page" />
 	</div>
 </template>
