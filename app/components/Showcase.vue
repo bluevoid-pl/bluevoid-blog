@@ -31,7 +31,7 @@ const description = props.item?.description ?? props.fallbackDescription ?? ''
         <CardHeader class="text-3xl md:text-4xl font-extrabold leading-tight bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 dark:from-cyan-300 dark:via-purple-300 dark:to-pink-300 bg-clip-text text-transparent px-0">
           {{ title }}
         </CardHeader>
-        <TagList v-if="item?.tags" :tags="item.tags" variant="default" />
+        <TagList v-if="item?.tags" :tags="item.tags" variant="secondary" />
         <CardDescription v-if="description" class="text-base text-muted-foreground leading-relaxed min-h-32">{{ description }}</CardDescription>
         <Button v-if="item?.path" as="a" :href="item.path" variant="outline" class="mt-4">
           Explore project
