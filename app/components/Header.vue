@@ -39,6 +39,15 @@ import { IconMenu2 } from '@tabler/icons-vue'
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink as-child>
+                <a href="/korki" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">
+                  <span class="inline-flex items-center gap-1">
+                    <img src="/PL.svg" alt="PL" class="h-3 w-3 flex-shrink-0  translate-y-0.5" /> Korki
+                  </span>
+                </a>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink as-child>
                 <a href="/about" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">About</a>
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -63,6 +72,11 @@ import { IconMenu2 } from '@tabler/icons-vue'
               <a href="/blog" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Blog</a>
               <a href="/projects" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Projects</a>
               <a href="/about" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">About</a>
+              <a href="/korki" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">
+                <span class="inline-flex items-center gap-1">
+                  <img src="/PL.svg" alt="PL" class="h-3 w-3 flex-shrink-0" /> Korki
+                </span>
+              </a>
             </div>
           </SheetContent>
         </Sheet>

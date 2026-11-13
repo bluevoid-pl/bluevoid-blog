@@ -26,7 +26,7 @@ const size = props.size ?? 'default'
 const truncatedDescription = computed(() => {
   const desc = props.item.description
   if (!desc) return ''
-  return desc.length <= 50 ? desc : desc.slice(0, 50).trim() + '...'
+  return desc.length <= 250 ? desc : desc.slice(0, 250).trim() + '...'
 })
 </script>
 

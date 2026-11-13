@@ -18,9 +18,6 @@ System do zarządzania drukarnią koszulek.
 ![Produkty](/assets/ShirtERP.png)
 ![Zamówienia](/assets/ShirtERP2.png)
 
-### Licencja komercyjna
-
-### License Proprietary
 
 ## Installation instructions
 

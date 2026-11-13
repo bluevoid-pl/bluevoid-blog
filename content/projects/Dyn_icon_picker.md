@@ -5,9 +5,8 @@ img: "/placeholder.png"
 description: "Dynamic icon picker built in React."
 tags:
   - "React"
-enabled: true
+enabled: false
 ---
 
-# Dyn Icon Picker
 
 Dynamic icon picker built in React.

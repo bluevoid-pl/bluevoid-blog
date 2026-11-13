@@ -1,14 +1,10 @@
 ---
 title: "About the author"
-description: "Information about the blog author."
+description: ""
 date: "2024-01-01"
 img: "/assets/ShirtERP_logo.png"
-tags:
-  - "About me"
 enabled: true
 ---
-
-# About the author
 
 Hi, I'm **Mateusz Kifner** - a full-stack developer specializing in React.
 
