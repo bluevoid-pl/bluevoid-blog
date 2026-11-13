@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 definePageMeta({
   layout: 'default'
 })
@@ -9,6 +10,10 @@ useHead({
 
 const { data: posts } = await useAsyncData('blog-posts', () => {
   return queryCollection('blog').all()
+})
+
+const filteredPosts = computed(() => {
+  return (posts.value ?? []).filter((post: any) => post.enabled !== false)
 })
 </script>
 
@@ -21,7 +26,7 @@ const { data: posts } = await useAsyncData('blog-posts', () => {
 
     <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       <ArticlePreview
-        v-for="post in posts"
+        v-for="post in filteredPosts"
         :key="post.path"
         :item="post"
         size="default"

@@ -15,8 +15,16 @@ if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found" });
 }
 
+if (post.value.enabled === false) {
+  throw createError({ statusCode: 404, statusMessage: "Page not found" });
+}
+
 useHead(() => ({
-  title: post.value?.title
+  title: post.value?.title,
+  meta: [
+    { name: 'description', content: post.value?.description ?? '' },
+    { name: 'enabled', content: String(post.value?.enabled ?? true) }
+  ]
 }));
 </script>
 

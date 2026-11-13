@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 definePageMeta({
   layout: 'default'
 })
@@ -12,6 +13,10 @@ const { data: projects } = await useAsyncData('projects-list', () => {
     .order('date', 'DESC')
     .all()
 })
+
+const filteredProjects = computed(() => {
+  return (projects.value ?? []).filter((p: any) => p.enabled !== false)
+})
 </script>
 
 <template>
@@ -23,7 +28,7 @@ const { data: projects } = await useAsyncData('projects-list', () => {
 
     <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       <ArticlePreview
-        v-for="project in projects"
+        v-for="project in filteredProjects"
         :key="project.path"
         :item="project"
         size="default"

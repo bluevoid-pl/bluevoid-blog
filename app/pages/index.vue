@@ -11,26 +11,28 @@ import Showcase from '~/components/Showcase.vue'
 
 const { data: landing } = await useAsyncData('landing', async () => {
   const list = await queryCollection('blog')
-    .select('path', 'title', 'description', 'date', 'tags', 'img')
+    .select('path', 'title', 'description', 'date', 'tags', 'img', 'enabled')
     .order('date', 'DESC')
     .all()
-  const uniqueTags = [...new Set(list.flatMap((post: any) => post.tags ?? []))]
+  const filteredList = list.filter((post: any) => post.enabled !== false)
+  const uniqueTags = [...new Set(filteredList.flatMap((post: any) => post.tags ?? []))]
 
   const projects = await queryCollection('projects')
-    .select('path', 'title', 'description', 'date', 'tags', 'img')
+    .select('path', 'title', 'description', 'date', 'tags', 'img', 'enabled')
     .all()
-  const erp = projects.find((p: any) => p.path?.toLowerCase() === '/projects/erp' || p.title === 'ERP - webapp') ?? projects[0]
+  const filteredProjects = projects.filter((p: any) => p.enabled !== false)
+  const erp = filteredProjects.find((p: any) => p.path?.toLowerCase() === '/projects/erp' || p.title === 'ERP - webapp') ?? filteredProjects[0]
 
-  const aiArticles = list.filter((post: any) => {
+  const aiArticles = filteredList.filter((post: any) => {
     const tags = post.tags ?? []
     return tags.includes('Model') || tags.includes('GGUF')
   })
   const aiSlots = Array.from({ length: 3 }, (_, i) => aiArticles[i] ?? null)
 
   return {
-    latest: list[0],
-    featured: list.slice(0, 3),
-    count: list.length,
+    latest: filteredList[0],
+    featured: filteredList.slice(0, 3),
+    count: filteredList.length,
     tags: uniqueTags.slice(0, 8),
     erp,
     aiSlots

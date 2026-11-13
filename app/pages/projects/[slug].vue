@@ -15,8 +15,16 @@ if (!project.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found" });
 }
 
+if (project.value.enabled === false) {
+  throw createError({ statusCode: 404, statusMessage: "Page not found" });
+}
+
 useHead(() => ({
-  title: project.value?.title
+  title: project.value?.title,
+  meta: [
+    { name: 'description', content: project.value?.description ?? '' },
+    { name: 'enabled', content: String(project.value?.enabled ?? true) }
+  ]
 }));
 </script>
 

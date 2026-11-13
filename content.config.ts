@@ -15,6 +15,7 @@ export default defineContentConfig({
 				date: z.coerce.date(),
 				tags: z.array(z.string()),
 				img: z.string().optional(),
+				enabled: z.boolean().optional(),
 			}),
 		}),
 		projects: defineCollection({
@@ -26,6 +27,7 @@ export default defineContentConfig({
 				date: z.coerce.date(),
 				tags: z.array(z.string()),
 				img: z.string().optional(),
+				enabled: z.boolean().optional(),
 			}),
 		}),
 	},

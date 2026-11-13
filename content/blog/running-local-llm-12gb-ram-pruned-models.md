@@ -9,7 +9,7 @@ tags:
   - "Pruned"
   - "llama.cpp"
   - "RAM"
-enabled: true
+enabled: false
 ---
 
 # Running Local LLM on 12GB RAM with Pruned Models

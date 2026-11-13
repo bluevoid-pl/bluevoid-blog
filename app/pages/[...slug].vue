@@ -13,6 +13,10 @@ if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: "Page not found" });
 }
 
+if (page.value.enabled === false) {
+	throw createError({ statusCode: 404, statusMessage: "Page not found" });
+}
+
 useHead(() => ({
   title: page.value?.title
 }));
