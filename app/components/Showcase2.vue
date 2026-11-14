@@ -52,7 +52,7 @@ const description = props.item?.description ?? props.fallbackDescription ?? ''
         </div>
 
         <!-- Mobile mockup wrapper for hover bridge -->
-        <div class="group">
+        <div class="group hidden md:block">
           <!-- Mobile mockup - on top of desktop -->
           <div class="absolute -top-10 right-8 z-90 w-[180px] aspect-[9/19.5] rounded-[1.2rem] border-[4px] border-zinc-500 bg-gradient-to-b from-zinc-100 via-zinc-300 to-zinc-500 shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 ease-out group-hover:scale-[1.3] group-hover:left-1/2 group-hover:top-[40%] group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 group-hover:right-auto">
             <!-- Mobile status bar -->

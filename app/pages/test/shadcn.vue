@@ -32,31 +32,7 @@ const sourceMap = Object.fromEntries(
 <template>
   <div class="max-w-7xl mx-auto px-6 py-12 space-y-8">
     <h1 class="text-3xl font-bold">Shadcn Test Components</h1>
-    <p>
-      Showcase of all test components from <code>app/components/ui-test</code>.
-      Total: {{ testNames.length }}
-    </p>
-
-    <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
-      <!-- Index / Table of Contents -->
-      <aside class="lg:sticky top-24 h-fit">
-        <div class="border border-white/10 rounded-xl p-4 bg-white/5">
-          <h2 class="text-lg font-semibold mb-4">Components Index</h2>
-          <nav>
-            <ul class="space-y-1 max-h-[70vh] overflow-auto pr-2">
-              <li v-for="name in testNames" :key="name">
-                <a
-                  :href="`#${name}`"
-                  class="block px-3 py-2 rounded-md text-sm hover:bg-white/10 transition-colors capitalize"
-                >
-                  {{ name }}
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </aside>
-
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 items-start">
       <!-- Components -->
       <section class="space-y-8">
         <div
@@ -84,6 +60,24 @@ const sourceMap = Object.fromEntries(
           </Tabs>
         </div>
       </section>
+      <!-- Index / Table of Contents -->
+      <aside class="lg:sticky top-24 h-fit">
+        <div class="border border-white/10 rounded-xl p-4 bg-white/5">
+          <h2 class="text-lg font-semibold mb-4">Components Index</h2>
+          <nav>
+            <ul class="space-y-1 max-h-[70vh] overflow-auto pr-2">
+              <li v-for="name in testNames" :key="name">
+                <a
+                  :href="`#${name}`"
+                  class="block px-3 py-2 rounded-md text-sm hover:bg-white/10 transition-colors capitalize"
+                >
+                  {{ name }}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
     </div>
   </div>
 </template>
@@ -93,4 +87,3 @@ html {
   scroll-behavior: smooth;
 }
 </style>
-
