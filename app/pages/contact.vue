@@ -49,7 +49,7 @@ function onSubmit(e: Event) {
 
         <div class="typeset typeset-docs">
           <p>
-             Hi! I'm Mateusz Kifner. You can reach me via email at <a href="mailto:biznes@bluevoid.pl" class="underline">biznes@bluevoid.pl</a>
+             Hi! I'm Mateusz Kifner. You can reach me via email at TODO:add CAPTCHA here
              <!-- or fill out the form below.  -->
           </p>
         </div>
