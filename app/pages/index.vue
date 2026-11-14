@@ -7,7 +7,7 @@ useHead({
   title: 'Home'
 })
 
-import Showcase from '~/components/Showcase.vue'
+import Showcase2 from '~/components/Showcase2.vue'
 
 const { data: landing } = await useAsyncData('landing', async () => {
   const list = await queryCollection('blog')
@@ -42,7 +42,7 @@ const { data: landing } = await useAsyncData('landing', async () => {
 
 <template>
   <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-4 sm:space-y-6">
-    <Showcase :item="landing.erp" fallback-title="ERP - webapp" fallback-description="System zażądania drukarni koszulek." />
+    <Showcase2 :item="landing.erp" fallback-title="ERP - webapp" fallback-description="System zażądania drukarni koszulek." />
 
     <section id="ai-models" class="flex flex-col gap-4 sm:gap-6">
       <h2 class="text-xl font-bold">AI model articles</h2>

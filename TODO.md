@@ -1,3 +1,4 @@
+- [ ] Please add contact page with email address and contact form. use Shadcn components. 
 - [ ] admin pages are too monolithic, please analize them and extract components from them.
 
 Next:
