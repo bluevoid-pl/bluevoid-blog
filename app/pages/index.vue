@@ -17,11 +17,7 @@ const { data: landing } = await useAsyncData('landing', async () => {
   const filteredList = list.filter((post: any) => post.enabled !== false)
   const uniqueTags = [...new Set(filteredList.flatMap((post: any) => post.tags ?? []))]
 
-  const projects = await queryCollection('projects')
-    .select('path', 'title', 'description', 'date', 'tags', 'img', 'enabled')
-    .all()
-  const filteredProjects = projects.filter((p: any) => p.enabled !== false)
-  const erp = filteredProjects.find((p: any) => p.path?.toLowerCase() === '/projects/erp' || p.title === 'ERP - webapp') ?? filteredProjects[0]
+  const erp = filteredList.find((post: any) => post.title === 'ERP - webapp' || post.path?.toLowerCase().includes('/blog/erp')) ?? filteredList.find((post: any) => post.title?.toLowerCase().includes('erp'))
 
   const aiArticles = filteredList.filter((post: any) => {
     const tags = post.tags ?? []
@@ -42,7 +38,7 @@ const { data: landing } = await useAsyncData('landing', async () => {
 
 <template>
   <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-4 sm:space-y-6">
-    <Showcase2 :item="landing.erp" fallback-title="ERP - webapp" fallback-description="System zażądania drukarni koszulek." />
+    <Showcase2 :item="landing.erp" fallback-title="Unknown" fallback-description="Unknown" />
 
     <section id="ai-models" class="flex flex-col gap-4 sm:gap-6">
       <h2 class="text-xl font-bold">AI model articles</h2>

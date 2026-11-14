@@ -70,7 +70,6 @@ import { IconMenu2 } from '@tabler/icons-vue'
             </SheetHeader>
             <div class="flex flex-col gap-4 mt-6">
               <a href="/blog" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Blog</a>
-              <a href="/projects" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Projects</a>
               <a href="/about" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">About</a>
               <a href="/contact" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Contact</a>
               <a href="/korki" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">

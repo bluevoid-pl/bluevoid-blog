@@ -10,7 +10,7 @@ const props = defineProps<{
 
 <template>
   <div v-if="tags && tags.length" class="flex flex-wrap gap-2 items-center">
-    <Badge v-if="language !== 'en'" :variant="variant" class="text-xs flex items-center gap-1 px-2">
+    <Badge v-if="language === 'pl'" :variant="variant" class="text-xs flex items-center gap-1 px-2">
       <img src="/PL.svg" alt="PL" class="h-3 w-3 flex-shrink-0" />
       PL
     </Badge>

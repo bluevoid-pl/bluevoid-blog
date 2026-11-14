@@ -16,6 +16,7 @@ export default defineContentConfig({
 				tags: z.array(z.string()),
 				img: z.string().optional(),
 				enabled: z.boolean().optional(),
+				language: z.string().optional(),
 			}),
 		}),
 		projects: defineCollection({

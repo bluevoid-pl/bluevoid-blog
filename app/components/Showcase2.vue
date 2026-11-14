@@ -28,7 +28,7 @@ const description = props.item?.description ?? props.fallbackDescription ?? ''
       <TagList v-if="item?.tags" :tags="item.tags" variant="secondary" />
       <CardDescription v-if="description" class="text-base text-muted-foreground leading-relaxed min-h-32">{{ description }}</CardDescription>
       <Button v-if="item?.path" as="a" :href="item.path" variant="outline" class="mt-4">
-        Explore project
+        Read article
       </Button>
     </CardContent>
 
