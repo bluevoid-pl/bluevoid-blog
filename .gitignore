@@ -24,3 +24,6 @@ logs
 !.env.example
 old_wordpress
 textures
+__pycache__
+plans
+public/pyodide
