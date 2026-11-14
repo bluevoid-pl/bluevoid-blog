@@ -30,20 +30,20 @@ System do zarządzania drukarnią koszulek.
 
    - In frontend specify server url
 
-   ```
+   ```sh
    SERVER_URL=http://api.erp.ct8.pl:1337
    ```
 
    - In backend specify, JWT Secret for application
 
-   ```
+   ```sh
    ADMIN_JWT_SECRET=secret_must_be_secure_and_random
    JWT_SECRET=secret_must_be_secure_and_random
    ```
 
    - In backend specify database credentials for postgresql v13 database
 
-   ```
+   ```sh
    DATABASE_HOST=127.0.0.1
    DATABASE_PORT=5432
    DATABASE_NAME=shirt

@@ -2,7 +2,7 @@
 title: "Muse Glimmer 30B - pruned GGUF"
 description: "Simple description of bluevoid-pl/Muse-Glimmer-30B-pruned-GGUF: a pruned, latin-only quantized build of Meta's Muse Glimmer 30B agentic model."
 date: "2026-08-26"
-img: "/placeholder.png"
+img: "/assets/BrainSurgery.png"
 tags:
   - "Muse"
   - "GGUF"

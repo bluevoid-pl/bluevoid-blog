@@ -2,7 +2,7 @@
 title: "Zeta 2.1 - GGUF"
 description: "Simple description of bluevoid-pl/zeta-2.1-GGUF: a direct GGUF of zed-industries/zeta-2.1, an 8B code next-edit-suggestion model finetuned from Seed-Coder-8B-Base."
 date: "2026-08-26"
-img: "/placeholder.png"
+img: "/assets/zed+zeta.svg"
 tags:
   - "Zeta"
   - "GGUF"

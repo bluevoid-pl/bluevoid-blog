@@ -2,7 +2,7 @@
 title: "Running Local LLM on 12GB RAM with Pruned Models"
 description: "Guide to running large language models locally on 12GB RAM using pruned GGUF models and llama.cpp, with examples for Muse-Glimmer-30B-pruned-V2.5-en-pl."
 date: "2026-10-27"
-img: "/placeholder.png"
+img: "/assets/BrainSurgery.png"
 tags:
   - "LLM"
   - "GGUF"
