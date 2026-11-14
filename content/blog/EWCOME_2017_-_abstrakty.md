@@ -6,6 +6,7 @@ description: "Abstrakty na konferencję EWCOME2017 (East - West Conference on Ma
 tags:
   - "EWCOME2017"
 enabled: true
+language: en
 ---
 
 # EWCOME 2017 - abstrakty

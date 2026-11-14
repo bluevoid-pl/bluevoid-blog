@@ -8,6 +8,7 @@ tags:
   - "Matura"
   - "Algorithms"
 enabled: true
+language: pl
 ---
 
 # Matura 2025 zadanie 3

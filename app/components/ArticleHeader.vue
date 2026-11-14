@@ -10,6 +10,7 @@ const props = defineProps<{
     tags?: string[]
     client?: string
     bodyPlain?: string
+    language?: string
   }
   showNewBadge?: boolean
   showReadingTime?: boolean
@@ -39,6 +40,6 @@ const readingTime = computed(() => {
     />
     <h1 class="text-3xl font-bold tracking-tight">{{ item.title }}</h1>
     <p v-if="item.description" class="text-base text-muted-foreground leading-relaxed">{{ item.description }}</p>
-    <TagList :tags="item.tags" variant="detail" />
+    <TagList :tags="item.tags" :language="item.language" variant="detail" />
   </header>
 </template>

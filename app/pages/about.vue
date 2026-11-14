@@ -29,7 +29,7 @@ useHead(() => ({
 
         <hr class="border-t border-white/10 my-8" />
 
-        <div class="typeset typeset-docs max-w-3xl">
+        <div class="typeset typeset-docs">
           <ContentRenderer v-if="page" :value="page" />
         </div>
       </div>

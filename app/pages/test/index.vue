@@ -27,7 +27,7 @@ const pages = Object.entries(modules)
 </script>
 
 <template>
-  <div class="container mx-auto max-w-6xl px-4 py-8">
+  <div class="container mx-auto max-w-7xl px-4 py-8">
     <h1 class="text-3xl font-bold tracking-tight mb-6">Tests</h1>
     <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <li v-for="page in pages" :key="page.to">

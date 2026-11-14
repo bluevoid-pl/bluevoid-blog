@@ -6,6 +6,7 @@ description: "Dynamic icon picker built in React."
 tags:
   - "React"
 enabled: false
+language: en
 ---
 
 

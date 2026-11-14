@@ -8,6 +8,7 @@ tags:
   - "Demos"
   - "Blender 3D"
 enabled: true
+language: pl
 ---
 
 # Godot demos 1 - Golf

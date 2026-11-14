@@ -10,6 +10,7 @@ tags:
   - "llama.cpp"
   - "RAM"
 enabled: false
+language: en
 ---
 
 # Running Local LLM on 12GB RAM with Pruned Models

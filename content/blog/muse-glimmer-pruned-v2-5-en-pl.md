@@ -9,6 +9,7 @@ tags:
   - "Pruned"
   - "Vision"
 enabled: true
+language: en
 ---
 
 # Muse Glimmer 30B - pruned V2.5 EN-PL GGUF

@@ -8,6 +8,7 @@ tags:
   - "Baza danych"
   - "Teoria"
 enabled: true
+language: pl
 ---
 
 #### SQL - relacyjne

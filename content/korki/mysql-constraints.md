@@ -8,6 +8,7 @@ tags:
   - "SQL"
   - "Constraints"
 enabled: true
+language: pl
 ---
 
 #### TLDR

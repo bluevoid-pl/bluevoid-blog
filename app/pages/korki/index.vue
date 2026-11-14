@@ -66,7 +66,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-6 py-12">
+  <div class="max-w-7xl mx-auto px-6 py-12">
     <header class="text-center pb-8">
       <div class="flex items-center justify-center gap-3 mb-3">
         <img src="/PL.svg" alt="PL" class="h-6 w-6" />

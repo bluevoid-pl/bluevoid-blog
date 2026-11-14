@@ -41,13 +41,13 @@ function onSubmit(e: Event) {
   <div class="mx-auto max-w-7xl px-6 py-10">
     <div class="flex gap-8 items-start">
       <div class="flex-1">
-        <div class="max-w-3xl">
+        <div class="">
           <h1 class="text-4xl font-bold tracking-tight">Contact</h1>
         </div>
 
         <hr class="border-t border-white/10 my-8" />
 
-        <div class="typeset typeset-docs max-w-3xl">
+        <div class="typeset typeset-docs">
           <p>
              Hi! I'm Mateusz Kifner. You can reach me via email at <a href="mailto:biznes@bluevoid.pl" class="underline">biznes@bluevoid.pl</a>
              <!-- or fill out the form below.  -->

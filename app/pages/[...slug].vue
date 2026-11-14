@@ -23,7 +23,7 @@ useHead(() => ({
 </script>
 
 <template>
-	<div class="typeset typeset-korki max-w-3xl mx-auto px-6 py-10">
+	<div class="typeset typeset-korki mx-auto px-6 py-10">
 		<ContentRenderer v-if="page" :value="page" />
 	</div>
 </template>

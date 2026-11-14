@@ -7,6 +7,7 @@ tags:
   - "WebGL"
   - "GLSL"
 enabled: true
+language: pl
 ---
 
 Shadery można znaleźć na [GitHub](https://mateusz-kifner.github.io/webgl-shaders/)

@@ -7,6 +7,7 @@ tags:
   - "MySQL"
   - "SQL"
 enabled: true
+language: pl
 ---
 
 #### Podstawy

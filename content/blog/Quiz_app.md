@@ -9,6 +9,7 @@ tags:
   - "WebApp"
   - "Godot"
 enabled: true
+language: pl
 ---
 
 # Quiz App

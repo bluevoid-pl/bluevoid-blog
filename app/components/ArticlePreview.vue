@@ -13,6 +13,7 @@ const props = defineProps<{
     tags?: string[]
     path: string
     img?: string
+    language?: string
   }
   showDate?: boolean
   showNewBadge?: boolean
@@ -46,7 +47,7 @@ const truncatedDescription = computed(() => {
         </div>
         <CardTitle class="text-xl hyphens-auto w-full whitespace-break-spaces" style="overflow-wrap: anywhere; word-break: break-word; hyphens: auto;">{{ item.title }}</CardTitle>
         <div class="flex flex-wrap gap-1.5 min-w-0">
-          <TagList v-if="item.tags" :tags="item.tags" variant="secondary" />
+          <TagList v-if="item.tags" :tags="item.tags" :language="item.language" variant="secondary" />
         </div>
       </CardHeader>
       <CardContent class="flex flex-col gap-2">

@@ -6,6 +6,7 @@ description: "Materiały z mojej prezentacji na konferencji EWCOME2017(East - We
 tags:
   - "EWCOME2017"
 enabled: true
+language: en
 ---
 
 #### Prezentacje:

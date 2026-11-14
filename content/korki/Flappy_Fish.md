@@ -7,6 +7,7 @@ tags:
   - "Godot 3"
   - "Demos"
 enabled: true
+language: pl
 ---
 
 # Flappy Fish

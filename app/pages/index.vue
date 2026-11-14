@@ -41,7 +41,7 @@ const { data: landing } = await useAsyncData('landing', async () => {
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-4 sm:space-y-6">
+  <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 space-y-4 sm:space-y-6">
     <Showcase2 :item="landing.erp" fallback-title="ERP - webapp" fallback-description="System zażądania drukarni koszulek." />
 
     <section id="ai-models" class="flex flex-col gap-4 sm:gap-6">

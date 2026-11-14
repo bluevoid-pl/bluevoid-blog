@@ -7,6 +7,7 @@ tags:
   - "React"
   - "Mantine"
 enabled: true
+language: pl
 ---
 
 ![ERP](/assets/ShirtERP_logo.png)

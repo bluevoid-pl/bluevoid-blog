@@ -7,6 +7,7 @@ tags:
   - "Matura"
   - "Teoria"
 enabled: true
+language: pl
 ---
 
 ## Protokoły

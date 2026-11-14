@@ -8,6 +8,7 @@ tags:
   - "SQL"
   - "Data Types"
 enabled: true
+language: pl
 ---
 
 #### TLDR

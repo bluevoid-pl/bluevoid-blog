@@ -7,6 +7,7 @@ tags:
   - "Game"
   - "p5"
 enabled: true
+language: pl
 ---
 
 # Stare Projekty

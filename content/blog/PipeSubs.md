@@ -8,6 +8,7 @@ tags:
   - "dearPyGui"
   - "sqlite3"
 enabled: true
+language: en
 ---
 
 # PipeSubs

@@ -8,6 +8,7 @@ tags:
   - "GGUF"
   - "Pruned"
 enabled: true
+language: en
 ---
 
 # Muse Glimmer 30B - pruned GGUF

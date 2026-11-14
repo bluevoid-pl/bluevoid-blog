@@ -8,6 +8,7 @@ tags:
   - "GGUF"
   - "Code"
 enabled: true
+language: pl
 ---
 
 ### Zeta 2.1 - GGUF

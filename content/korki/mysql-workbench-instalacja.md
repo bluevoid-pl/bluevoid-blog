@@ -7,6 +7,7 @@ tags:
   - "MySQL"
   - "Setup"
 enabled: true
+language: pl
 ---
 
 # Mysql workbench instalacja

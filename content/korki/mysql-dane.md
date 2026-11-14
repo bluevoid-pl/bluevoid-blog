@@ -8,6 +8,7 @@ tags:
   - "SQL"
   - "Queries"
 enabled: true
+language: pl
 ---
 
 #### INSERT INTO
