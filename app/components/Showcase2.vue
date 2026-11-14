@@ -2,7 +2,6 @@
 import TagList from '~/components/TagList.vue'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardHeader, CardDescription } from '~/components/ui/card'
-import { ref } from 'vue'
 
 const props = defineProps<{
   item?: {
@@ -18,8 +17,6 @@ const props = defineProps<{
 
 const title = props.item?.title ?? props.fallbackTitle ?? 'Showcase'
 const description = props.item?.description ?? props.fallbackDescription ?? ''
-
-const activeView = ref<'desktop' | 'mobile' | null>(null)
 </script>
 
 <template>
@@ -38,8 +35,8 @@ const activeView = ref<'desktop' | 'mobile' | null>(null)
     <div class="w-full md:w-1/2 order-0 md:order-1 pr-3">
       <div v-if="item?.img" class="relative w-full aspect-[16/9]">
         <!-- Desktop mockup - full width of image area -->
-        <div class="relative w-full h-full rounded-xl border-2 border-neutral-800 bg-neutral-900 shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden pt-8 transition-transform duration-300 ease-out" :class="{ 'scale-[1.2]': activeView === 'desktop', 'opacity-0 pointer-events-none': activeView === 'mobile' }">
-          <div class="absolute inset-y-0 left-0 w-1/2 z-10" @mouseenter="activeView = 'desktop'" @mouseleave="activeView = null"></div>
+        <div class="group/desktop relative w-full h-full rounded-xl border-2 border-neutral-800 bg-neutral-900 shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden pt-8 transition-transform duration-300 ease-out hover:scale-[1.2]">
+          <div class="absolute inset-y-0 left-0 w-1/2 z-10"></div>
           <div class="absolute top-0 left-0 right-0 h-4 bg-neutral-800 flex items-center justify-end pr-3">
             <div class="flex items-center gap-1.5">
               <span class="size-2 rounded-full bg-green-500/80"></span>
@@ -54,27 +51,30 @@ const activeView = ref<'desktop' | 'mobile' | null>(null)
           />
         </div>
 
-        <!-- Mobile mockup - on top of desktop -->
-        <div class="absolute -top-10 right-8 z-90 w-[180px] aspect-[9/19.5] rounded-[1.2rem] border-[4px] border-zinc-500 bg-gradient-to-b from-zinc-100 via-zinc-300 to-zinc-500 shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 ease-out" :class="{ 'scale-[1.3] left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 right-auto': activeView === 'mobile', 'opacity-0 pointer-events-none': activeView === 'desktop' }" @mouseenter="activeView = 'mobile'" @mouseleave="activeView = null">
-          <!-- Mobile status bar -->
-          <div class="absolute top-0 left-0 right-0 h-6 bg-black text-white text-[9px] flex items-center justify-between px-3 z-20">
-            <span>12:34</span>
-            <div class="flex items-center gap-1">
-              <div class="w-5 h-2.5 border border-white/60 rounded-[2px] relative">
-                <div class="absolute inset-[1px] bg-white/80 rounded-[1px] w-[70%]" />
-                <div class="absolute -right-0.5 top-1/2 -translate-y-1/2 w-0.5 h-[60%] bg-white/60 rounded-[1px]" />
+        <!-- Mobile mockup wrapper for hover bridge -->
+        <div class="group">
+          <!-- Mobile mockup - on top of desktop -->
+          <div class="absolute -top-10 right-8 z-90 w-[180px] aspect-[9/19.5] rounded-[1.2rem] border-[4px] border-zinc-500 bg-gradient-to-b from-zinc-100 via-zinc-300 to-zinc-500 shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 ease-out group-hover:scale-[1.3] group-hover:left-1/2 group-hover:top-[40%] group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 group-hover:right-auto">
+            <!-- Mobile status bar -->
+            <div class="absolute top-0 left-0 right-0 h-6 bg-black text-white text-[9px] flex items-center justify-between px-3 z-20">
+              <span>12:34</span>
+              <div class="flex items-center gap-1">
+                <div class="w-5 h-2.5 border border-white/60 rounded-[2px] relative">
+                  <div class="absolute inset-[1px] bg-white/80 rounded-[1px] w-[70%]" />
+                  <div class="absolute -right-0.5 top-1/2 -translate-y-1/2 w-0.5 h-[60%] bg-white/60 rounded-[1px]" />
+                </div>
               </div>
             </div>
+            <img
+              :src="item.img"
+              :alt="title"
+              class="w-full h-full object-cover"
+            />
           </div>
-          <img
-            :src="item.img"
-            :alt="title"
-            class="w-full h-full object-cover"
-          />
-        </div>
 
-        <!-- Mobile pseudo element - transparent hover bridge to prevent flicker -->
-        <div class="absolute -top-10 right-8 w-[180px] aspect-[9/19.5] rounded-[1.2rem] bg-transparent pointer-events-auto transition-opacity duration-300 ease-out" :class="{ 'opacity-100': activeView === 'mobile', 'opacity-0': activeView !== 'mobile' }" @mouseenter="activeView = 'mobile'" @mouseleave="activeView = null"></div>
+          <!-- Mobile pseudo element - transparent hover bridge to prevent flicker -->
+          <div class="absolute -top-10 right-8 w-[180px] aspect-[9/19.5] rounded-[1.2rem] bg-transparent pointer-events-auto border border-dashed border-white/10"></div>
+        </div>
       </div>
       <div v-else class="w-full h-48 flex items-center justify-center text-muted-foreground">
         No image available

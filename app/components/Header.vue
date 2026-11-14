@@ -18,7 +18,7 @@ import { IconMenu2 } from '@tabler/icons-vue'
     Skip to content
   </a>
   <header class="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 header">
-    <div class="mx-auto max-w-6xl flex h-16 items-center justify-between px-4 gap-4">
+    <div class="mx-auto max-w-7xl flex h-16 items-center justify-between px-4 gap-4">
       <div class="flex items-center gap-2">
         <a href="/" class="flex items-center gap-3">
           <img class="h-8 w-8" src="/logo.png" alt="Blue Void logo" />
@@ -30,11 +30,6 @@ import { IconMenu2 } from '@tabler/icons-vue'
             <NavigationMenuItem>
               <NavigationMenuLink as-child>
                 <a href="/blog" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Blog</a>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink as-child>
-                <a href="/projects" class="px-3 py-2 text-sm font-medium hover:text-foreground/80 transition-colors">Projects</a>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
