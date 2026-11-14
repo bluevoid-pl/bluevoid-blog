@@ -46,6 +46,9 @@ export default defineNuxtConfig({
 		head: {
 			title: 'BlueVoid.pl',
 			titleTemplate: '%s - BlueVoid',
+			link: [
+				{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/microlighter@2.2.0/dist/themes/github.css' }
+			],
 			script: [
 				{
 					key: "theme-init",
@@ -53,6 +56,7 @@ export default defineNuxtConfig({
 					tagPriority: "critical",
 
 				},
+				{ src: 'https://cdn.jsdelivr.net/npm/microlighter@2.2.0/dist/microlighter.min.js', type: 'module' }
 			],
 		},
 		layoutTransition: { name: "page", mode: "out-in" },
@@ -65,11 +69,7 @@ export default defineNuxtConfig({
 					depth: 5,
 					searchDepth: 5,
 				},
-				highlight: {
-					theme: "github-dark",
-					langs: ['bash', 'shell', 'json', 'js', 'ts', 'html', 'css', 'vue','mdc', 'md', 'yaml',
-            'sql', 'cpp', 'javascript', 'typescript'],
-				},
+				highlight: false,
 			},
 		},
 	},

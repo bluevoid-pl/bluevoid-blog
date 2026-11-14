@@ -10,10 +10,12 @@ const props = withDefaults(defineProps<{
   lineNumbers?: boolean
   startLine?: number
   class?: HTMLAttributes["class"]
+  language?: string
 }>(), {
   wrap: false,
   lineNumbers: false,
   startLine: 1,
+  language: 'plaintext',
 })
 
 const slots = useSlots()
@@ -58,14 +60,14 @@ function getLines() {
     tabindex="0"
     :style="{ counterReset: `line ${startLine - 1}` }"
     :class="cn(
-      'px-3 py-3 leading-relaxed group-has-data-[slot=code-block-header]/code-block:pt-2 group-has-data-[slot=code-block-footer]/code-block:pb-2 group-data-[size=sm]/code-block:px-2.5 group-data-[size=sm]/code-block:py-2.5 group-data-[size=sm]/code-block:group-has-data-[slot=code-block-header]/code-block:pt-1.5 min-h-0 min-w-0 scroll-fade-x scrollbar-thin overflow-auto text-start font-mono outline-none data-wrap:scroll-fade-y data-wrap:wrap-break-word data-wrap:whitespace-pre-wrap',
+      'microlighter px-3 py-3 leading-relaxed group-has-data-[slot=code-block-header]/code-block:pt-2 group-has-data-[slot=code-block-footer]/code-block:pb-2 group-data-[size=sm]/code-block:px-2.5 group-data-[size=sm]/code-block:py-2.5 group-data-[size=sm]/code-block:group-has-data-[slot=code-block-header]/code-block:pt-1.5 min-h-0 min-w-0 scroll-fade-x scrollbar-thin overflow-auto text-start font-mono outline-none data-wrap:scroll-fade-y data-wrap:wrap-break-word data-wrap:whitespace-pre-wrap',
       props.class,
     )"
   >
     <Primitive
       as="code"
       data-slot="code-block-code"
-      class="grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0"
+      :class="cn('grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0', `language-${language}`)"
     >
       <template v-for="(lines, i) in [getLines()]" :key="i">
         <template v-if="lines">

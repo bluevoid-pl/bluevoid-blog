@@ -53,9 +53,6 @@ importers:
       shadcn-vue:
         specifier: ^2.9.0
         version: 2.9.0(@volar/typescript@2.4.30(typescript@6.0.3))(@vue/language-core@3.3.14)(esbuild@0.28.2)(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(magicast@0.5.5)(supports-color@10.2.2)
-      shiki:
-        specifier: ^4.6.0
-        version: 4.6.0
       tailwind-merge:
         specifier: ^3.7.0
         version: 3.7.0

@@ -9,9 +9,21 @@ import {
 } from "@/components/ui/code-block";
 import { Card } from "@/components/ui/card";
 
-const code = `// ...
+const code = `<script setup lang="ts">
+import {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockContent,
+  CodeBlockCopyButton,
+  CodeBlockHeader,
+  CodeBlockTitle,
+} from "@/components/ui/code-block";
+import { Card } from "@/components/ui/card";
+
+const code = \`// ...
 // code here
-// ...`;
+// ...\`;
+`;
 </script>
 
 <template>
@@ -24,7 +36,7 @@ const code = `// ...
             <CodeBlockCopyButton :value="code" />
           </CodeBlockActions>
         </CodeBlockHeader>
-        <CodeBlockContent :line-numbers="true">{{ code }}</CodeBlockContent>
+        <CodeBlockContent :line-numbers="true" language="ts">{{ code }}</CodeBlockContent>
       </CodeBlock>
     </Card>
   </div>
