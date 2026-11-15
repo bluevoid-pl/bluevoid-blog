@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import type { DialogContentEmits, DialogContentProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { IconX } from '@tabler/icons-vue'
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type DialogContentEmits,
+  type DialogContentProps,
   DialogClose,
   DialogContent,
   DialogOverlay,
   DialogPortal,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { IconX } from '@tabler/icons-vue'
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 
 defineOptions({
   inheritAttrs: false,

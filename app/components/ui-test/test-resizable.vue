@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ResizablePanelGroup } from "@/components/ui/resizable";
-import { ResizablePanel } from "@/components/ui/resizable";
-import { ResizableHandle } from "@/components/ui/resizable";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 </script>
 
 <template>

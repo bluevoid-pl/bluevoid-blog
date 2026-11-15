@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { MenubarSubContentEmits, MenubarSubContentProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type MenubarSubContentEmits,
+  type MenubarSubContentProps,
   MenubarPortal,
   MenubarSubContent,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 
 defineOptions({
   inheritAttrs: false,

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import type { AnswerControlRegistration, QuestionnaireItemStatus } from "./useQuestionnaire"
-import { cn } from "cn"
-import { computed, onBeforeUnmount, ref, shallowRef, useAttrs, watch } from "vue"
+import { type HTMLAttributes, computed, onBeforeUnmount, ref, shallowRef, useAttrs, watch } from "vue"
 import {
+  type AnswerControlRegistration,
+  type QuestionnaireItemStatus,
   compareDocumentOrder,
   getShortcutByChoiceValue,
   getShortcutKeys,
@@ -14,6 +13,7 @@ import {
   isTextEntryTarget,
   provideQuestionnaireItemContext,
 } from "./useQuestionnaire"
+import { cn } from "cn"
 
 defineOptions({
   inheritAttrs: false,

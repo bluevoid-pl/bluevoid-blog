@@ -3,6 +3,7 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "microlighter/themes/github.css";
 @import "./typeset.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -78,6 +79,46 @@
   --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
   --sidebar-border: oklch(0.709 0.01 56.259 / 10%);
   --sidebar-ring: oklch(0.553 0.013 58.071);
+}
+
+/* MicroLighter syntax tokens. The token colours come from
+   microlighter/themes/github.css, but that theme uses light-dark(), which
+   follows the browser preference. The app theme is decided by the .light/.dark
+   class on <html>, so the tokens are restated here to match the app theme.
+   The code surface stays on the app tokens: MicroLighter paints its own
+   background on any pre containing highlighted code. */
+:root {
+  --syntax-background: var(--color-muted);
+  --syntax-foreground: var(--foreground);
+  --syntax-comment: #6a737d;
+  --syntax-keyword: #22863a;
+  --syntax-operator: #cf3f3f;
+  --syntax-string: #03666a;
+  --syntax-constant: #005cc5;
+  --syntax-function: #6f42c1;
+  --syntax-type: #005cc5;
+  --syntax-variable: #e36209;
+  --syntax-property: #79b9ff;
+  --syntax-tag: #005cc5;
+  --syntax-selector: #e36209;
+  --syntax-inserted: #22863a;
+  --syntax-deleted: #b31d28;
+}
+
+html.dark {
+  --syntax-comment: #8b949e;
+  --syntax-keyword: #ff7b72;
+  --syntax-operator: #ff7b72;
+  --syntax-string: #a5d6ff;
+  --syntax-constant: #79c0ff;
+  --syntax-function: #d2a8ff;
+  --syntax-type: #79c0ff;
+  --syntax-variable: #e2e3fe;
+  --syntax-property: #79c0ff;
+  --syntax-tag: #79c0ff;
+  --syntax-selector: #e2e3fe;
+  --syntax-inserted: #3fb43f;
+  --syntax-deleted: #fd7c7c;
 }
 
 @theme inline {

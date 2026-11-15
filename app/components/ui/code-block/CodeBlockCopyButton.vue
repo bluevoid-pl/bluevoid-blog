@@ -2,11 +2,10 @@
 import type { PrimitiveProps } from "reka-ui"
 
 import type { HTMLAttributes } from "vue"
-import type { ButtonVariants } from '@/components/ui/button'
+import { type ButtonVariants, Button } from '@/components/ui/button'
 import { IconCheck, IconCopy } from '@tabler/icons-vue'
 import { useClipboard } from "@vueuse/core"
 import { cn } from "cn"
-import { Button } from '@/components/ui/button'
 
 defineOptions({ inheritAttrs: false })
 

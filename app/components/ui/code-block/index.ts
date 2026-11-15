@@ -1,5 +1,4 @@
-import type { VariantProps } from "class-variance-authority"
-import { cva } from "class-variance-authority"
+import { type VariantProps, cva } from "class-variance-authority"
 
 export { default as CodeBlock } from "./CodeBlock.vue"
 export { default as CodeBlockActions } from "./CodeBlockActions.vue"

@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import type { MenubarCheckboxItemEmits, MenubarCheckboxItemProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { IconCheck } from '@tabler/icons-vue'
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type MenubarCheckboxItemEmits,
+  type MenubarCheckboxItemProps,
   MenubarCheckboxItem,
   MenubarItemIndicator,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { IconCheck } from '@tabler/icons-vue'
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 
 const props = defineProps<MenubarCheckboxItemProps & { class?: HTMLAttributes["class"] }>()
 const emits = defineEmits<MenubarCheckboxItemEmits>()

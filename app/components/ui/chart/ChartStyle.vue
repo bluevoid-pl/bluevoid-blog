@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
+import { type HTMLAttributes, computed } from "vue"
 import { Primitive } from "reka-ui"
-import { computed } from "vue"
 import { THEMES, useChart } from "."
 
 defineProps<{

@@ -1,24 +1,15 @@
 <script setup lang="ts">
-import {
-	IconCircle,
-	IconMoon,
-	IconSettingsAutomation,
-	IconSun,
-} from "@tabler/icons-vue";
+import { IconCircle, IconMoon, IconSettingsAutomation, IconSun } from "@tabler/icons-vue";
 import { computed } from "vue";
 import { Button } from "./ui/button";
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import {
-	colorSchemes,
-	useColorScheme,
-	type ColorScheme,
-} from "~/composables/useColorScheme";
+import { colorSchemes, useColorScheme, type ColorScheme } from "~/composables/useColorScheme";
 
 const colorMode = useColorMode();
 const { colorScheme, setColorScheme } = useColorScheme();

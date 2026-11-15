@@ -10,16 +10,7 @@ definePageMeta({
 })
 
 useHead({
-  title: 'The Farmer Was Replaced - API Simulator',
-  htmlAttrs: {
-    'data-syntax-theme': 'github'
-  },
-  link: [
-    { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/microlighter@2.2.0/dist/themes/github.css' }
-  ],
-  script: [
-    { src: 'https://cdn.jsdelivr.net/npm/microlighter@2.2.0/dist/microlighter.min.js', type: 'module' }
-  ]
+  title: 'The Farmer Was Replaced - API Simulator'
 })
 
 const code = ref(`# Example: Move and harvest

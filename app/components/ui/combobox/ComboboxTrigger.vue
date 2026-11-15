@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { ComboboxTriggerProps } from "reka-ui"
+import { type ComboboxTriggerProps, ComboboxTrigger, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { ComboboxTrigger, useForwardProps } from "reka-ui"
 
 const props = defineProps<ComboboxTriggerProps & { class?: HTMLAttributes["class"] }>()
 

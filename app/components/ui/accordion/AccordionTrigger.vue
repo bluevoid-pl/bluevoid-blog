@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { AccordionTriggerProps } from "reka-ui"
+import { type AccordionTriggerProps, AccordionHeader, AccordionTrigger } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconChevronDown } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import {
-  AccordionHeader,
-  AccordionTrigger,
-} from "reka-ui"
 
 const props = defineProps<AccordionTriggerProps & { class?: HTMLAttributes["class"] }>()
 

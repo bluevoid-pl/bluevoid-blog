@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { HTMLAttributes, VNode } from "vue"
+import { type HTMLAttributes, type VNode, Comment, Fragment, Text, useSlots } from "vue"
 import { cn } from "cn"
 import { Primitive } from "reka-ui"
-import { Comment, Fragment, Text, useSlots } from "vue"
 import CodeBlockLine from "./CodeBlockLine.vue"
 
 const props = withDefaults(defineProps<{
@@ -42,9 +41,9 @@ function getText(nodes: VNode[]): string | null {
   return text
 }
 
+// Plain text content is split into lines so every line can be highlighted on
+// its own; content with markup is passed through as it is.
 function getLines() {
-  if (!props.lineNumbers)
-    return null
   const text = getText(slots.default?.() ?? [])
   return text === null ? null : text.replace(/\n$/, "").split("\n")
 }
@@ -71,9 +70,12 @@ function getLines() {
     >
       <template v-for="(lines, i) in [getLines()]" :key="i">
         <template v-if="lines">
-          <CodeBlockLine v-for="(line, index) in lines" :key="index">
-            {{ line }}
-          </CodeBlockLine>
+          <CodeBlockLine
+            v-for="(line, index) in lines"
+            :key="index"
+            :line="line"
+            :language="language"
+          />
         </template>
         <slot v-else />
       </template>

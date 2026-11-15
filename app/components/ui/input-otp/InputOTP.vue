@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue"
-import type { OTPInputEmits, OTPInputProps } from "vue-input-otp"
+import { type OTPInputEmits, type OTPInputProps, OTPInput } from "vue-input-otp"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
 import { useForwardPropsEmits } from "reka-ui"
-import { OTPInput } from "vue-input-otp"
 
 const props = defineProps<OTPInputProps & { class?: HTMLAttributes["class"] }>()
 

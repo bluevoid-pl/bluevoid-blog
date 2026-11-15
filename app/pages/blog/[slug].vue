@@ -29,18 +29,18 @@ useHead(() => ({
 </script>
 
 <template>
-  <div class="mx-auto max-w-7xl px-6 py-10">
+  <div class="mx-auto max-w-7xl">
     <div class="flex gap-8 items-start">
-      <div class="flex-1">
+      <div class="flex flex-col gap-8 max-w-4xl">
         <ArticleHeader :item="post" />
 
-        <hr class="border-t border-white/10 my-8" />
+        <hr class="border-t border-white/10" />
 
-        <div class="typeset typeset-blog mx-auto">
+        <div class="typeset typeset-blog mx-auto w-full">
           <ContentRenderer v-if="post" :value="post" />
         </div>
       </div>
-      <BlogSidebar :body="post.body" />
+      <BlogSidebar :body="post.body" class="w-56" />
     </div>
   </div>
 </template>

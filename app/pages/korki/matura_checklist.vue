@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import Progress from '@/components/ui/progress/Progress.vue'
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from '@/components/ui/accordion'
+import { Progress } from '@/components/ui/progress'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { Card } from '@/components/ui/card'

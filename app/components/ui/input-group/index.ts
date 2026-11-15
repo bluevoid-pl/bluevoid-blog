@@ -1,5 +1,4 @@
-import type { VariantProps } from "class-variance-authority"
-import { cva } from "class-variance-authority"
+import { type VariantProps, cva } from "class-variance-authority"
 
 export { default as InputGroup } from "./InputGroup.vue"
 export { default as InputGroupAddon } from "./InputGroupAddon.vue"

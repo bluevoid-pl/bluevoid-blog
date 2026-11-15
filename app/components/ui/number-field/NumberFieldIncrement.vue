@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { NumberFieldIncrementProps } from "reka-ui"
+import { type NumberFieldIncrementProps, NumberFieldIncrement, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconPlus } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { NumberFieldIncrement, useForwardProps } from "reka-ui"
 
 const props = defineProps<NumberFieldIncrementProps & { class?: HTMLAttributes["class"] }>()
 

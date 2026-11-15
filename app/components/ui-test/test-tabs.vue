@@ -1,17 +1,9 @@
 <script setup lang="ts">
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { CardContent } from "@/components/ui/card";
-import { CardDescription } from "@/components/ui/card";
-import { CardFooter } from "@/components/ui/card";
-import { CardHeader } from "@/components/ui/card";
-import { CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs } from "@/components/ui/tabs";
-import { TabsContent } from "@/components/ui/tabs";
-import { TabsList } from "@/components/ui/tabs";
-import { TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 </script>
 
 <template>

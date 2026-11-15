@@ -14,6 +14,26 @@ const PYODIDE_EXCLUDE = [
   "!**/pyodide/node_modules",
 ];
 
+/**
+ * MicroLighter loads its language grammars with a relative dynamic import
+ * (`./grammars/<language>.js`) from the chunk that calls `highlightAll()`, so
+ * the grammar files have to exist next to that chunk in the client bundle.
+ */
+function viteStaticCopyGrammars() {
+  const microlighterDir = dirname(fileURLToPath(import.meta.resolve("microlighter")));
+  return viteStaticCopy({
+    targets: [
+      {
+        src: join(microlighterDir, "grammars", "*.js").replace(/\\/g, "/"),
+        dest: "_nuxt/grammars",
+        // The grammars sit deep inside node_modules; strip that path so each
+        // grammar lands at _nuxt/grammars/<language>.js.
+        rename: { stripBase: true },
+      },
+    ],
+  });
+}
+
 function viteStaticCopyPyodide() {
   const pyodideDir = dirname(fileURLToPath(import.meta.resolve("pyodide")));
   console.log("pyodideDir",pyodideDir)
@@ -33,8 +53,11 @@ export default defineNuxtConfig({
 	compatibilityDate: "2026-06-01",
 	css: ["~/assets/css/main.css"],
 	vite: {
-		optimizeDeps: { exclude: ["pyodide"] },
-		plugins: [tailwindcss(), viteStaticCopyPyodide()],
+		// MicroLighter loads its grammars with a relative dynamic import. Vite's
+		// dep pre-bundler rewrites it into the .vite/deps folder, where the grammar
+		// files are not copied, so it has to be served as-is.
+		optimizeDeps: { exclude: ["pyodide", "microlighter"] },
+		plugins: [tailwindcss(), viteStaticCopyPyodide(), viteStaticCopyGrammars()],
   },
 	devServer: { host: '0.0.0.0' },
 	nitro: {
@@ -46,17 +69,17 @@ export default defineNuxtConfig({
 		head: {
 			title: 'BlueVoid.pl',
 			titleTemplate: '%s - BlueVoid',
-			link: [
-				{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/microlighter@2.2.0/dist/themes/github.css' }
-			],
+			htmlAttrs: {
+				// Activates the token rules of the bundled MicroLighter theme.
+				"data-syntax-theme": "github",
+			},
 			script: [
 				{
 					key: "theme-init",
 					innerHTML: THEME_INIT_SCRIPT,
 					tagPriority: "critical",
 
-				},
-				{ src: 'https://cdn.jsdelivr.net/npm/microlighter@2.2.0/dist/microlighter.min.js', type: 'module' }
+				}
 			],
 		},
 		layoutTransition: { name: "page", mode: "out-in" },

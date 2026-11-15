@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import type { StepperIndicatorProps } from "reka-ui"
+import { type StepperIndicatorProps, StepperIndicator, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { StepperIndicator, useForwardProps } from "reka-ui"
 
 const props = defineProps<StepperIndicatorProps & { class?: HTMLAttributes["class"] }>()
 

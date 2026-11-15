@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { DialogRootEmits, DialogRootProps } from "reka-ui"
-import { DialogRoot, useForwardPropsEmits } from "reka-ui"
+import { type DialogRootEmits, type DialogRootProps, DialogRoot, useForwardPropsEmits } from "reka-ui"
 
 const props = defineProps<DialogRootProps>()
 const emits = defineEmits<DialogRootEmits>()

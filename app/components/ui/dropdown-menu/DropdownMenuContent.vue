@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import type {
-	DropdownMenuContentEmits,
-	DropdownMenuContentProps,
+import {
+  type DropdownMenuContentEmits,
+  type DropdownMenuContentProps,
+  DropdownMenuContent,
+  DropdownMenuPortal,
+  useForwardPropsEmits,
 } from "reka-ui";
 import type { HTMLAttributes } from "vue";
 import { reactiveOmit } from "@vueuse/core";
 import { cn } from "cn";
-import {
-	DropdownMenuContent,
-	DropdownMenuPortal,
-	useForwardPropsEmits,
-} from "reka-ui";
 
 defineOptions({
 	inheritAttrs: false,

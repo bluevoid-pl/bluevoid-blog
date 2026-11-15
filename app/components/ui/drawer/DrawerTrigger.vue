@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { DrawerTriggerProps } from "reka-ui"
-import { DrawerTrigger } from "reka-ui"
+import { type DrawerTriggerProps, DrawerTrigger } from "reka-ui"
 
 const props = defineProps<DrawerTriggerProps>()
 </script>

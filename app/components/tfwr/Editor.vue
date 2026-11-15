@@ -42,9 +42,7 @@ watch(() => props.code, (newVal) => {
         {{ running ? 'Running...' : 'Run' }}
       </button>
     </div>
-    <pre class="microlighter w-full h-96 overflow-auto border rounded p-3" data-syntax-theme="github">
-      <code class="language-python" ref="codeEl" contenteditable="plaintext-only" spellcheck="false" aria-label="Editable code sample" tabindex="0"></code>
-    </pre>
+    <pre class="microlighter w-full h-96 overflow-auto border rounded p-3" data-syntax-theme="github"><code class="language-python" ref="codeEl" contenteditable="plaintext-only" spellcheck="false" aria-label="Editable code sample" tabindex="0"></code></pre>
   </div>
 </template>
 

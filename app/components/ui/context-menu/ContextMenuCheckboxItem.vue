@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import type { ContextMenuCheckboxItemEmits, ContextMenuCheckboxItemProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { IconCheck } from '@tabler/icons-vue'
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type ContextMenuCheckboxItemEmits,
+  type ContextMenuCheckboxItemProps,
   ContextMenuCheckboxItem,
   ContextMenuItemIndicator,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { IconCheck } from '@tabler/icons-vue'
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 
 const props = defineProps<ContextMenuCheckboxItemProps & { class?: HTMLAttributes["class"] }>()
 const emits = defineEmits<ContextMenuCheckboxItemEmits>()

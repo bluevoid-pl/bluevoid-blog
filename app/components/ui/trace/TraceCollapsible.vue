@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { CollapsibleRootEmits, CollapsibleRootProps } from "reka-ui"
+import { type CollapsibleRootEmits, type CollapsibleRootProps, useForwardPropsEmits } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { useForwardPropsEmits } from "reka-ui"
 import { Collapsible } from '@/components/ui/collapsible'
 
 const props = defineProps<CollapsibleRootProps & { class?: HTMLAttributes["class"] }>()

@@ -1,41 +1,40 @@
 <script setup lang="ts">
-import type { HTMLAttributes, VNode } from "vue"
-import type { CodeBlockLineVariants } from "."
+import type { HTMLAttributes } from "vue"
+import { type CodeBlockLineVariants, codeBlockLineVariants } from "."
 import { cn } from "cn"
-import { Comment, Fragment, Text, useSlots } from "vue"
-import { codeBlockLineVariants } from "."
 
 const props = withDefaults(defineProps<{
   variant?: CodeBlockLineVariants["variant"]
   class?: HTMLAttributes["class"]
+  language?: string
+  line?: string
 }>(), {
   variant: "default",
+  language: undefined,
+  line: undefined,
 })
 
-const slots = useSlots()
-
-function hasContent(nodes: VNode[]): boolean {
-  return nodes.some((node) => {
-    if (node.type === Comment)
-      return false
-    if (node.type === Text)
-      return node.children !== ""
-    if (node.type === Fragment)
-      return Array.isArray(node.children) && hasContent(node.children as VNode[])
-    return true
-  })
-}
-
-// An empty line holds a newline so copying a selection keeps blank lines.
-function isEmpty() {
-  return !hasContent(slots.default?.() ?? [])
-}
+// A line given as text is rendered with v-text so the element holds a single
+// text node: that is what MicroLighter requires to highlight a block. An empty
+// line keeps a newline so copying a selection preserves blank lines.
+const text = props.line === undefined ? undefined : props.line === "" ? "\n" : props.line
 </script>
 
 <template>
   <span
     data-slot="code-block-line"
     :data-variant="variant"
+    :data-language="language"
     :class="cn(codeBlockLineVariants({ variant }), props.class)"
-  ><span data-slot="code-block-line-content" class="min-w-0"><template v-if="isEmpty()">{{ "\n" }}</template><slot v-else /></span></span>
+  >
+    <span
+      v-if="line !== undefined"
+      data-slot="code-block-line-content"
+      class="min-w-0"
+      v-text="text"
+    />
+    <span v-else data-slot="code-block-line-content" class="min-w-0">
+      <slot />
+    </span>
+  </span>
 </template>

@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import type {
-  ItemRegistration,
-  QuestionnaireItemDefinition,
-  QuestionnaireShortcutMode,
-} from "./useQuestionnaire"
-import { cn } from "cn"
-import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from "vue"
+import { type HTMLAttributes, computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from "vue"
 import {
+  type ItemRegistration,
+  type QuestionnaireItemDefinition,
+  type QuestionnaireShortcutMode,
   compareDocumentOrder,
   createQuestionnaireCollection,
   getInitialItemName,
@@ -17,6 +13,7 @@ import {
   isTextEntryTarget,
   provideQuestionnaireRootContext,
 } from "./useQuestionnaire"
+import { cn } from "cn"
 
 const props = withDefaults(defineProps<{
   class?: HTMLAttributes["class"]

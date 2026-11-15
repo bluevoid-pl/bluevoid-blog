@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { Table } from "@/components/ui/table";
-import { TableBody } from "@/components/ui/table";
-import { TableCaption } from "@/components/ui/table";
-import { TableCell } from "@/components/ui/table";
-import { TableFooter } from "@/components/ui/table";
-import { TableHead } from "@/components/ui/table";
-import { TableHeader } from "@/components/ui/table";
-import { TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const invoices = [
   {

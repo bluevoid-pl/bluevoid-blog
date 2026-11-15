@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { ContextMenuRadioGroupEmits, ContextMenuRadioGroupProps } from "reka-ui"
 import {
+  type ContextMenuRadioGroupEmits,
+  type ContextMenuRadioGroupProps,
   ContextMenuRadioGroup,
   useForwardPropsEmits,
 } from "reka-ui"

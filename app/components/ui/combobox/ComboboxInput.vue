@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ComboboxInputEmits, ComboboxInputProps } from "reka-ui"
+import { type ComboboxInputEmits, type ComboboxInputProps, ComboboxInput, useForwardPropsEmits } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconSearch } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { ComboboxInput, useForwardPropsEmits } from "reka-ui"
 
 defineOptions({
   inheritAttrs: false,

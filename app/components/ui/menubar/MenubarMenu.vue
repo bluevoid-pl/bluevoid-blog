@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { MenubarMenuProps } from "reka-ui"
-import { MenubarMenu } from "reka-ui"
+import { type MenubarMenuProps, MenubarMenu } from "reka-ui"
 
 const props = defineProps<MenubarMenuProps>()
 </script>

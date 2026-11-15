@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { PrimitiveProps } from "reka-ui"
+import { type PrimitiveProps, Primitive, useForwardProps } from "reka-ui"
 import { IconMinus } from '@tabler/icons-vue'
-import { Primitive, useForwardProps } from "reka-ui"
 
 const props = defineProps<PrimitiveProps>()
 const forwardedProps = useForwardProps(props)

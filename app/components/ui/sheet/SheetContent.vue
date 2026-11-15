@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { DialogContentEmits, DialogContentProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { IconX } from '@tabler/icons-vue'
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type DialogContentEmits,
+  type DialogContentProps,
   DialogClose,
   DialogContent,
   DialogPortal,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { IconX } from '@tabler/icons-vue'
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 import SheetOverlay from "./SheetOverlay.vue"
 
 interface SheetContentProps extends DialogContentProps {

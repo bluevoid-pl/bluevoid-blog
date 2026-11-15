@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Sidebar } from "@/components/ui/sidebar";
-import { SidebarContent } from "@/components/ui/sidebar";
-import { SidebarFooter } from "@/components/ui/sidebar";
-import { SidebarGroup } from "@/components/ui/sidebar";
-import { SidebarGroupContent } from "@/components/ui/sidebar";
-import { SidebarGroupLabel } from "@/components/ui/sidebar";
-import { SidebarHeader } from "@/components/ui/sidebar";
-import { SidebarInput } from "@/components/ui/sidebar";
-import { SidebarMenu } from "@/components/ui/sidebar";
-import { SidebarMenuButton } from "@/components/ui/sidebar";
-import { SidebarMenuItem } from "@/components/ui/sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { SidebarSeparator } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarSeparator,
+} from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 
 const show = ref(false);

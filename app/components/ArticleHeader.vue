@@ -29,7 +29,7 @@ const readingTime = computed(() => {
 </script>
 
 <template>
-  <header class="pb-6 space-y-4">
+  <header class="space-y-4">
     <DateMeta
       :date="item.date"
       :showNewBadge="showNewBadge"

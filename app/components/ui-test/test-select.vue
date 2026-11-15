@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { Select } from "@/components/ui/select";
-import { SelectContent } from "@/components/ui/select";
-import { SelectGroup } from "@/components/ui/select";
-import { SelectItem } from "@/components/ui/select";
-import { SelectLabel } from "@/components/ui/select";
-import { SelectTrigger } from "@/components/ui/select";
-import { SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 </script>
 
 <template>

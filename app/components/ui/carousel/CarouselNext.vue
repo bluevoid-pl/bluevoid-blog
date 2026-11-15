@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { WithClassAsProps } from "./interface"
-import type { ButtonVariants } from '@/components/ui/button'
+import { type ButtonVariants, Button } from '@/components/ui/button'
 import { IconArrowRight } from '@tabler/icons-vue'
 import { cn } from "cn"
-import { Button } from '@/components/ui/button'
 import { useCarousel } from "./useCarousel"
 
 const props = withDefaults(defineProps<{

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import NavigationMenu from '~/components/ui/navigation-menu/NavigationMenu.vue'
-import NavigationMenuList from '~/components/ui/navigation-menu/NavigationMenuList.vue'
-import NavigationMenuItem from '~/components/ui/navigation-menu/NavigationMenuItem.vue'
-import NavigationMenuLink from '~/components/ui/navigation-menu/NavigationMenuLink.vue'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList, NavigationMenuLink } from '~/components/ui/navigation-menu'
 import ThemeToggle from '~/components/themeToggle.vue'
 import { Button } from '~/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '~/components/ui/sheet'
@@ -21,7 +18,7 @@ import { IconMenu2 } from '@tabler/icons-vue'
     <div class="mx-auto max-w-7xl flex h-16 items-center justify-between px-4 gap-4">
       <div class="flex items-center gap-2">
         <a href="/" class="flex items-center gap-3">
-          <img class="h-8 w-8" src="/logo.png" alt="Blue Void logo" />
+          <img class="h-8 w-8" src="/logo.png" alt="" /> <!-- Alt should be empty-->
           <span class="text-lg font-semibold tracking-tight">Blue Void</span>
         </a>
 

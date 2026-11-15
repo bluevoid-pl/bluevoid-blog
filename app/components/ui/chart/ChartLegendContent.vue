@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
+import { type HTMLAttributes, computed, onMounted, ref } from "vue"
 import { cn } from "cn"
-import { computed, onMounted, ref } from "vue"
 import { useChart } from "."
 
 const props = withDefaults(defineProps<{

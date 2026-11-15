@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import type { MessageScrollerButtonDirection } from "./useMessageScroller"
-import type { ButtonVariants } from '@/components/ui/button'
+import { type HTMLAttributes, computed } from "vue"
+import {
+  type MessageScrollerButtonDirection,
+  useMessageScroller,
+  useMessageScrollerScrollable,
+} from "./useMessageScroller"
+import { type ButtonVariants, Button } from '@/components/ui/button'
 import { IconArrowDown } from '@tabler/icons-vue'
 import { cn } from "cn"
-import { computed } from "vue"
-import { Button } from '@/components/ui/button'
-import { useMessageScroller, useMessageScrollerScrollable } from "./useMessageScroller"
 
 const props = withDefaults(defineProps<{
   class?: HTMLAttributes["class"]

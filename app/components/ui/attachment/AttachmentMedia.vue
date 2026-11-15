@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue"
-import type { AttachmentMediaVariants } from "."
+import { type AttachmentMediaVariants, attachmentMediaVariants } from "."
 import { cn } from "cn"
-import { attachmentMediaVariants } from "."
 
 const props = defineProps<{
   class?: HTMLAttributes["class"]

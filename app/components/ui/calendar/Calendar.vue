@@ -1,15 +1,32 @@
 <script lang="ts" setup>
-import type { CalendarRootEmits, CalendarRootProps, DateValue } from "reka-ui"
-import type { HTMLAttributes, Ref } from "vue"
-import type { LayoutTypes } from "."
+import {
+  type CalendarRootEmits,
+  type CalendarRootProps,
+  type DateValue,
+  CalendarRoot,
+  useDateFormatter,
+  useForwardPropsEmits,
+} from "reka-ui"
+import { type HTMLAttributes, type Ref, computed, toRaw } from "vue"
+import {
+  type LayoutTypes,
+  CalendarCell,
+  CalendarCellTrigger,
+  CalendarGrid,
+  CalendarGridBody,
+  CalendarGridHead,
+  CalendarGridRow,
+  CalendarHeadCell,
+  CalendarHeader,
+  CalendarHeading,
+  CalendarNextButton,
+  CalendarPrevButton,
+} from "."
 import { getLocalTimeZone, today } from "@internationalized/date"
 import { createReusableTemplate, reactiveOmit, useVModel } from "@vueuse/core"
 import { cn } from "cn"
-import { CalendarRoot, useDateFormatter, useForwardPropsEmits } from "reka-ui"
 import { createYear, createYearRange, toDate } from "reka-ui/date"
-import { computed, toRaw } from "vue"
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
-import { CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNextButton, CalendarPrevButton } from "."
 
 const props = withDefaults(defineProps<CalendarRootProps & { class?: HTMLAttributes["class"], layout?: LayoutTypes, yearRange?: DateValue[] }>(), {
   modelValue: undefined,

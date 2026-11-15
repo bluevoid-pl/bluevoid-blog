@@ -1,5 +1,4 @@
-import type { VariantProps } from "class-variance-authority"
-import { cva } from "class-variance-authority"
+import { type VariantProps, cva } from "class-variance-authority"
 
 export const fieldVariants = cva(
   "group/field flex w-full gap-3 data-[invalid=true]:text-destructive",

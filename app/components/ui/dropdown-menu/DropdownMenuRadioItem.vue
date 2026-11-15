@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import type {
-	DropdownMenuRadioItemEmits,
-	DropdownMenuRadioItemProps,
+import {
+  type DropdownMenuRadioItemEmits,
+  type DropdownMenuRadioItemProps,
+  DropdownMenuItemIndicator,
+  DropdownMenuRadioItem,
+  useForwardPropsEmits,
 } from "reka-ui";
 import type { HTMLAttributes } from "vue";
 import { IconCircle } from "@tabler/icons-vue";
 import { reactiveOmit } from "@vueuse/core";
 import { cn } from "cn";
-import {
-	DropdownMenuItemIndicator,
-	DropdownMenuRadioItem,
-	useForwardPropsEmits,
-} from "reka-ui";
 
 const props = defineProps<
 	DropdownMenuRadioItemProps & {

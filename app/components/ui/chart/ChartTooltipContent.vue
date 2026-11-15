@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
+import { type HTMLAttributes, computed } from "vue"
 import type { ChartConfig } from "."
 import { cn } from "cn"
-import { computed } from "vue"
 
 const props = withDefaults(defineProps<{
   hideLabel?: boolean

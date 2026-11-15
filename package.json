@@ -22,6 +22,7 @@
     "clsx": "^2.1.1",
     "cn": "^0.5.2",
     "embla-carousel-vue": "^8.6.0",
+    "microlighter": "^2.2.0",
     "nuxt": "~4.6.4",
     "pyodide": "314.0.7",
     "reka-ui": "^2.11.0",

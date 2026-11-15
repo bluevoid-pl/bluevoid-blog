@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { PaginationEllipsisProps } from "reka-ui"
+import { type PaginationEllipsisProps, PaginationEllipsis } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconDots } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { PaginationEllipsis } from "reka-ui"
 
 const props = defineProps<PaginationEllipsisProps & { class?: HTMLAttributes["class"] }>()
 

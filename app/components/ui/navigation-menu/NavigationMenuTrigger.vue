@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { NavigationMenuTriggerProps } from "reka-ui"
+import { type NavigationMenuTriggerProps, NavigationMenuTrigger, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconChevronDown } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import {
-  NavigationMenuTrigger,
-  useForwardProps,
-} from "reka-ui"
 import { navigationMenuTriggerStyle } from "."
 
 const props = defineProps<NavigationMenuTriggerProps & { class?: HTMLAttributes["class"] }>()

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { DropdownMenuSubTriggerProps } from "reka-ui";
+import { type DropdownMenuSubTriggerProps, DropdownMenuSubTrigger, useForwardProps } from "reka-ui";
 import type { HTMLAttributes } from "vue";
 import { IconChevronRight } from "@tabler/icons-vue";
 import { reactiveOmit } from "@vueuse/core";
 import { cn } from "cn";
-import { DropdownMenuSubTrigger, useForwardProps } from "reka-ui";
 
 const props = defineProps<
 	DropdownMenuSubTriggerProps & {

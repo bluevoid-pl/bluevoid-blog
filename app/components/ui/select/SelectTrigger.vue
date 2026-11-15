@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { SelectTriggerProps } from "reka-ui"
+import { type SelectTriggerProps, SelectIcon, SelectTrigger, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconChevronDown } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { SelectIcon, SelectTrigger, useForwardProps } from "reka-ui"
 
 const props = withDefaults(
   defineProps<SelectTriggerProps & { class?: HTMLAttributes["class"], size?: "sm" | "default" }>(),

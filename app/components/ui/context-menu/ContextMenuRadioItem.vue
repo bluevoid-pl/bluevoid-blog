@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import type { ContextMenuRadioItemEmits, ContextMenuRadioItemProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { IconCircle } from '@tabler/icons-vue'
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type ContextMenuRadioItemEmits,
+  type ContextMenuRadioItemProps,
   ContextMenuItemIndicator,
   ContextMenuRadioItem,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { IconCircle } from '@tabler/icons-vue'
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 
 const props = defineProps<ContextMenuRadioItemProps & { class?: HTMLAttributes["class"] }>()
 const emits = defineEmits<ContextMenuRadioItemEmits>()

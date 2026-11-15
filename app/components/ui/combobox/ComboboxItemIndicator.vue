@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { ComboboxItemIndicatorProps } from "reka-ui"
+import { type ComboboxItemIndicatorProps, ComboboxItemIndicator, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { ComboboxItemIndicator, useForwardProps } from "reka-ui"
 
 const props = defineProps<ComboboxItemIndicatorProps & { class?: HTMLAttributes["class"] }>()
 

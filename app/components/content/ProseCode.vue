@@ -1,5 +1,5 @@
 <template>
-  <code :class="cn('language-' + (language || 'plaintext'))">
+  <code :class="cn('language-' + (language || 'plaintext'), props.class)">
     <slot />
   </code>
 </template>

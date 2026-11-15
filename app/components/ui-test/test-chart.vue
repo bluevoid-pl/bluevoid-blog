@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { ChartConfig } from '@/components/ui/chart'
-import { VisGroupedBar, VisLine, VisXYContainer, VisAxis } from '@unovis/vue'
 import {
+  type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartCrosshair,
@@ -10,6 +9,7 @@ import {
   ChartTooltipContent,
   componentToString,
 } from '@/components/ui/chart'
+import { VisGroupedBar, VisLine, VisXYContainer, VisAxis } from '@unovis/vue'
 
 // Chart 1: Bar chart
 const barData = [

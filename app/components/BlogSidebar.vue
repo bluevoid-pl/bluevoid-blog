@@ -1,10 +1,6 @@
 <script setup lang="ts">
-const { body } = defineProps({
-  body: {
-    type: Object,
-    default: null
-  }
-})
+const props = defineProps<{ body: Object, className?: string }>()
+const { body = null, className } = props
 
 const links = (() => {
   const result: { id: string; depth: number; text: string }[] = []
@@ -41,7 +37,7 @@ const links = (() => {
 </script>
 
 <template>
-  <aside class="sticky top-20 w-60 p-4 bg-white/5 border border-white/10 rounded-2xl mb-8">
+  <aside class="sticky top-20 w-60 p-4 bg-white/5 border border-white/10 rounded-2xl mb-8" :class="className">
     <h3 class="mt-0 text-lg font-semibold">Contents</h3>
     <nav>
       <ul class="list-none p-0 m-0">

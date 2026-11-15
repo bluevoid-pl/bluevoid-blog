@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import type { NavigationMenuContentEmits, NavigationMenuContentProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { reactiveOmit } from "@vueuse/core"
-import { cn } from "cn"
 import {
+  type NavigationMenuContentEmits,
+  type NavigationMenuContentProps,
   NavigationMenuContent,
   useForwardPropsEmits,
 } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { reactiveOmit } from "@vueuse/core"
+import { cn } from "cn"
 
 const props = defineProps<NavigationMenuContentProps & { class?: HTMLAttributes["class"] }>()
 const emits = defineEmits<NavigationMenuContentEmits>()

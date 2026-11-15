@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { ContextMenuSubTriggerProps } from "reka-ui"
+import { type ContextMenuSubTriggerProps, ContextMenuSubTrigger, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconChevronRight } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import {
-  ContextMenuSubTrigger,
-  useForwardProps,
-} from "reka-ui"
 
 const props = defineProps<ContextMenuSubTriggerProps & { class?: HTMLAttributes["class"], inset?: boolean }>()
 

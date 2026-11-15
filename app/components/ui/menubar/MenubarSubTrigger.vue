@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { MenubarSubTriggerProps } from "reka-ui"
+import { type MenubarSubTriggerProps, MenubarSubTrigger, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconChevronRight } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { MenubarSubTrigger, useForwardProps } from "reka-ui"
 
 const props = defineProps<MenubarSubTriggerProps & { class?: HTMLAttributes["class"], inset?: boolean }>()
 

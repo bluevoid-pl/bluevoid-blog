@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import type { QuestionnaireInputType } from "./useQuestionnaire"
-import { cn } from "cn"
-import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from "vue"
+import { type HTMLAttributes, computed, nextTick, onBeforeUnmount, ref, useId, watch } from "vue"
 import {
+  type QuestionnaireInputType,
   getAnswerKeyShortcuts,
   hasInputValue,
   injectQuestionnaireItemContext,
 } from "./useQuestionnaire"
+import { cn } from "cn"
 
 defineOptions({
   // The wrapper is the root element, so attributes have to reach the input.

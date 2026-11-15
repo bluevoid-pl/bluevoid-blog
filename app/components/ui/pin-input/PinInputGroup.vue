@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { PrimitiveProps } from "reka-ui"
+import { type PrimitiveProps, Primitive, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { Primitive, useForwardProps } from "reka-ui"
 
 const props = defineProps<PrimitiveProps & { class?: HTMLAttributes["class"] }>()
 const delegatedProps = reactiveOmit(props, "class")

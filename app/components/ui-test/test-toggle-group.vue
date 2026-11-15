@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Card } from "@/components/ui/card";
-import { ToggleGroup } from "@/components/ui/toggle-group";
-import { ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 </script>
 
 <template>

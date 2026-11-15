@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarInset,
-} from '@/components/ui/sidebar'
+import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar'
 import AdminSidebar from '~/components/admin/AdminSidebar.vue'
 
 useHead({ title: 'Admin' })

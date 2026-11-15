@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ListboxFilterProps } from "reka-ui"
+import { type ListboxFilterProps, ListboxFilter, useForwardProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { IconSearch } from '@tabler/icons-vue'
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
-import { ListboxFilter, useForwardProps } from "reka-ui"
 import { useCommand } from "."
 
 defineOptions({

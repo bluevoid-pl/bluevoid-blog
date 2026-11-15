@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
+import { type HTMLAttributes, computed } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "cn"
 import { useForwardProps } from "reka-ui"
-import { computed } from "vue"
 import { useVueOTPContext } from "vue-input-otp"
 
 const props = defineProps<{ index: number, class?: HTMLAttributes["class"] }>()
