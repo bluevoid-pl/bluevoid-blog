@@ -40,7 +40,7 @@ const description = props.item?.description ?? props.fallbackDescription ?? ''
         <DesktopMockup :img-src="item.img" :alt="title" />
 
         <!-- Mobile mockup wrapper for hover bridge -->
-        <div class="group hidden md:block">
+        <div class="absolute top-[-40%] right-8 z-50 hidden md:block">
           <!-- Mobile mockup - on top of desktop -->
           <MobileMockup :img-src="item.img" :alt="title" />
         </div>

@@ -2,18 +2,14 @@
 const props = defineProps<{
   imgSrc?: string
   alt?: string
-  wrapperClass?: string
+  class?: string
   innerClass?: string
-  hideOnHover?: boolean
 }>()
-
-const baseWrapper = `absolute top-[-40%] right-8 z-50 w-[180px] aspect-[9/19.5] rounded-[1.2rem] p-[4px] bg-zinc-300 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_0_20px_rgba(255,255,255,0.15)] overflow-hidden relative after:absolute after:inset-0 after:rounded-[1.2rem] after:bg-gradient-to-br after:from-white/10 after:via-transparent after:to-transparent after:pointer-events-none after:content-[''] after:-z-10`
-const hoverClasses = 'transition-opacity duration-300 ease-out opacity-100 group-hover:opacity-0'
 </script>
 
 <template>
-  <div :class="[props.wrapperClass ?? baseWrapper, props.hideOnHover ? hoverClasses : '']">
-    <div :class="innerClass ?? 'relative w-full h-full overflow-hidden rounded-[0.9rem] z-10'">
+  <div :class="['relative w-[180px] aspect-[9/19.5] rounded-[1.2rem] p-[4px] bg-zinc-300 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_0_20px_rgba(255,255,255,0.15)] overflow-hidden', props.class]">
+    <div :class="innerClass ?? 'relative w-full h-full overflow-hidden rounded-[0.9rem]'">
       <img
         v-if="imgSrc"
         :src="imgSrc"
