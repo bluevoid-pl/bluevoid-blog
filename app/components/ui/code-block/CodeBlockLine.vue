@@ -30,10 +30,11 @@ const text = props.line === undefined ? undefined : props.line === "" ? "\n" : p
     <span
       v-if="line !== undefined"
       data-slot="code-block-line-content"
+      :data-language="language"
       class="min-w-0"
       v-text="text"
     />
-    <span v-else data-slot="code-block-line-content" class="min-w-0">
+    <span v-else data-slot="code-block-line-content" class="min-w-0" :data-language="language">
       <slot />
     </span>
   </span>
