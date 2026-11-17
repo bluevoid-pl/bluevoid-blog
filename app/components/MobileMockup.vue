@@ -8,8 +8,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div :class="['relative w-[180px] aspect-[9/19.5] rounded-[1.2rem] p-[4px] bg-zinc-300 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_0_20px_rgba(255,255,255,0.15)] overflow-hidden', props.class]">
-    <div :class="innerClass ?? 'relative w-full h-full overflow-hidden rounded-[0.9rem]'">
+  <div :class="['relative w-[180px] aspect-[9/19.5] rounded-[1.2rem] p-[3px] mockup-aluminum overflow-hidden', props.class]">
+    <div :class="innerClass ?? 'relative w-full h-full overflow-hidden rounded-[1rem]'">
       <img
         v-if="imgSrc"
         :src="imgSrc"
