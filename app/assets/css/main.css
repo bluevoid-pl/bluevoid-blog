@@ -224,37 +224,37 @@ html.dark {
   background-size: 180px 180px;
 }
 
-/* Brushed-aluminium bezel for the MobileMockup device frame. The fine
+/* Dark brushed-aluminium bezel for the MobileMockup device frame. The fine
    135deg repeating stripes read as hairline brushing even on the thin bezel;
-   the wide 150deg gradient underneath rolls bright/dark like metal; the
-   stacked inset rings give a machined dark outer edge and a slim chamfer
-   toward the screen. */
+   the wide 150deg gradient underneath rolls through gunmetal tones like dark
+   anodized metal; the stacked inset rings give a machined dark outer edge and
+   a slim chamfer toward the screen. */
 .mockup-aluminum {
   background:
     repeating-linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.2) 0 0.5px,
-      rgba(0, 0, 0, 0.14) 0.5px 1px,
-      rgba(255, 255, 255, 0.06) 1px 2px,
-      rgba(0, 0, 0, 0.06) 2px 3px
+      rgba(255, 255, 255, 0.12) 0 0.5px,
+      rgba(0, 0, 0, 0.16) 0.5px 1px,
+      rgba(255, 255, 255, 0.04) 1px 2px,
+      rgba(0, 0, 0, 0.08) 2px 3px
     ),
     linear-gradient(
       150deg,
-      #c9ccd1 0%,
-      #7c838c 18%,
-      #bfc4ca 30%,
-      #646a73 44%,
-      #b9bfc6 55%,
-      #71777f 66%,
-      #c3c8ce 78%,
-      #878d95 90%,
-      #aaafb6 100%
+      #9ba0a7 0%,
+      #4d535b 18%,
+      #8b9098 30%,
+      #3b4047 44%,
+      #7f848c 55%,
+      #454a52 66%,
+      #8a9097 78%,
+      #525861 90%,
+      #6f757e 100%
     );
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.4),
-    inset 0 0 0 1px rgba(24, 24, 27, 0.7),
-    inset 0 0 0 2px rgba(255, 255, 255, 0.22),
-    inset 0 1px 2px 0 rgba(255, 255, 255, 0.28);
+    inset 0 0 0 1px rgba(15, 15, 18, 0.8),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.15),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
 }
 
 .header, .footer {
