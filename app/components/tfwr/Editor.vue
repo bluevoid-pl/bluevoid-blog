@@ -36,8 +36,7 @@ watch(() => props.code, (newVal) => {
 
 <template>
   <div>
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-xl font-semibold">Code Editor</h2>
+    <div class="mb-3 flex items-center justify-end">
       <button @click="emit('run')" :disabled="running" class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50">
         {{ running ? 'Running...' : 'Run' }}
       </button>

@@ -15,14 +15,9 @@ const entries = computed(() =>
 </script>
 
 <template>
-  <div v-if="entries.length || prefill.status === 'error'">
-    <div class="flex items-center justify-between mb-2">
-      <h2 class="text-sm font-semibold text-muted-foreground">
-        Items
-      </h2>
-      <span v-if="prefill.status === 'ok'" class="text-xs text-muted-foreground">
-        Prefilled from the first comment
-      </span>
+  <div v-if="entries.length || prefill.status === 'error'" data-testid="items-panel">
+    <div v-if="prefill.status === 'ok'" class="mb-2 text-right text-xs text-muted-foreground">
+      Prefilled from the first comment
     </div>
     <div v-if="prefill.status === 'error'" class="mb-2 text-sm text-destructive">
       Prefill comment: {{ prefill.message }}

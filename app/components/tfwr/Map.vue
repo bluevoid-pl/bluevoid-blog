@@ -61,12 +61,9 @@ const panStyle = computed(() => ({
 
 <template>
   <div>
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-xl font-semibold">Game Board ({{ boardSize }}×{{ boardSize }})</h2>
-      <div class="flex items-center gap-2 text-sm">
-        <span>Debug mode</span>
-        <Switch :model-value="debug" @update:model-value="emit('update:debug', $event)" />
-      </div>
+    <div class="mb-3 flex items-center justify-end gap-2 text-sm">
+      <span>Debug mode</span>
+      <Switch :model-value="debug" @update:model-value="emit('update:debug', $event)" />
     </div>
     <div
       ref="viewportEl"
