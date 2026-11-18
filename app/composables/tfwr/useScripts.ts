@@ -10,12 +10,22 @@ export interface TfwrScript {
 
 const defaultScript = (): TfwrScript => ({
   name: 'main',
-  code: `# Example: Move and harvest
+  code: `# {"Hay":100000,"Gold":10000}
+
+#Example: Move and harvest
 # Plant grass at start
 plant(Entities.Grass)
 # Move east twice
 move(East)
 move(East)
+for i in range(10):
+    move(East)
+for i in range(10):
+    move(North)
+for i in range(10):
+    move(East)
+for i in range(10):
+    move(North)
 # Check entity
 if get_entity_type() == Entities.Grass:
     print('Found grass at', get_pos_x(), get_pos_y())
