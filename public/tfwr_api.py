@@ -332,6 +332,11 @@ def do_a_flip():
     _add_animation('flip')
     return None
 
+def pet_the_piggy():
+    # Nonfunctional stub: Piggy is a pet, not an item
+    # _add_animation('pet')
+    return None
+
 def get_animation_count():
     return _animation_count
 
