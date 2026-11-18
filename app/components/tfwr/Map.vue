@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { IconZoomIn, IconZoomOut, IconMaximize } from '@tabler/icons-vue'
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip'
 import { Switch } from '~/components/ui/switch'
+import { Button } from '~/components/ui/button'
+import { usePanZoom } from '~/composables/tfwr/usePanZoom'
+
+const TILE = 20
 
 const props = defineProps<{
   board: any[]
@@ -33,6 +39,24 @@ function entityTexture(entity: string | null) {
   if (!entity) return ''
   return entityTextures[entity] || '/tfwr/seed.svg'
 }
+
+const viewportEl = ref<HTMLElement | null>(null)
+const { offsetX, offsetY, scale, zoomBy, reset, bind } = usePanZoom(() => viewportEl.value)
+
+onMounted(() => {
+  if (viewportEl.value) bind(viewportEl.value)
+})
+
+const tileSize = computed(() => TILE * scale.value)
+
+const gridStyle = computed(() => ({
+  gridTemplateColumns: `repeat(${props.boardSize}, ${tileSize.value}px)`,
+  gridTemplateRows: `repeat(${props.boardSize}, ${tileSize.value}px)`,
+}))
+
+const panStyle = computed(() => ({
+  transform: `translate(${offsetX.value}px, ${offsetY.value}px)`,
+}))
 </script>
 
 <template>
@@ -44,19 +68,26 @@ function entityTexture(entity: string | null) {
         <Switch :model-value="debug" @update:model-value="emit('update:debug', $event)" />
       </div>
     </div>
-    <div class="border rounded overflow-hidden" :style="{ width: `${boardSize * 20}px`, height: `${boardSize * 20}px` }">
-      <div class="grid w-full h-full" :style="{ gridTemplateColumns: `repeat(${boardSize}, 20px)`, gridTemplateRows: `repeat(${boardSize}, 20px)` }">
+    <div
+      ref="viewportEl"
+      class="relative overflow-hidden rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none"
+      style="height: min(45rem, 90vw)"
+    >
+      <div class="grid w-fit will-change-transform" :style="[panStyle, gridStyle]">
         <template v-for="(row, y) in [...board].reverse()" :key="y">
           <template v-for="(cell, x) in row" :key="x">
             <Tooltip>
               <TooltipTrigger as-child>
-                <div class="relative w-[20px] h-[20px] border border-gray-700 bg-gray-800"
-                     :class="{ 'ring-2 ring-yellow-400': droneX === x && droneY === (board.length - 1 - y) }">
-                  <img v-if="cell.ground === 'Grassland'" src="/tfwr/grass3.svg" class="absolute inset-0 w-full h-full object-cover" alt="grassland" />
-                  <img v-else-if="cell.ground === 'Soil'" src="/tfwr/dirt.svg" class="absolute inset-0 w-full h-full object-cover" alt="soil" />
-                  <img v-if="cell.entity" :src="entityTexture(cell.entity)" class="absolute inset-0 w-full h-full object-contain p-0.5" :alt="cell.entity" />
+                <div
+                  class="relative border border-gray-700 bg-gray-800"
+                  :style="{ width: `${tileSize}px`, height: `${tileSize}px` }"
+                  :class="{ 'ring-2 ring-yellow-400': droneX === x && droneY === (board.length - 1 - y) }"
+                >
+                  <img v-if="cell.ground === 'Grassland'" src="/tfwr/grass3.svg" class="absolute inset-0 w-full h-full object-cover" alt="grassland">
+                  <img v-else-if="cell.ground === 'Soil'" src="/tfwr/dirt.svg" class="absolute inset-0 w-full h-full object-cover" alt="soil">
+                  <img v-if="cell.entity" :src="entityTexture(cell.entity)" class="absolute inset-0 w-full h-full object-contain" :style="{ padding: `${tileSize / 14}px` }" :alt="cell.entity">
                   <div v-if="droneX === x && droneY === (board.length - 1 - y)" class="absolute inset-0 flex items-center justify-center">
-                    <img src="/tfwr/drone.svg" class="w-4 h-4" alt="drone" />
+                    <img src="/tfwr/drone.svg" class="w-3/4 h-3/4" alt="drone">
                   </div>
                 </div>
               </TooltipTrigger>
@@ -77,6 +108,23 @@ function entityTexture(entity: string | null) {
             </Tooltip>
           </template>
         </template>
+      </div>
+      <div class="absolute top-2 right-2 flex flex-col gap-1">
+        <Button variant="secondary" size="icon" class="h-7 w-7" title="Zoom in" @click="zoomBy(1.25)">
+          <IconZoomIn class="h-4 w-4" />
+          <span class="sr-only">Zoom in</span>
+        </Button>
+        <Button variant="secondary" size="icon" class="h-7 w-7" title="Zoom out" @click="zoomBy(1 / 1.25)">
+          <IconZoomOut class="h-4 w-4" />
+          <span class="sr-only">Zoom out</span>
+        </Button>
+        <Button variant="secondary" size="icon" class="h-7 w-7" title="Reset view" @click="reset()">
+          <IconMaximize class="h-4 w-4" />
+          <span class="sr-only">Reset view</span>
+        </Button>
+      </div>
+      <div class="absolute bottom-2 left-2 text-[10px] font-mono text-muted-foreground pointer-events-none">
+        {{ (scale * 100).toFixed(0) }}% · drag to pan, scroll to zoom
       </div>
     </div>
   </div>

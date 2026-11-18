@@ -1,14 +1,11 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   output: string
 }>()
 </script>
 
 <template>
-  <div>
-    <h2 class="text-xl font-semibold mb-3">Output</h2>
-    <div class="border rounded p-3 h-96 overflow-auto bg-gray-900 text-green-400 font-mono text-sm">
-      {{ output }}
-    </div>
+  <div class="h-full border rounded bg-gray-900 text-green-400 font-mono text-sm overflow-auto p-3 whitespace-pre-wrap break-words">
+    {{ output }}
   </div>
 </template>

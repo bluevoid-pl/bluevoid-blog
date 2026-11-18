@@ -5,6 +5,7 @@ Tracks ticks and drone state, animations
 
 # Global state
 import json
+import builtins
 _ticks = 0
 _animations = []
 _animation_count = 0
@@ -110,8 +111,15 @@ East = East()
 South = South()
 West = West()
 
+# A pristine, untiled board. Uses builtins.range so board creation never
+# charges the tick wrappers defined below.
+def _fresh_board():
+    return [[{'ground': Grounds.Grassland, 'entity': None, 'water_level': 0.0,
+              'fertiliser_level': 0.0, 'growth': 0.0} for _ in builtins.range(_board_size)]
+            for _ in builtins.range(_board_size)]
+
 # Initialize board
-_board = [[{'ground': Grounds.Grassland, 'entity': None, 'water_level': 0.0, 'fertiliser_level': 0.0, 'growth': 0.0} for _ in range(_board_size)] for _ in range(_board_size)]
+_board = _fresh_board()
 
 # API Functions
 
@@ -169,11 +177,23 @@ def measure(direction=None):
     _add_ticks(1)
     return None
 
+# What each entity yields when harvested, added to the simulation inventory
+_HARVEST_ITEMS = {
+    Entities.Grass: Items.Hay,
+    Entities.Carrots: Items.Carrot,
+    Entities.Pumpkin: Items.Pumpkin,
+    Entities.Cactus: Items.Cactus,
+}
+
 def harvest():
-    success = _board[_drone_pos_y][_drone_pos_x]['entity'] is not None
+    cell = _board[_drone_pos_y][_drone_pos_x]
+    success = cell['entity'] is not None
     _add_ticks(200, success)
     if success:
-        _board[_drone_pos_y][_drone_pos_x]['entity'] = None
+        item = _HARVEST_ITEMS.get(cell['entity'])
+        if item:
+            _inventory[item] = _inventory.get(item, 0) + 1
+        cell['entity'] = None
     return success
 
 def can_harvest():
@@ -200,8 +220,12 @@ def swap(direction):
     return True
 
 def use_item(item, n=1):
-    _add_ticks(200, True)
-    return True
+    have = _inventory.get(item, 0)
+    success = have >= n and n > 0
+    _add_ticks(200, success)
+    if success:
+        _inventory[item] = have - n
+    return success
 
 def get_companion():
     _add_ticks(1)
@@ -241,45 +265,47 @@ def get_tick_count():
 
 def print(*args):
     _add_animation('print')
-    return None
+    return builtins.print(*args)
 
 def quick_print(*args):
     _add_ticks(0)
-    return None
+    return builtins.print(*args)
 
 def random():
     _add_ticks(1)
     import random as r
     return r.random()
 
-# Built-in wrappers with tick costs
+# Built-in wrappers with tick costs. These names shadow the real builtins, so
+# they delegate through the `builtins` module rather than the `__builtins__`
+# global, which CPython exposes as a dict but Pyodide exposes as a module.
 def len(x):
     _add_ticks(1)
-    return __builtins__['len'](x)
+    return builtins.len(x)
 
 def range(start, stop=None, step=None):
     _add_ticks(1)
     if stop is None:
-        return __builtins__['range'](start)
+        return builtins.range(start)
     if step is None:
-        return __builtins__['range'](start, stop)
-    return __builtins__['range'](start, stop, step)
+        return builtins.range(start, stop)
+    return builtins.range(start, stop, step)
 
 def str(obj):
     _add_ticks(1)
-    return __builtins__['str'](obj)
+    return builtins.str(obj)
 
 def abs(x):
     _add_ticks(1)
-    return __builtins__['abs'](x)
+    return builtins.abs(x)
 
 def min(*args):
-    _add_ticks(len(args))
-    return __builtins__['min'](*args)
+    _add_ticks(builtins.len(args))
+    return builtins.min(*args)
 
 def max(*args):
-    _add_ticks(len(args))
-    return __builtins__['max'](*args)
+    _add_ticks(builtins.len(args))
+    return builtins.max(*args)
 
 def set_execution_speed(speed):
     _add_ticks(200)
@@ -296,7 +322,7 @@ def clear():
     global _drone_pos_x, _drone_pos_y, _board
     _drone_pos_x = 0
     _drone_pos_y = 0
-    _board = [[{'ground': Grounds.Grassland, 'entity': None, 'water_level': 0.0, 'fertiliser_level': 0.0, 'growth': 0.0} for _ in range(_board_size)] for _ in range(_board_size)]
+    _board = _fresh_board()
     return None
 
 def change_hat(hat):
@@ -333,3 +359,47 @@ def get_board_size():
 def get_drone_position():
     _add_ticks(0)
     return (_drone_pos_x, _drone_pos_y)
+
+def get_inventory_json():
+    _add_ticks(0)
+    return json.dumps(_inventory)
+
+# Host-only helpers (not part of the game API). Prefill items are the player's
+# starting inventory and are not charged in ticks.
+
+_prefill_items = {}
+
+def __set_prefill_items__(items):
+    """Prefill the simulation inventory from a {item: amount} dict.
+    Item names are matched case-insensitively against Items. Raises
+    ValueError for unknown items or bad amounts. Free of tick cost.
+    Returns the resolved {canonical_item: amount} mapping."""
+    global _prefill_items, _inventory
+    valid = {k.lower(): v for k, v in Items.__dict__.items() if not k.startswith('_')}
+    resolved = {}
+    for key, amount in items.items():
+        canonical = valid.get(builtins.str(key).lower())
+        if canonical is None:
+            raise ValueError('Unknown item "%s" in prefill comment' % key)
+        if isinstance(amount, bool) or not isinstance(amount, int) or amount < 0:
+            raise ValueError('Bad amount for item "%s": %r' % (key, amount))
+        resolved[canonical] = resolved.get(canonical, 0) + amount
+    _prefill_items = resolved
+    _inventory = dict(resolved)
+    return dict(resolved)
+
+def __reset__():
+    """Reset all simulation state to a fresh run, keeping prefill items."""
+    global _ticks, _animations, _animation_count, _drone_pos_x, _drone_pos_y
+    global _board, _water_level, _inventory, _unlocked, _power_level
+    _ticks = 0
+    _animations = []
+    _animation_count = 0
+    _drone_pos_x = 0
+    _drone_pos_y = 0
+    _board = _fresh_board()
+    _water_level = 0.5
+    _inventory = dict(_prefill_items)
+    _unlocked = {}
+    _power_level = 0
+    return None
