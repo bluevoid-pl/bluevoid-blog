@@ -167,6 +167,7 @@ const replayActions = computed(() => {
           >{{ action.type[0].toUpperCase() }}</text>
         </g>
       </svg>
+    </div>
       <div class="absolute bottom-2 left-2 text-[10px] font-mono text-muted-foreground pointer-events-none">
         {{ (scale * 100).toFixed(0) }}% · drag to pan, scroll to zoom
       </div>
