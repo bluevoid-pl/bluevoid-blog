@@ -87,6 +87,30 @@ const replayPoints = computed(() => {
   return points
 })
 
+const directionChanges = computed(() => {
+  const points = replayPoints.value
+  if (points.length < 3) return 0
+  let changes = 0
+  let prevDx = 0
+  let prevDy = 0
+  let first = true
+  for (let i = 1; i < points.length; i++) {
+    const dx = points[i].x - points[i-1].x
+    const dy = points[i].y - points[i-1].y
+    if (!first) {
+      if (dx !== prevDx || dy !== prevDy) {
+        changes++
+      }
+    }
+    prevDx = dx
+    prevDy = dy
+    first = false
+  }
+  return changes
+})
+
+const showMovementArrows = computed(() => directionChanges.value < 2)
+
 const replaySvgPath = computed(() => {
   const points = replayPoints.value
   if (points.length < 2) return ''
@@ -102,7 +126,7 @@ const replaySvgPath = computed(() => {
 
 const replayActions = computed(() => {
   if (!props.steps || props.replayIndex === undefined || props.replayIndex < 0) return []
-  const actions: { x: number; y: number; type: 'move' | 'harvest' | 'plant' | 'till'; code: string }[] = []
+  const actions: { x: number; y: number; type: 'move' | 'harvest' | 'plant' | 'till'; code: string; index: number; opacity: number }[] = []
   for (let i = 0; i <= props.replayIndex && i < props.steps.length; i++) {
     const step = props.steps[i] as TfwrStep
     if (!step || !step.code) continue
@@ -113,8 +137,17 @@ const replayActions = computed(() => {
     else if (code.includes('plant(')) type = 'plant'
     else if (code.includes('till(')) type = 'till'
     if (type) {
-      actions.push({ x: step.x, y: step.y, type, code: step.code })
+      actions.push({ x: step.x, y: step.y, type, code: step.code, index: i, opacity: 1 })
     }
+  }
+  const lastIndexByType: Record<string, number> = {}
+  for (const a of actions) {
+    if (lastIndexByType[a.type] === undefined || a.index > lastIndexByType[a.type]) {
+      lastIndexByType[a.type] = a.index
+    }
+  }
+  for (const a of actions) {
+    a.opacity = a.index === lastIndexByType[a.type] ? 1 : 0.2
   }
   return actions
 })
@@ -136,18 +169,25 @@ const replayActions = computed(() => {
           :height="props.boardSize * CELL"
           :viewBox="`0 0 ${props.boardSize * CELL} ${props.boardSize * CELL}`"
         >
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L5,5 L0,10" fill="rgba(255,255,255,0.6)"/>
+          </marker>
+        </defs>
         <path
-          v-if="replaySvgPath"
+          v-if="replaySvgPath && showMovementArrows"
           :d="replaySvgPath"
           fill="none"
           stroke="rgba(255,255,255,0.6)"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          marker-end="url(#arrowhead)"
         />
         <g
           v-for="action in replayActions"
-          :key="`${action.x}-${action.y}-${action.type}`"
+          :key="`${action.x}-${action.y}-${action.type}-${action.index}`"
+          :style="{ opacity: action.opacity }"
         >
           <circle
             :cx="(action.x + 0.5) * CELL"
