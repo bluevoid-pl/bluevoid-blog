@@ -67,7 +67,6 @@ class Items:
     Water = 'Water'
     Fertilizer = 'Fertilizer'
     Weird_Substance = 'Weird_Substance'
-    Piggy = 'Piggy'
     Cactus_Seed = 'Cactus_Seed'
 
 class Grounds:
@@ -331,10 +330,6 @@ def change_hat(hat):
 
 def do_a_flip():
     _add_animation('flip')
-    return None
-
-def pet_the_piggy():
-    _add_animation('pet')
     return None
 
 def get_animation_count():

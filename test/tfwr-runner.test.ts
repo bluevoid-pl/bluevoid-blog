@@ -145,7 +145,7 @@ test('the same script run twice produces the same state', async () => {
 
 const CATALOGUE = [
   'Hay', 'Wood', 'Carrot', 'Pumpkin', 'Power', 'Cactus', 'Bone', 'Gold',
-  'Water', 'Fertilizer', 'Weird_Substance', 'Piggy', 'Cactus_Seed',
+  'Water', 'Fertilizer', 'Weird_Substance', 'Cactus_Seed',
 ]
 
 test('getItems lists the whole catalogue without running a script', async () => {
