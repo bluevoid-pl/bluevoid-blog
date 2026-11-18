@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, provide, ref } from 'vue'
 import { IconZoomIn, IconZoomOut, IconMaximize } from '@tabler/icons-vue'
-import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip'
 import { Switch } from '~/components/ui/switch'
 import { Button } from '~/components/ui/button'
 import { usePanZoom } from '~/composables/tfwr/usePanZoom'
-
-const TILE = 20
+import MapTile from './MapTile.vue'
 
 const props = defineProps<{
   board: any[]
@@ -40,71 +38,53 @@ function entityTexture(entity: string | null) {
   return entityTextures[entity] || '/tfwr/seed.svg'
 }
 
+// Tiles read shared state through injection instead of one prop per tile.
+provide('tfwr:state', props)
+provide('tfwr:entityTexture', entityTexture)
+
 const viewportEl = ref<HTMLElement | null>(null)
-const { offsetX, offsetY, scale, zoomBy, reset, bind } = usePanZoom(() => viewportEl.value)
+const { scale, transformStyle, zoomBy, reset, bind } = usePanZoom(() => viewportEl.value)
 
 onMounted(() => {
   if (viewportEl.value) bind(viewportEl.value)
 })
 
-const tileSize = computed(() => TILE * scale.value)
-
+// The wrapper's base size; tiles keep this size at every zoom level, and zoom
+// only rewrites this element's `transform` (one style mutation per frame).
+const CELL = 20
 const gridStyle = computed(() => ({
-  gridTemplateColumns: `repeat(${props.boardSize}, ${tileSize.value}px)`,
-  gridTemplateRows: `repeat(${props.boardSize}, ${tileSize.value}px)`,
+  gridTemplateColumns: `repeat(${props.boardSize}, ${CELL}px)`,
+  gridTemplateRows: `repeat(${props.boardSize}, ${CELL}px)`,
+  transform: transformStyle.value,
+  transformOrigin: '0 0',
 }))
 
-const panStyle = computed(() => ({
-  transform: `translate(${offsetX.value}px, ${offsetY.value}px)`,
-}))
+// Board rows render bottom-up, so the top rendered row is the last board row.
+const cells = computed(() => {
+  const out: { index: number; cell: any }[] = []
+  for (let ry = 0; ry < props.boardSize; ry++) {
+    const row = props.board[props.board.length - 1 - ry]
+    for (let x = 0; x < props.boardSize; x++) {
+      out.push({ index: ry * props.boardSize + x, cell: row?.[x] ?? null })
+    }
+  }
+  return out
+})
 </script>
 
 <template>
-  <div>
+  <div class="select-none">
     <div class="mb-3 flex items-center justify-end gap-2 text-sm">
       <span>Debug mode</span>
-      <Switch :model-value="debug" @update:model-value="emit('update:debug', $event)" />
+      <Switch :model-value="debug" @update:model-value="emit('update:debug', $event as boolean)" />
     </div>
     <div
       ref="viewportEl"
-      class="relative overflow-hidden rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none select-none"
+      class="relative overflow-hidden rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none"
       style="height: min(45rem, 90vw)"
     >
-      <div class="grid w-fit will-change-transform" :style="[panStyle, gridStyle]">
-        <template v-for="(row, y) in [...board].reverse()" :key="y">
-          <template v-for="(cell, x) in row" :key="x">
-            <Tooltip>
-              <TooltipTrigger as-child>
-                <div
-                  class="tile relative border border-gray-700 bg-gray-800"
-                  :style="{ width: `${tileSize}px`, height: `${tileSize}px` }"
-                  :class="{ 'ring-2 ring-yellow-400': droneX === x && droneY === (board.length - 1 - y) }"
-                >
-                  <img v-if="cell.ground === 'Grassland'" src="/tfwr/grass3.svg" class="absolute inset-0 w-full h-full object-cover" alt="grassland">
-                  <img v-else-if="cell.ground === 'Soil'" src="/tfwr/dirt.svg" class="absolute inset-0 w-full h-full object-cover" alt="soil">
-                  <img v-if="cell.entity" :src="entityTexture(cell.entity)" class="absolute inset-0 w-full h-full object-contain" :style="{ padding: `${tileSize / 14}px` }" :alt="cell.entity">
-                  <div v-if="droneX === x && droneY === (board.length - 1 - y)" class="absolute inset-0 flex items-center justify-center">
-                    <img src="/tfwr/drone.svg" class="w-3/4 h-3/4" alt="drone">
-                  </div>
-                </div>
-              </TooltipTrigger>
-              <TooltipContent side="top" class="max-w-xs text-xs">
-                <div class="space-y-1">
-                  <div class="font-semibold text-[11px] uppercase tracking-wide text-muted-foreground">Cell {{ x }},{{ board.length - 1 - y }}</div>
-                  <div><strong>Ground:</strong> {{ cell.ground }}</div>
-                  <div><strong>Entity:</strong> {{ cell.entity || 'None' }}</div>
-                  <div class="text-muted-foreground">
-                    <div>Water: {{ (cell.water_level * 100).toFixed(1) }}% ({{ cell.water_level.toFixed(3) }})</div>
-                    <div>Fertiliser: {{ (cell.fertiliser_level * 100).toFixed(1) }}% ({{ cell.fertiliser_level.toFixed(3) }})</div>
-                    <div>Growth: {{ (cell.growth * 100).toFixed(1) }}% ({{ cell.growth.toFixed(3) }})</div>
-                  </div>
-                  <div v-if="droneX === x && droneY === (board.length - 1 - y)" class="text-amber-500 font-medium">Drone here</div>
-                  <div v-if="debug" class="pt-1 border-t text-[10px] text-muted-foreground whitespace-pre-wrap">Raw: {{ JSON.stringify(cell, null, 2) }}</div>
-                </div>
-              </TooltipContent>
-            </Tooltip>
-          </template>
-        </template>
+      <div class="grid w-fit will-change-transform" :style="gridStyle">
+        <MapTile v-for="{ index, cell } in cells" :key="index" :index="index" :cell="cell" />
       </div>
       <div class="absolute top-2 right-2 flex flex-col gap-1">
         <Button variant="secondary" size="icon" class="h-7 w-7" title="Zoom in" @click="zoomBy(1.25)">
@@ -126,14 +106,3 @@ const panStyle = computed(() => ({
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Tiles are built from images. Without this a drag that begins on one starts a
-   native image drag, which steals the pointer from the pan handler. */
-.tile img {
-  pointer-events: none;
-  -webkit-user-drag: none;
-  user-select: none;
-  -webkit-touch-callout: none;
-}
-</style>
