@@ -81,7 +81,7 @@ watch(() => props.code, (newVal) => {
 </script>
 
 <template>
-  <div class="tfwr-editor relative h-96 overflow-hidden rounded border bg-muted">
+  <div class="tfwr-editor relative flex-1 min-h-0 overflow-hidden rounded border bg-muted">
     <div class="absolute right-2 top-2 z-10 flex items-center gap-1">
       <slot name="actions" />
     </div>

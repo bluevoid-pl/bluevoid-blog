@@ -135,7 +135,7 @@ const tip = computed(() => {
   z-index: 30;
   pointer-events: none;
   white-space: pre-line;
-  max-width: 260px;
+  max-width: 800px;
   border-radius: 0.375rem;
   border: 1px solid var(--border);
   background-color: var(--popover);

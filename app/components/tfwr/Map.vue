@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, provide, ref } from 'vue'
 import { IconZoomIn, IconZoomOut, IconMaximize } from '@tabler/icons-vue'
-import { Switch } from '~/components/ui/switch'
 import { Button } from '~/components/ui/button'
 import { usePanZoom } from '~/composables/tfwr/usePanZoom'
 import MapTile from './MapTile.vue'
@@ -173,10 +172,6 @@ const replayActions = computed(() => {
       </div>
     </div>
     <div class="mt-3 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2 text-sm">
-        <span>Debug mode</span>
-        <Switch :model-value="debug" @update:model-value="emit('update:debug', $event as boolean)" />
-      </div>
       <div class="flex items-center gap-1">
         <Button variant="secondary" size="icon" class="h-7 w-7" title="Zoom in" @click="zoomBy(1.25)">
           <IconZoomIn class="h-4 w-4" />

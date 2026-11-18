@@ -3,9 +3,8 @@ import { computed, onMounted, onScopeDispose, ref, watchEffect } from 'vue'
 import { IconLoader, IconPlayerPlayFilled, IconTerminal2, IconPinnedOff, IconX } from '@tabler/icons-vue'
 import Editor from '~/components/tfwr/Editor.vue'
 import Output from '~/components/tfwr/Output.vue'
-import Map from '~/components/tfwr/Map.vue'
+import GameBoard from '~/components/tfwr/GameBoard.vue'
 import ScriptTabs from '~/components/tfwr/ScriptTabs.vue'
-import ItemsPanel from '~/components/tfwr/ItemsPanel.vue'
 import FloatingWindow from '~/components/tfwr/FloatingWindow.vue'
 import { Button } from '~/components/ui/button'
 import { useEngine } from '~/composables/tfwr/useEngine'
@@ -41,33 +40,6 @@ const boardSize = ref(32)
 const debug = ref(false)
 
 const steps = ref<TfwrStep[]>([])
-const replayIndex = ref<number>(-1)
-const replayPlaying = ref(false)
-const replaySpeed = ref(300)
-
-let replayTimer: number | null = null
-watchEffect(() => {
-  if (replayPlaying.value && steps.value.length > 0) {
-    if (replayTimer) clearInterval(replayTimer)
-    replayTimer = setInterval(() => {
-      if (replayIndex.value < steps.value.length - 1) {
-        replayIndex.value++
-      } else {
-        replayPlaying.value = false
-        if (replayTimer) clearInterval(replayTimer)
-        replayTimer = null
-      }
-    }, replaySpeed.value)
-  } else {
-    if (replayTimer) {
-      clearInterval(replayTimer)
-      replayTimer = null
-    }
-  }
-})
-onScopeDispose(() => {
-  if (replayTimer) clearInterval(replayTimer)
-})
 
 function setConsoleMode(mode: ConsoleMode) {
   if (mode !== 'hidden') lastVisibleMode.value = mode
@@ -155,8 +127,6 @@ async function runCode() {
       lines.push('', `Ticks: ${result.state.ticks}`, `Pos: (${result.state.posX}, ${result.state.posY})`)
     }
     steps.value = result.steps ?? []
-    replayIndex.value = -1
-    replayPlaying.value = false
     if (result.steps.length) lines.push('', 'Statement log:', ...stepLines(result.steps))
     output.value = lines.join('\n')
   }
@@ -230,46 +200,17 @@ async function runCode() {
         </section>
       </div>
       <div class="lg:w-[34rem] xl:w-[40rem] space-y-3">
-        <ItemsPanel :items="allItems" :prefill="prefill" />
-        <Map
+        <GameBoard
           :board="board"
           :board-size="boardSize"
           :drone-x="droneX"
           :drone-y="droneY"
-          :debug="debug"
+          :inventory="inventory"
+          :item-names="itemNames"
+          :prefill="prefill"
           :steps="steps"
-          :replay-index="replayIndex"
-          :replay-playing="replayPlaying"
-          :replay-speed="replaySpeed"
-          @update:debug="debug = $event"
+          v-model:debug="debug"
         />
-        <div class="flex flex-col gap-2">
-          <div class="flex items-center gap-2">
-            <Button size="sm" :disabled="!steps.length" @click="replayPlaying = !replayPlaying">
-              {{ replayPlaying ? 'Pause' : 'Play' }}
-            </Button>
-            <Button size="sm" :disabled="!steps.length || replayIndex <= 0" @click="replayIndex = Math.max(-1, replayIndex - 1)">
-              Prev
-            </Button>
-            <Button size="sm" :disabled="!steps.length || replayIndex >= steps.length -1" @click="replayIndex = Math.min(steps.length -1, replayIndex + 1)">
-              Next
-            </Button>
-            <span class="text-xs ml-auto">{{ replayIndex >=0 ? replayIndex+1 : 0 }} / {{ steps.length }}</span>
-            <label class="text-xs ml-2">Speed
-              <input class="ml-1 w-20" type="number" v-model.number="replaySpeed" min="50" max="2000" />
-            </label>
-          </div>
-          <div class="w-full">
-            <input
-              class="w-full accent-primary"
-              type="range"
-              :min="-1"
-              :max="steps.length -1"
-              v-model.number="replayIndex"
-              :disabled="!steps.length"
-            />
-          </div>
-        </div>
       </div>
     </div>
     <FloatingWindow
