@@ -33,6 +33,7 @@ const replayPlaying = ref(false)
 const baseSpeed = 300
 const speedMultiplier = ref(1)
 const replaySpeed = ref(300)
+const replayWindowSize = ref<number>(3)
 
 watch(() => speedMultiplier.value, (m) => {
   replaySpeed.value = Math.max(25, Math.round(baseSpeed / m))
@@ -97,6 +98,7 @@ const allItems = computed(() => {
       :replay-index="replayIndex"
       :replay-playing="replayPlaying"
       :replay-speed="replaySpeed"
+      :replay-window-size="replayWindowSize"
       @update:debug="debug = $event"
     />
     <div class="flex flex-col gap-2">
@@ -118,6 +120,12 @@ const allItems = computed(() => {
           <Button size="sm" variant="secondary" :class="{ 'bg-primary/20': speedMultiplier === 4 }" @click="speedMultiplier = 4">4×</Button>
           <Button size="sm" variant="secondary" :class="{ 'bg-primary/20': speedMultiplier === 8 }" @click="speedMultiplier = 8">8×</Button>
           <span class="text-xs ml-2">{{ replaySpeed }}ms</span>
+        </div>
+        <div class="flex items-center gap-1 ml-2">
+          <span class="text-xs">Window</span>
+          <Button size="sm" variant="secondary" :disabled="replayWindowSize <= 1" @click="replayWindowSize = Math.max(1, replayWindowSize - 1)">-</Button>
+          <span class="text-xs w-6 text-center">{{ replayWindowSize }}</span>
+          <Button size="sm" variant="secondary" :disabled="replayWindowSize >= 10" @click="replayWindowSize = Math.min(10, replayWindowSize + 1)">+</Button>
         </div>
       </div>
       <div class="w-full">

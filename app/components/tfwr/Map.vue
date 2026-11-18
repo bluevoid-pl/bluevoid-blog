@@ -16,6 +16,7 @@ const props = defineProps<{
   replayIndex?: number
   replayPlaying?: boolean
   replaySpeed?: number
+  replayWindowSize?: number
 }>()
 
 const emit = defineEmits<{
@@ -77,8 +78,11 @@ const cells = computed(() => {
 
 const replayPoints = computed(() => {
   if (!props.steps || props.replayIndex === undefined || props.replayIndex < 0) return []
+  const windowSize = props.replayWindowSize ?? 3
+  const startIdx = Math.max(0, props.replayIndex - (windowSize - 1))
+  const endIdx = Math.min(props.replayIndex, props.steps.length - 1)
   const points: { x: number; y: number }[] = []
-  for (let i = 0; i <= props.replayIndex && i < props.steps.length; i++) {
+  for (let i = startIdx; i <= endIdx; i++) {
     const step = props.steps[i] as TfwrStep
     if (step && typeof step.x === 'number' && typeof step.y === 'number') {
       points.push({ x: step.x, y: step.y })
@@ -126,8 +130,11 @@ const replaySvgPath = computed(() => {
 
 const replayActions = computed(() => {
   if (!props.steps || props.replayIndex === undefined || props.replayIndex < 0) return []
+  const windowSize = props.replayWindowSize ?? 3
+  const startIdx = Math.max(0, props.replayIndex - (windowSize - 1))
+  const endIdx = Math.min(props.replayIndex, props.steps.length - 1)
   const actions: { x: number; y: number; type: 'move' | 'harvest' | 'plant' | 'till'; code: string; index: number; opacity: number }[] = []
-  for (let i = 0; i <= props.replayIndex && i < props.steps.length; i++) {
+  for (let i = startIdx; i <= endIdx; i++) {
     const step = props.steps[i] as TfwrStep
     if (!step || !step.code) continue
     const code = step.code.toLowerCase()
