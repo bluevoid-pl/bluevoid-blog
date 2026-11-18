@@ -451,13 +451,14 @@ def __run_stepped__(code):
     return json.dumps({'journal': journal, 'error': error, **_state_dict()})
 
 def __reset__():
-    """Reset all simulation state to a fresh run, keeping prefill items.
+    """Reset all simulation state to a fresh run.
 
     Also drops names the previous run introduced, so scripts cannot leak state
     into each other.
     """
     global _ticks, _animations, _animation_count, _drone_pos_x, _drone_pos_y
     global _board, _water_level, _inventory, _unlocked, _power_level
+    global _prefill_items
     # `__tfwr_*` names are the host's channel to the engine and are set before
     # this runs, so reset must keep them. Everything else not defined by the
     # engine itself came from the previous run and gets dropped.
@@ -474,7 +475,11 @@ def __reset__():
     _drone_pos_y = 0
     _board = _fresh_board()
     _water_level = 0.5
-    _inventory = dict(_prefill_items)
+    # The host always calls __set_prefill_items__ right after a reset, so reset
+    # leaves the inventory empty instead of carrying the previous run's items
+    # over. That way a rejected prefill cannot leak old inventory either.
+    _prefill_items = {}
+    _inventory = {}
     _unlocked = {}
     _power_level = 0
     return None

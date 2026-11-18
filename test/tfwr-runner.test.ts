@@ -114,6 +114,18 @@ test('a second comment in the script is not read as prefill', async () => {
   assert.deepEqual(result.state?.inventory, { Wood: 2 }, describe(result))
 })
 
+test('a prefill comment naming an unknown item stops the run and keeps no inventory', async () => {
+  // A previous run's items must not survive a rejected prefill.
+  await runner.run('# {"wood": 5}\n')
+  const result = await runner.run('# { "unicorn": 1 }\nprint("unreachable")\n')
+  assert.equal(result.status, 'error', describe(result))
+  assert.equal(result.error?.type, 'ValueError', describe(result))
+  assert.match(result.error?.summary ?? '', /^ValueError: Unknown item "unicorn" in prefill comment$/)
+  assert.equal(result.output, '')
+  assert.equal(result.state?.ticks, 0, describe(result))
+  assert.deepEqual(result.state?.inventory, {}, describe(result))
+})
+
 test('variables from one run do not leak into the next', async () => {
   await runner.run('leaky = 1\n')
   const result = await runner.run('print(leaky)\n')
