@@ -124,7 +124,7 @@ const replayActions = computed(() => {
   <div class="select-none">
     <div
       ref="viewportEl"
-      class="relative overflow-visible rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none"
+      class="relative overflow-hidden rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none"
       style="height: min(45rem, 90vw)"
     >
       <div class="grid w-fit will-change-transform" :style="gridStyle">
@@ -170,9 +170,7 @@ const replayActions = computed(() => {
       <div class="absolute bottom-2 left-2 text-[10px] font-mono text-muted-foreground pointer-events-none">
         {{ (scale * 100).toFixed(0) }}% · drag to pan, scroll to zoom
       </div>
-    </div>
-    <div class="mt-3 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-1">
+      <div class="absolute bottom-2 right-2 flex items-center gap-1">
         <Button variant="secondary" size="icon" class="h-7 w-7" title="Zoom in" @click="zoomBy(1.25)">
           <IconZoomIn class="h-4 w-4" />
           <span class="sr-only">Zoom in</span>
@@ -187,6 +185,5 @@ const replayActions = computed(() => {
         </Button>
       </div>
     </div>
-  </div>
   </div>
 </template>

@@ -38,6 +38,15 @@ watch(() => speedMultiplier.value, (m) => {
   replaySpeed.value = Math.max(25, Math.round(baseSpeed / m))
 })
 
+watch(() => replayPlaying.value, (playing) => {
+  if (playing) {
+    const stepsLen = props.steps?.length ?? 0
+    if (replayIndex.value >= stepsLen - 1) {
+      replayIndex.value = -1
+    }
+  }
+})
+
 let replayTimer: number | null = null
 
 watchEffect(() => {
