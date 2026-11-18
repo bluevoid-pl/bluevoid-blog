@@ -193,4 +193,5 @@ const replayActions = computed(() => {
       </div>
     </div>
   </div>
+  </div>
 </template>
