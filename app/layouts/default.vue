@@ -9,6 +9,7 @@
 		</div>
 
 		<Header />
+		<ChromeToggle />
 		<main class="app-main p-4 sm:p-6 md:p-8 lg:p-10 flex-1" id="main-content">
 			<TooltipProvider>
 				<slot />
@@ -22,6 +23,7 @@
 <script setup lang="ts">
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
+import ChromeToggle from "~/components/ChromeToggle.vue";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 </script>

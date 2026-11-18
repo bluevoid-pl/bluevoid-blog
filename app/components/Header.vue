@@ -10,11 +10,12 @@ import { IconMenu2 } from '@tabler/icons-vue'
   <a
     href="#main-content"
     tabindex="0"
+    data-site-chrome="header"
     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:bg-background focus:text-foreground focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
   >
     Skip to content
   </a>
-  <header class="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 header">
+  <header data-site-chrome="header" class="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 header">
     <div class="mx-auto max-w-7xl flex h-16 items-center justify-between px-4 gap-4">
       <div class="flex items-center gap-2">
         <a href="/" class="flex items-center gap-3">

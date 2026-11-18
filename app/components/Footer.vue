@@ -5,7 +5,7 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer>
+  <footer data-site-chrome="footer">
     <div class="container mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
       <Badge variant="secondary" class="text-base bg-background">
         BlueVoid &copy; {{ year }} &middot; Mateusz Kifner

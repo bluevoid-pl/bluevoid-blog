@@ -283,6 +283,12 @@ html.dark {
     transform:translate(0,-100%);
 }
 
+/* Chrome toggle (ChromeToggle.vue + useChromeVisibility) drops the header and
+   footer so the page can use its full height. */
+html[data-chrome-hidden] [data-site-chrome] {
+    display: none;
+}
+
 /*.footer:after {
     content: '';
     position: fixed;
