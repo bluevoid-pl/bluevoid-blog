@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onScopeDispose, ref } from 'vue'
-import { IconPinnedOff, IconTerminal2, IconX } from '@tabler/icons-vue'
+import { IconLoader, IconPlayerPlayFilled, IconTerminal2, IconPinnedOff, IconX } from '@tabler/icons-vue'
 import Editor from '~/components/tfwr/Editor.vue'
 import Output from '~/components/tfwr/Output.vue'
 import Map from '~/components/tfwr/Map.vue'
@@ -143,17 +143,6 @@ async function runCode() {
   <div class="w-full px-1 py-2">
     <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-6 items-start">
       <div class="space-y-4 min-w-0">
-        <div class="flex items-center justify-end">
-          <Button
-            variant="outline"
-            size="xs"
-            :title="consoleMode === 'hidden' ? 'Open console' : 'Close console'"
-            @click="toggleConsole"
-          >
-            <IconTerminal2 class="h-3.5 w-3.5" />
-            Console
-          </Button>
-        </div>
         <ScriptTabs
           :scripts="scripts"
           :active-index="activeIndex"
@@ -167,8 +156,30 @@ async function runCode() {
           :code="active.code"
           :running="running"
           @update:code="active.code = $event"
-          @run="runCode"
-        />
+        >
+          <template #actions>
+            <Button
+              size="icon"
+              :disabled="running"
+              :title="running ? 'Running…' : 'Run script'"
+              @click="runCode"
+            >
+              <IconLoader v-if="running" class="h-4 w-4 animate-spin" />
+              <IconPlayerPlayFilled v-else class="h-4 w-4" />
+              <span class="sr-only">Run script</span>
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              class="bg-background/80 backdrop-blur"
+              :title="consoleMode === 'hidden' ? 'Open console' : 'Close console'"
+              @click="toggleConsole"
+            >
+              <IconTerminal2 class="h-4 w-4" />
+              <span class="sr-only">Toggle console</span>
+            </Button>
+          </template>
+        </Editor>
         <section v-if="consoleMode === 'docked'">
           <div class="flex items-center justify-between mb-3">
             <h2 class="text-xl font-semibold">Console</h2>

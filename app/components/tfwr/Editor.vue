@@ -81,16 +81,12 @@ watch(() => props.code, (newVal) => {
 </script>
 
 <template>
-  <div>
-    <div class="mb-3 flex items-center justify-end">
-      <button @click="emit('run')" :disabled="running" class="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50">
-        {{ running ? 'Running...' : 'Run' }}
-      </button>
+  <div class="tfwr-editor relative h-96 overflow-hidden rounded border bg-muted">
+    <div class="absolute right-2 top-2 z-10 flex items-center gap-1">
+      <slot name="actions" />
     </div>
-    <div class="tfwr-editor relative h-96 overflow-hidden rounded border bg-muted">
-      <pre ref="preEl" class="microlighter tfwr-editor-code h-full w-full overflow-auto p-3" :style="{ paddingLeft: `calc(${digits}ch + 1.5rem)` }"><code class="language-python" ref="codeEl" contenteditable="plaintext-only" spellcheck="false" aria-label="Editable code sample" tabindex="0"></code></pre>
-      <span class="tfwr-editor-lines" data-testid="line-numbers" aria-hidden="true" :style="{ width: `calc(${digits}ch + 0.75rem)`, transform: `translateY(${-scrollTop}px)` }">{{ lineNumbers }}</span>
-    </div>
+    <pre ref="preEl" class="microlighter tfwr-editor-code h-full w-full overflow-auto p-3" :style="{ paddingLeft: `calc(${digits}ch + 1.5rem)` }"><code class="language-python" ref="codeEl" contenteditable="plaintext-only" spellcheck="false" aria-label="Editable code sample" tabindex="0"></code></pre>
+    <span class="tfwr-editor-lines" data-testid="line-numbers" aria-hidden="true" :style="{ width: `calc(${digits}ch + 0.75rem)`, transform: `translateY(${-scrollTop}px)` }">{{ lineNumbers }}</span>
   </div>
 </template>
 

@@ -23,10 +23,13 @@ Microlighter provides syntax highlighting for code blocks via the CSS Custom Hig
 ### Plugin
 
 - **app/plugins/microlighter.client.ts**
-  Imports `highlightAll` from `microlighter` and defines the selector `pre > code, [data-slot="code-block-line-content"]`. The plugin:
+  Imports `highlightAll` from `microlighter` and defines the selector
+  `pre:not([data-numbered]) > code, [data-slot="code-block-line-content"]`. Numbered
+  CodeBlocks render one text node per line and are highlighted per line, so they are
+  excluded from the `pre > code` branch. The plugin:
+  - Skips entirely when the CSS Custom Highlight API (`Highlight`/`Range`) is unavailable (e.g. Firefox).
   - Sets `document.documentElement.dataset.syntaxTheme = 'github'`.
-  - Runs `highlightAll` on page load and via the `syntax-highlight` custom event.
-  - Re-runs highlighting on `page:finished` hook for Nuxt navigation.
+  - Runs `highlightAll` on page load, on the `page:finished` hook for Nuxt navigation, and via the `syntax-highlight` custom event dispatched by components after they add or edit code. Scans are serialized: a request that arrives while one runs is queued and re-run afterwards.
 
 ### CSS
 
@@ -45,8 +48,9 @@ Microlighter provides syntax highlighting for code blocks via the CSS Custom Hig
 - Ensures the language class (`language-<lang>`) is added when missing.
 
 #### `app/components/tfwr/Editor.vue`
-- Uses `class="microlighter"` on a `<pre>` element (line 45) for an editable code sample.
-- Scoped CSS defines `.microlighter` styles (lines 50-70) for font, line-height, and contenteditable behavior.
+- Uses `class="microlighter"` on a `<pre>` element for the editable TFWR code sample.
+- A `actions` slot overlaid in the editor's top-right corner hosts the icon-only Run and console-toggle buttons (passed in from `app/pages/tfwr.vue`).
+- Scoped CSS defines the editor's shared monospace metrics plus `.microlighter` and `.tfwr-editor-lines` styles for the gutter, line-height, and contenteditable behavior.
 
 ### Summary of Usage
 
