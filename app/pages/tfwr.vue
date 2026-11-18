@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onScopeDispose, ref } from 'vue'
-import { IconPinnedOff, IconX } from '@tabler/icons-vue'
+import { computed, onMounted, onScopeDispose, ref } from 'vue'
+import { IconPinnedOff, IconTerminal2, IconX } from '@tabler/icons-vue'
 import Editor from '~/components/tfwr/Editor.vue'
 import Output from '~/components/tfwr/Output.vue'
 import Map from '~/components/tfwr/Map.vue'
@@ -8,7 +8,6 @@ import ScriptTabs from '~/components/tfwr/ScriptTabs.vue'
 import ItemsPanel from '~/components/tfwr/ItemsPanel.vue'
 import FloatingWindow from '~/components/tfwr/FloatingWindow.vue'
 import { Button } from '~/components/ui/button'
-import { Kbd } from '~/components/ui/kbd'
 import { useEngine } from '~/composables/tfwr/useEngine'
 import { useScripts } from '~/composables/tfwr/useScripts'
 import type { PrefillResult } from '~/utils/tfwr-prefill'
@@ -34,6 +33,7 @@ const ticks = ref(0)
 const running = ref(false)
 const board = ref<any[]>([])
 const inventory = ref<Record<string, number>>({})
+const itemNames = ref<string[]>([])
 const prefill = ref<PrefillResult>({ status: 'none', items: {} })
 const droneX = ref(0)
 const droneY = ref(0)
@@ -65,6 +65,28 @@ onScopeDispose(() => window.removeEventListener('keydown', onKeydown))
 const { getEngine } = useEngine()
 const runner = createTfwrRunner(getEngine)
 
+/**
+ * The preview always lists the whole item catalogue, so a run reads as a
+ * change in amounts instead of a set of items appearing out of nowhere.
+ */
+const allItems = computed(() => {
+  const amounts: Record<string, number> = {}
+  for (const name of itemNames.value) amounts[name] = 0
+  for (const [name, amount] of Object.entries(inventory.value)) {
+    amounts[name] = (amounts[name] ?? 0) + amount
+  }
+  return amounts
+})
+
+async function loadItemNames() {
+  try {
+    itemNames.value = await runner.getItems()
+  }
+  catch {
+    // The preview stays empty until the engine can answer for the catalogue.
+  }
+}
+
 /** Statement log lines: each top-level statement with the ticks it cost. */
 function stepLines(steps: TfwrStep[]): string[] {
   const lines: string[] = []
@@ -83,6 +105,7 @@ async function runCode() {
   try {
     const result = await runner.runStepped(active.value.code)
     prefill.value = result.prefill
+    await loadItemNames()
 
     const lines: string[] = []
     if (result.output) lines.push(result.output.trimEnd())
@@ -120,10 +143,16 @@ async function runCode() {
   <div class="w-full px-1 py-2">
     <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-6 items-start">
       <div class="space-y-4 min-w-0">
-        <div class="flex items-center justify-between">
-          <span class="text-sm text-muted-foreground">
-            <Kbd>Ctrl</Kbd> + <Kbd>`</Kbd> toggles the console
-          </span>
+        <div class="flex items-center justify-end">
+          <Button
+            variant="outline"
+            size="xs"
+            :title="consoleMode === 'hidden' ? 'Open console' : 'Close console'"
+            @click="toggleConsole"
+          >
+            <IconTerminal2 class="h-3.5 w-3.5" />
+            Console
+          </Button>
         </div>
         <ScriptTabs
           :scripts="scripts"
@@ -140,7 +169,6 @@ async function runCode() {
           @update:code="active.code = $event"
           @run="runCode"
         />
-        <ItemsPanel :inventory="inventory" :prefill="prefill" />
         <section v-if="consoleMode === 'docked'">
           <div class="flex items-center justify-between mb-3">
             <h2 class="text-xl font-semibold">Console</h2>
@@ -158,7 +186,8 @@ async function runCode() {
           <Output :output="output" class="h-96" />
         </section>
       </div>
-      <div class="lg:w-[34rem] xl:w-[40rem]">
+      <div class="lg:w-[34rem] xl:w-[40rem] space-y-3">
+        <ItemsPanel :items="allItems" :prefill="prefill" />
         <Map
           :board="board"
           :board-size="boardSize"

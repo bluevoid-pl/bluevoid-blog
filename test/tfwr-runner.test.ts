@@ -142,3 +142,23 @@ test('the same script run twice produces the same state', async () => {
   assert.deepEqual(second.state, first.state)
   assert.equal(second.output, first.output)
 })
+
+const CATALOGUE = [
+  'Hay', 'Wood', 'Carrot', 'Pumpkin', 'Power', 'Cactus', 'Bone', 'Gold',
+  'Water', 'Fertilizer', 'Weird_Substance', 'Piggy', 'Cactus_Seed',
+]
+
+test('getItems lists the whole catalogue without running a script', async () => {
+  assert.deepEqual(await runner.getItems(), CATALOGUE)
+})
+
+test('every item a run can hold is a catalogue name', async () => {
+  const catalogue = new Set(await runner.getItems())
+  const result = await runner.run('# {"CARROT": 5, "weird_substance": 1}')
+  const inventory = result.state?.inventory ?? {}
+  assert.equal(result.status, 'ok', describe(result))
+  assert.deepEqual(Object.keys(inventory).sort(), ['Carrot', 'Weird_Substance'], describe(result))
+  for (const name of Object.keys(inventory)) {
+    assert.ok(catalogue.has(name), `${name} is missing from the catalogue in ${describe(result)}`)
+  }
+})

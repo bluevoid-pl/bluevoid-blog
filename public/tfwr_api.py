@@ -369,6 +369,10 @@ def get_inventory_json():
 
 _prefill_items = {}
 
+# Every item the game knows about, so the UI can list items the drone is not
+# carrying. Matches the canonical names __set_prefill_items__ resolves to.
+__item_names__ = builtins.list(v for k, v in Items.__dict__.items() if not k.startswith('_'))
+
 def __set_prefill_items__(items):
     """Prefill the simulation inventory from a {item: amount} dict.
     Item names are matched case-insensitively against Items. Raises

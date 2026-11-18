@@ -115,5 +115,21 @@ export function createTfwrRunner(loadEngine: EngineLoader) {
     run: (source: string) => execute(source, false),
     /** Run statement by statement and journal every state transition. */
     runStepped: (source: string) => execute(source, true),
+    /**
+     * Every item the game knows about, including ones the drone is not
+     * carrying. Loading the engine defines them, so this needs no run.
+     */
+    getItems: async (): Promise<string[]> => {
+      const pyodide = await loadEngine()
+      const names = pyodide.globals.get('__item_names__')
+      if (names === undefined) return []
+      try {
+        // toJs turns the Python list into a plain string array we can own.
+        return names.toJs() as string[]
+      }
+      finally {
+        names.destroy()
+      }
+    },
   }
 }
