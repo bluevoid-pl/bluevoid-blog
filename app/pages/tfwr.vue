@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { loadPyodide, type PyodideInterface } from 'pyodide'
 import { onMounted, onScopeDispose, ref } from 'vue'
 import { IconPinnedOff, IconX } from '@tabler/icons-vue'
 import Editor from '~/components/tfwr/Editor.vue'
@@ -10,8 +9,10 @@ import ItemsPanel from '~/components/tfwr/ItemsPanel.vue'
 import FloatingWindow from '~/components/tfwr/FloatingWindow.vue'
 import { Button } from '~/components/ui/button'
 import { Kbd } from '~/components/ui/kbd'
+import { useEngine } from '~/composables/tfwr/useEngine'
 import { useScripts } from '~/composables/tfwr/useScripts'
-import { parseScriptPrefill, type PrefillResult } from '~/utils/tfwr-prefill'
+import type { PrefillResult } from '~/utils/tfwr-prefill'
+import { createTfwrRunner, type TfwrStep } from '~/utils/tfwr-runner'
 
 definePageMeta({
   layout: 'default',
@@ -61,18 +62,18 @@ onMounted(() => {
 })
 onScopeDispose(() => window.removeEventListener('keydown', onKeydown))
 
-let pyodidePromise: Promise<PyodideInterface> | null = null
-let apiLoaded = false
+const { getEngine } = useEngine()
+const runner = createTfwrRunner(getEngine)
 
-async function getPyodide() {
-  if (!pyodidePromise) pyodidePromise = loadPyodide()
-  const pyodide = await pyodidePromise
-  if (!apiLoaded) {
-    const apiCode = await $fetch('/tfwr_api.py').then(r => r.text())
-    await pyodide.runPythonAsync(apiCode)
-    apiLoaded = true
+/** Statement log lines: each top-level statement with the ticks it cost. */
+function stepLines(steps: TfwrStep[]): string[] {
+  const lines: string[] = []
+  let previous = 0
+  for (const step of steps) {
+    lines.push(`${step.index}: ${step.code} [${step.ticks - previous}t]`)
+    previous = step.ticks
   }
-  return pyodide
+  return lines
 }
 
 async function runCode() {
@@ -80,38 +81,35 @@ async function runCode() {
   output.value = ''
   ticks.value = 0
   try {
-    prefill.value = parseScriptPrefill(active.value.code)
-    if (prefill.value.status === 'error') {
-      output.value = `Invalid prefill comment:\n${prefill.value.message}`
+    const result = await runner.runStepped(active.value.code)
+    prefill.value = result.prefill
+
+    const lines: string[] = []
+    if (result.output) lines.push(result.output.trimEnd())
+    if (result.status === 'prefill-error') {
+      lines.push(`Invalid prefill comment:\n${result.prefill.message}`)
       setConsoleMode(lastVisibleMode.value)
-      return
     }
-
-    const pyodide = await getPyodide()
-    let stdout = ''
-    pyodide.setStdout({ batched: (s: string) => { stdout += `${s}\n` } })
-
-    pyodide.globals.set('__tfwr_prefill', JSON.stringify(prefill.value.items))
-    await pyodide.runPythonAsync('__reset__()\n__set_prefill_items__(json.loads(__tfwr_prefill))')
-    await pyodide.runPythonAsync(active.value.code)
-
-    const tickCount = pyodide.runPython('get_tick_count()') as number
-    const posX = pyodide.runPython('get_pos_x()') as number
-    const posY = pyodide.runPython('get_pos_y()') as number
-    const boardJson = pyodide.runPython('get_board_json()') as string
-    const inventoryJson = pyodide.runPython('get_inventory_json()') as string
-
-    output.value = stdout
-    ticks.value = tickCount
-    board.value = JSON.parse(boardJson)
-    inventory.value = JSON.parse(inventoryJson)
-    droneX.value = posX
-    droneY.value = posY
-    boardSize.value = pyodide.runPython('get_board_size()') as number
-    output.value += `\n---\nTicks: ${tickCount}\nPos: (${posX}, ${posY})`
+    else if (result.error) {
+      const frame = result.error.frame ? ` (${result.error.frame})` : ''
+      lines.push(`${result.error.summary}${frame}`)
+      setConsoleMode(lastVisibleMode.value)
+    }
+    if (result.state) {
+      board.value = result.state.board
+      boardSize.value = result.state.boardSize
+      droneX.value = result.state.posX
+      droneY.value = result.state.posY
+      inventory.value = result.state.inventory
+      ticks.value = result.state.ticks
+      lines.push('', `Ticks: ${result.state.ticks}`, `Pos: (${result.state.posX}, ${result.state.posY})`)
+    }
+    if (result.steps.length) lines.push('', 'Statement log:', ...stepLines(result.steps))
+    output.value = lines.join('\n')
   }
   catch (e) {
     output.value = String(e)
+    setConsoleMode(lastVisibleMode.value)
   }
   finally {
     running.value = false

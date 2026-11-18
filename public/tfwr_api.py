@@ -388,10 +388,85 @@ def __set_prefill_items__(items):
     _inventory = dict(resolved)
     return dict(resolved)
 
+def _board_payload():
+    """The board as a plain list of rows, bottom row first."""
+    return [builtins.list(row) for row in _board]
+
+def _state_dict():
+    """The whole simulation state in plain JSON-safe types. Costs no ticks,
+    unlike the drone getters a UI snapshot would otherwise have to pay for."""
+    return {
+        'ticks': _ticks,
+        'posX': _drone_pos_x,
+        'posY': _drone_pos_y,
+        'boardSize': _board_size,
+        'board': _board_payload(),
+        'inventory': dict(_inventory),
+        'animations': builtins.list(_animations),
+    }
+
+def __state_json__():
+    """Host-only helper. The simulation state as JSON."""
+    return json.dumps(_state_dict())
+
+def __run_stepped__(code):
+    """Host-only helper. Runs `code` one top-level statement at a time and
+    returns {'journal': [...], 'error': None | traceback}.
+
+    Stepping does not need a board dump per tick: ticks only advance in whole
+    action costs, and the only cell that can ever change is the one under the
+    drone. So one small record per statement - position, that cell, inventory
+    and tick total - captures every state transition the run can produce, and
+    reading the journal once at the end keeps the run as fast as a plain exec.
+    """
+    import ast
+    import traceback
+
+    try:
+        body = ast.parse(code).body
+    except SyntaxError:
+        return json.dumps({'journal': [], 'error': traceback.format_exc(), **_state_dict()})
+
+    journal = []
+    error = None
+    for index, node in builtins.enumerate(body):
+        step = compile(ast.Module(body=[node], type_ignores=[]), '<step>', 'exec')
+        try:
+            exec(step, globals())
+        except Exception:
+            error = traceback.format_exc()
+        cell = _board[_drone_pos_y][_drone_pos_x]
+        journal.append({
+            'index': index,
+            'code': ast.unparse(node),
+            'ticks': _ticks,
+            'x': _drone_pos_x,
+            'y': _drone_pos_y,
+            'cell': dict(cell),
+            'inventory': dict(_inventory),
+            'error': error,
+        })
+        if error is not None:
+            break
+    return json.dumps({'journal': journal, 'error': error, **_state_dict()})
+
 def __reset__():
-    """Reset all simulation state to a fresh run, keeping prefill items."""
+    """Reset all simulation state to a fresh run, keeping prefill items.
+
+    Also drops names the previous run introduced, so scripts cannot leak state
+    into each other.
+    """
     global _ticks, _animations, _animation_count, _drone_pos_x, _drone_pos_y
     global _board, _water_level, _inventory, _unlocked, _power_level
+    # `__tfwr_*` names are the host's channel to the engine and are set before
+    # this runs, so reset must keep them. Everything else not defined by the
+    # engine itself came from the previous run and gets dropped.
+    protected = {'js', 'pyodide'}
+    for name in [k for k in globals()
+                 if k not in __engine_names__ and k not in protected
+                 and not k.startswith('__tfwr_')
+                 and not (k.startswith('__') and k.endswith('__'))]:
+        del globals()[name]
     _ticks = 0
     _animations = []
     _animation_count = 0
@@ -403,3 +478,7 @@ def __reset__():
     _unlocked = {}
     _power_level = 0
     return None
+
+# Names the engine itself defines. __reset__ removes everything else so one
+# run cannot leak variables into the next.
+__engine_names__ = builtins.set(globals())
