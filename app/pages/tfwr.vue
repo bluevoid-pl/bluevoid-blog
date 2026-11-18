@@ -88,12 +88,10 @@ async function runCode() {
     if (result.output) lines.push(result.output.trimEnd())
     if (result.status === 'prefill-error') {
       lines.push(`Invalid prefill comment:\n${result.prefill.message}`)
-      setConsoleMode(lastVisibleMode.value)
     }
     else if (result.error) {
       const frame = result.error.frame ? ` (${result.error.frame})` : ''
       lines.push(`${result.error.summary}${frame}`)
-      setConsoleMode(lastVisibleMode.value)
     }
     if (result.state) {
       board.value = result.state.board
@@ -109,9 +107,10 @@ async function runCode() {
   }
   catch (e) {
     output.value = String(e)
-    setConsoleMode(lastVisibleMode.value)
   }
   finally {
+    // Output is only useful if it can be seen: reveal the console after every run.
+    setConsoleMode(lastVisibleMode.value)
     running.value = false
   }
 }

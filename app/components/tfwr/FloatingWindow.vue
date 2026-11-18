@@ -35,6 +35,16 @@ onMounted(() => {
   x.value = Math.min(x.value, Math.max(0, window.innerWidth - width))
   y.value = Math.min(y.value, Math.max(0, window.innerHeight - 120))
 })
+
+/**
+ * The header is the drag handle, but it also hosts the window controls. Dragging
+ * starts on pointerdown and captures the pointer, which swallows the click that
+ * would otherwise reach those buttons, so ignore pointers that begin on them.
+ */
+function onHeaderPointerDown(event: PointerEvent) {
+  if ((event.target as HTMLElement).closest('button')) return
+  startDrag(event)
+}
 </script>
 
 <template>
@@ -47,7 +57,7 @@ onMounted(() => {
     >
       <div
         class="flex items-center gap-2 px-3 py-1.5 border-b bg-muted/60 cursor-move touch-none select-none"
-        @pointerdown="startDrag"
+        @pointerdown="onHeaderPointerDown"
       >
         <span class="text-sm font-semibold truncate">{{ title }}</span>
         <div class="ml-auto flex items-center gap-1">

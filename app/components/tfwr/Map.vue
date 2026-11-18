@@ -70,7 +70,7 @@ const panStyle = computed(() => ({
     </div>
     <div
       ref="viewportEl"
-      class="relative overflow-hidden rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none"
+      class="relative overflow-hidden rounded border bg-gray-950 cursor-grab active:cursor-grabbing touch-none select-none"
       style="height: min(45rem, 90vw)"
     >
       <div class="grid w-fit will-change-transform" :style="[panStyle, gridStyle]">
@@ -79,7 +79,7 @@ const panStyle = computed(() => ({
             <Tooltip>
               <TooltipTrigger as-child>
                 <div
-                  class="relative border border-gray-700 bg-gray-800"
+                  class="tile relative border border-gray-700 bg-gray-800"
                   :style="{ width: `${tileSize}px`, height: `${tileSize}px` }"
                   :class="{ 'ring-2 ring-yellow-400': droneX === x && droneY === (board.length - 1 - y) }"
                 >
@@ -129,3 +129,14 @@ const panStyle = computed(() => ({
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Tiles are built from images. Without this a drag that begins on one starts a
+   native image drag, which steals the pointer from the pan handler. */
+.tile img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+</style>
