@@ -115,6 +115,10 @@ export function useScripts() {
     if (trimmed) scripts.value[index].name = trimmed
   }
 
+  function save() {
+    persist()
+  }
+
   return {
     scripts,
     activeIndex,
@@ -125,6 +129,7 @@ export function useScripts() {
     duplicateScript,
     closeScript,
     renameScript,
+    save,
   }
 }
 

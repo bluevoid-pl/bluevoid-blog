@@ -9,10 +9,12 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:code': [value: string]
   'run': []
+  'save': []
 }>()
 
 const preEl = ref<HTMLElement | null>(null)
 const codeEl = ref<HTMLElement | null>(null)
+const whitespaceOverlay = ref<HTMLElement | null>(null)
 const lineCount = ref(1)
 const scrollTop = ref(0)
 
@@ -38,10 +40,21 @@ function requestHighlight() {
   codeEl.value?.dispatchEvent(new CustomEvent('syntax-highlight', { bubbles: true }))
 }
 
+/** Render whitespace markers for spaces and tabs. */
+function updateWhitespace() {
+  const text = codeEl.value?.textContent || ''
+  if (!whitespaceOverlay.value) return
+  const visual = text
+    .replace(/\t/g, '↹\u00A0\u00A0\u00A0')
+    .replace(/ /g, '·')
+  whitespaceOverlay.value.textContent = visual
+}
+
 function onInput() {
   emit('update:code', codeEl.value?.textContent || '')
   syncLineNumbers()
   requestHighlight()
+  updateWhitespace()
 }
 
 /**
@@ -64,9 +77,14 @@ function removeIndent(line: string): string {
 }
 
 /**
- * Handle Tab / Shift+Tab for indentation.
+ * Handle Tab / Shift+Tab for indentation and Ctrl+S for save.
  */
 function onKeyDown(e: KeyboardEvent) {
+  if ((e.ctrlKey || e.metaKey) && e.code === 'KeyS') {
+    e.preventDefault()
+    emit('save')
+    return
+  }
   if (e.key !== 'Tab') return
   const el = codeEl.value
   if (!el) return
@@ -167,6 +185,7 @@ onMounted(() => {
     el.textContent = props.code
     syncLineNumbers()
     requestHighlight()
+    updateWhitespace()
     el.addEventListener('input', onInput)
     el.addEventListener('keydown', onKeyDown)
   }
@@ -185,6 +204,7 @@ watch(() => props.code, (newVal) => {
     el.textContent = newVal
     syncLineNumbers()
     requestHighlight()
+    updateWhitespace()
   }
 })
 </script>
@@ -194,7 +214,10 @@ watch(() => props.code, (newVal) => {
     <div class="absolute right-2 top-2 z-10 flex items-center gap-1">
       <slot name="actions" />
     </div>
-    <pre ref="preEl" class="microlighter tfwr-editor-code h-full w-full overflow-auto p-3" :style="{ paddingLeft: `calc(${digits}ch + 1.5rem)` }"><code class="language-python" ref="codeEl" contenteditable="plaintext-only" spellcheck="false" aria-label="Editable code sample" tabindex="0"></code></pre>
+    <pre ref="preEl" class="microlighter tfwr-editor-code h-full w-full overflow-auto p-3" :style="{ paddingLeft: `calc(${digits}ch + 1.5rem)` }">
+      <code class="language-python" ref="codeEl" contenteditable="plaintext-only" spellcheck="false" aria-label="Editable code sample" tabindex="0"></code>
+      <pre ref="whitespaceOverlay" class="whitespace-overlay" aria-hidden="true"></pre>
+    </pre>
     <span class="tfwr-editor-lines" data-testid="line-numbers" aria-hidden="true" :style="{ width: `calc(${digits}ch + 0.75rem)`, transform: `translateY(${-scrollTop}px)` }">{{ lineNumbers }}</span>
   </div>
 </template>
@@ -249,5 +272,33 @@ watch(() => props.code, (newVal) => {
   cursor: text;
   -webkit-user-modify: read-write-plaintext-only;
   user-modify: read-write-plaintext-only;
+}
+
+.tfwr-editor-code {
+  display: grid;
+}
+
+.tfwr-editor-code > code,
+.tfwr-editor-code > .whitespace-overlay {
+  grid-area: 1 / 1;
+}
+
+.tfwr-editor-code > code {
+  z-index: 1;
+}
+
+.whitespace-overlay {
+  pointer-events: none;
+  opacity: 0.1;
+  color: currentColor;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
+  tab-size: 4;
+  user-select: none;
+  z-index: 0;
 }
 </style>

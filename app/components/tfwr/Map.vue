@@ -158,6 +158,10 @@ const replayActions = computed(() => {
   }
   return actions
 })
+
+const replayActionMarkers = computed(() => {
+  return replayActions.value.filter(a => a.type !== 'move')
+})
 </script>
 
 <template>
@@ -192,7 +196,7 @@ const replayActions = computed(() => {
           marker-end="url(#arrowhead)"
         />
         <g
-          v-for="action in replayActions"
+          v-for="action in replayActionMarkers"
           :key="`${action.x}-${action.y}-${action.type}-${action.index}`"
           :style="{ opacity: action.opacity }"
         >

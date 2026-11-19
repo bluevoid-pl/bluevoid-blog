@@ -48,6 +48,11 @@ watch(() => replayPlaying.value, (playing) => {
   }
 })
 
+watch(() => props.steps, () => {
+  replayIndex.value = -1
+  replayPlaying.value = false
+})
+
 let replayTimer: number | null = null
 
 watchEffect(() => {
@@ -122,9 +127,8 @@ const allItems = computed(() => {
           <span class="text-xs ml-2">{{ replaySpeed }}ms</span>
         </div>
         <div class="flex items-center gap-1 ml-2">
-          <span class="text-xs">Window</span>
           <Button size="sm" variant="secondary" :disabled="replayWindowSize <= 1" @click="replayWindowSize = Math.max(1, replayWindowSize - 1)">-</Button>
-          <span class="text-xs w-6 text-center">{{ replayWindowSize }}</span>
+          <span class="text-xs w-8 text-center">{{ replayWindowSize }}</span>
           <Button size="sm" variant="secondary" :disabled="replayWindowSize >= 10" @click="replayWindowSize = Math.min(10, replayWindowSize + 1)">+</Button>
         </div>
       </div>

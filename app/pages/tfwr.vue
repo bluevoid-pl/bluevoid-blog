@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onScopeDispose, ref, watchEffect } from 'vue'
-import { IconLoader, IconPlayerPlayFilled, IconTerminal2, IconPinnedOff, IconX } from '@tabler/icons-vue'
+import { IconLoader, IconPlayerPlayFilled, IconTerminal2, IconPinnedOff, IconX, IconDeviceFloppy } from '@tabler/icons-vue'
+import { toast } from 'vue-sonner'
 import Editor from '~/components/tfwr/Editor.vue'
 import Output from '~/components/tfwr/Output.vue'
 import GameBoard from '~/components/tfwr/GameBoard.vue'
@@ -20,7 +21,13 @@ useHead({
   title: 'The Farmer Was Replaced - API Simulator',
 })
 
-const { scripts, activeIndex, active, hydrate, addScript, duplicateScript, closeScript, renameScript, setActive } = useScripts()
+const { scripts, activeIndex, active, hydrate, addScript, duplicateScript, closeScript, renameScript, setActive, save } = useScripts()
+
+function saveCurrent() {
+  save()
+  const name = active?.name ?? 'untitled'
+  toast.success('Saved', { description: `Script "${name}" saved to localStorage` })
+}
 
 type ConsoleMode = 'hidden' | 'docked' | 'floating'
 
@@ -54,6 +61,11 @@ function onKeydown(event: KeyboardEvent) {
   if (event.ctrlKey && event.code === 'Backquote') {
     event.preventDefault()
     toggleConsole()
+    return
+  }
+  if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
+    event.preventDefault()
+    saveCurrent()
   }
 }
 
@@ -158,8 +170,18 @@ async function runCode() {
           :code="active.code"
           :running="running"
           @update:code="active.code = $event"
+          @save="saveCurrent"
         >
           <template #actions>
+            <Button
+              size="icon"
+              :disabled="running"
+              :title="'Save script'"
+              @click="saveCurrent"
+            >
+              <IconDeviceFloppy class="h-4 w-4" />
+              <span class="sr-only">Save script</span>
+            </Button>
             <Button
               size="icon"
               :disabled="running"

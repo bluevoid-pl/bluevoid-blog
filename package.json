@@ -8,7 +8,7 @@
     "devnt": "nuxt dev --no-tui",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "test": "node --test",
+    "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
     "pkg-up": "ncu -u -i -c 1d -p pnpm",
     "typecheck": "tsc --noEmit"
   },
