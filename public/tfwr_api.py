@@ -112,6 +112,17 @@ West = West()
 
 # A pristine, untiled board. Uses builtins.range so board creation never
 # charges the tick wrappers defined below.
+# Grassland regrows Grass on its own, one plant per GRASS_GROW_TICKS ticks,
+# whether or not anyone planted it. Soil never grows grass.
+GRASS_GROW_TICKS = 10
+
+def _fresh_growth_due():
+    """Tick at which each empty Grassland cell grows Grass. Cells not on the
+    schedule (Soil, occupied cells) are tracked outside this table, so a due
+    check only ever looks at cells that can actually grow."""
+    return [[_ticks + GRASS_GROW_TICKS for _ in builtins.range(_board_size)]
+            for _ in builtins.range(_board_size)]
+
 def _fresh_board():
     return [[{'ground': Grounds.Grassland, 'entity': None, 'water_level': 0.0,
               'fertiliser_level': 0.0, 'growth': 0.0} for _ in builtins.range(_board_size)]
@@ -119,6 +130,47 @@ def _fresh_board():
 
 # Initialize board
 _board = _fresh_board()
+_growth_due = _fresh_growth_due()
+
+def _growth_floor():
+    """Lowest scheduled growth tick across the board, or None when nothing is
+    scheduled. Cheap to maintain alongside the schedule; lets _settle_growth()
+    bail out without looking at a single cell for most ticks."""
+    best = None
+    for row in _growth_due:
+        for due in row:
+            if due is not None and (best is None or due < best):
+                best = due
+    return best
+
+_next_growth_tick = _growth_floor()
+
+def _settle_growth():
+    """Apply every grass growth that has come due since the last check.
+    Growth happens lazily at read time because ticks only advance when an
+    action costs them; there is no game loop to grow it in."""
+    global _next_growth_tick
+    if _next_growth_tick is None or _ticks < _next_growth_tick:
+        return
+    for y in builtins.range(_board_size):
+        row = _board[y]
+        due_row = _growth_due[y]
+        for x in builtins.range(_board_size):
+            cell = row[x]
+            due = due_row[x]
+            if due is None or _ticks < due or cell['entity'] is not None:
+                continue
+            if cell['ground'] == Grounds.Grassland:
+                cell['entity'] = Entities.Grass
+                due_row[x] = _ticks + GRASS_GROW_TICKS
+            else:
+                # Soil: off the schedule until it becomes Grassland again.
+                due_row[x] = None
+    _next_growth_tick = _growth_floor()
+
+def _schedule_growth(cell, x, y):
+    """(Re)start the regrow timer for a cell that just became empty grassland."""
+    _growth_due[y][x] = None if cell['ground'] != Grounds.Grassland else _ticks + GRASS_GROW_TICKS
 
 # API Functions
 
@@ -162,6 +214,7 @@ def get_world_size():
 
 def get_entity_type():
     _add_ticks(1)
+    _settle_growth()
     return _board[_drone_pos_y][_drone_pos_x]['entity']
 
 def get_ground_type():
@@ -185,6 +238,8 @@ _HARVEST_ITEMS = {
 }
 
 def harvest():
+    # Settle first: grass may have regrown here since the last look.
+    _settle_growth()
     cell = _board[_drone_pos_y][_drone_pos_x]
     success = cell['entity'] is not None
     _add_ticks(200, success)
@@ -193,13 +248,17 @@ def harvest():
         if item:
             _inventory[item] = _inventory.get(item, 0) + 1
         cell['entity'] = None
+        # Grassland regrows by itself; the timer starts from this harvest.
+        _schedule_growth(cell, _drone_pos_x, _drone_pos_y)
     return success
 
 def can_harvest():
     _add_ticks(1)
+    _settle_growth()
     return _board[_drone_pos_y][_drone_pos_x]['entity'] is not None
 
 def plant(entity):
+    _settle_growth()
     success = True
     _add_ticks(200, success)
     _board[_drone_pos_y][_drone_pos_x]['entity'] = entity
@@ -212,6 +271,7 @@ def till():
         cell['ground'] = Grounds.Soil
     else:
         cell['ground'] = Grounds.Grassland
+    _schedule_growth(cell, _drone_pos_x, _drone_pos_y)
     return None
 
 def swap(direction):
@@ -318,10 +378,12 @@ def set_world_size(size):
 
 def clear():
     _add_ticks(200)
-    global _drone_pos_x, _drone_pos_y, _board
+    global _drone_pos_x, _drone_pos_y, _board, _growth_due, _next_growth_tick
     _drone_pos_x = 0
     _drone_pos_y = 0
     _board = _fresh_board()
+    _growth_due = _fresh_growth_due()
+    _next_growth_tick = _growth_floor()
     return None
 
 def change_hat(hat):
@@ -345,11 +407,13 @@ def get_animation_log():
 
 def get_board_snapshot():
     _add_ticks(0)
+    _settle_growth()
     # Return serializable snapshot
     return [[{'ground': cell['ground'], 'entity': cell['entity'], 'water_level': cell['water_level'], 'fertiliser_level': cell['fertiliser_level'], 'growth': cell['growth']} for cell in row] for row in _board]
 
 def get_board_json():
     _add_ticks(0)
+    _settle_growth()
     return json.dumps([ [ {'ground': cell['ground'], 'entity': cell['entity'], 'water_level': cell['water_level'], 'fertiliser_level': cell['fertiliser_level'], 'growth': cell['growth']} for cell in row ] for row in _board ])
 
 def get_board_size():
@@ -399,6 +463,7 @@ def _board_payload():
 def _state_dict():
     """The whole simulation state in plain JSON-safe types. Costs no ticks,
     unlike the drone getters a UI snapshot would otherwise have to pay for."""
+    _settle_growth()
     return {
         'ticks': _ticks,
         'posX': _drone_pos_x,
@@ -439,6 +504,7 @@ def __run_stepped__(code):
             exec(step, globals())
         except Exception:
             error = traceback.format_exc()
+        _settle_growth()
         cell = _board[_drone_pos_y][_drone_pos_x]
         journal.append({
             'index': index,
@@ -462,7 +528,7 @@ def __reset__():
     """
     global _ticks, _animations, _animation_count, _drone_pos_x, _drone_pos_y
     global _board, _water_level, _inventory, _unlocked, _power_level
-    global _prefill_items
+    global _prefill_items, _growth_due, _next_growth_tick
     # `__tfwr_*` names are the host's channel to the engine and are set before
     # this runs, so reset must keep them. Everything else not defined by the
     # engine itself came from the previous run and gets dropped.
@@ -478,6 +544,8 @@ def __reset__():
     _drone_pos_x = 0
     _drone_pos_y = 0
     _board = _fresh_board()
+    _growth_due = _fresh_growth_due()
+    _next_growth_tick = _growth_floor()
     _water_level = 0.5
     # The host always calls __set_prefill_items__ right after a reset, so reset
     # leaves the inventory empty instead of carrying the previous run's items
