@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { IconCircle, IconMoon, IconSettingsAutomation, IconSun } from "@tabler/icons-vue";
-import { computed } from "vue";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
@@ -25,8 +25,6 @@ const schemeColors: Record<ColorScheme, string> = {
 	yellow: "fill-yellow-700",
 	violet: "fill-violet-700",
 };
-
-const currentColorScheme = computed(() => colorScheme.value);
 </script>
 
 <template>
@@ -44,40 +42,43 @@ const currentColorScheme = computed(() => colorScheme.value);
 		</DropdownMenuTrigger>
 
 		<DropdownMenuContent align="end">
-			<DropdownMenuItem
-				v-for="scheme in colorSchemes"
-				:key="scheme"
-				@click="setColorScheme(scheme)"
+			<DropdownMenuRadioGroup
+				:model-value="colorScheme"
+				@update:model-value="(v) => setColorScheme(v as ColorScheme)"
 			>
-				<IconCircle
-					:class="
-						currentColorScheme === scheme
-							? schemeColors[scheme]
-							: 'text-transparent'
-					"
-				/>
-				{{ scheme }}
-			</DropdownMenuItem>
+				<DropdownMenuRadioItem
+					v-for="scheme in colorSchemes"
+					:key="scheme"
+					:value="scheme"
+				>
+					<template #indicator-icon>
+						<IconCircle :class="['size-2', schemeColors[scheme]]" />
+					</template>
+					{{ scheme }}
+				</DropdownMenuRadioItem>
+			</DropdownMenuRadioGroup>
 
 			<DropdownMenuSeparator />
 
-			<DropdownMenuItem @click="colorMode.preference = 'light'">
-				<IconSun v-if="colorMode.preference === 'light'" />
-				<IconCircle v-else class="text-transparent" />
-				Light
-			</DropdownMenuItem>
+			<DropdownMenuRadioGroup
+				:model-value="colorMode.preference"
+				@update:model-value="(v) => (colorMode.preference = v)"
+			>
+				<DropdownMenuRadioItem value="light">
+					<IconSun class="size-4" />
+					Light
+				</DropdownMenuRadioItem>
 
-			<DropdownMenuItem @click="colorMode.preference = 'dark'">
-				<IconMoon v-if="colorMode.preference === 'dark'" />
-				<IconCircle v-else class="text-transparent" />
-				Dark
-			</DropdownMenuItem>
+				<DropdownMenuRadioItem value="dark">
+					<IconMoon class="size-4" />
+					Dark
+				</DropdownMenuRadioItem>
 
-			<DropdownMenuItem @click="colorMode.preference = 'system'">
-				<IconSettingsAutomation v-if="colorMode.preference === 'system'" />
-				<IconCircle v-else class="text-transparent" />
-				System
-			</DropdownMenuItem>
+				<DropdownMenuRadioItem value="system">
+					<IconSettingsAutomation class="size-4" />
+					System
+				</DropdownMenuRadioItem>
+			</DropdownMenuRadioGroup>
 		</DropdownMenuContent>
 	</DropdownMenu>
 </template>

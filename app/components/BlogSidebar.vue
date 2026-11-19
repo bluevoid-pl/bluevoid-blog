@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const props = defineProps<{ body: Object, className?: string }>()
-const { body = null, className } = props
+const props = defineProps<{ body: Object }>()
+const { body = null } = props
 
 const links = (() => {
   const result: { id: string; depth: number; text: string }[] = []
@@ -25,26 +25,70 @@ const links = (() => {
       if (isHeading(node)) {
         const id = idOf(node)
         if (id) {
-          result.push({ id, depth: Number(tagOf(node).charAt(1)), text: textOf(node) })
+          result.push({ id, depth: Number(tagOf(node).slice(1)) || 1, text: textOf(node) })
         }
       }
       walk(childrenOf(node))
     }
   }
-  walk(body?.value || body?.children || [])
+  if (body && Array.isArray(body) && body.length > 2) {
+    walk(body.slice(2))
+  } else if (body && Array.isArray((body as any).children)) {
+    walk((body as any).children)
+  }
   return result
 })()
 </script>
 
 <template>
-  <aside class="sticky top-20 w-60 p-4 bg-white/5 border border-white/10 rounded-2xl mb-8" :class="className">
-    <h3 class="mt-0 text-lg font-semibold">Contents</h3>
-    <nav>
-      <ul class="list-none p-0 m-0">
-        <li v-for="link in links" :key="link.id" class="my-2">
-          <a :href="'#' + link.id" class="hover:underline" :class="link.depth > 2 ? 'pl-3 text-muted-foreground' : ''">{{ link.text }}</a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+  <Card class="sticky top-20 mb-8">
+    <CardHeader>
+      <CardDescription>Contents</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <!-- Native CSS scrollspy: links with fragment hrefs become :target-current
+           as their sections enter the viewport (scroll-target-group). No JS. -->
+      <nav v-if="links.length" aria-label="Table of contents">
+        <ul class="toc-list">
+          <li v-for="link in links" :key="link.id" :style="{ '--depth': link.depth }">
+            <a :href="`#${link.id}`">{{ link.text }}</a>
+          </li>
+        </ul>
+      </nav>
+    </CardContent>
+  </Card>
 </template>
+
+<style scoped>
+.toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-block-size: calc(100dvh - 16rem);
+  overflow-y: auto;
+  /* Scope the scrollspy group to the list itself so all headings compete. */
+  scroll-target-group: auto;
+}
+
+.toc-list a {
+  display: block;
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.toc-list a:hover {
+  color: var(--color-foreground);
+}
+
+/* Only the current section's link gets the accent. */
+.toc-list a:target-current {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Indentation derived from heading depth via custom property inheritance. */
+.toc-list li {
+  padding-left: calc((var(--depth, 1) - 1) * 1rem);
+}
+</style>

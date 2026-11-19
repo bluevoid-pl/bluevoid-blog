@@ -7,15 +7,13 @@ useHead({ title: 'Admin' })
 
 <template>
   <SidebarProvider>
-    <div class="min-h-screen flex w-full">
-      <Sidebar>
-        <AdminSidebar />
-      </Sidebar>
-      <SidebarInset class="flex-1">
-        <main class="p-6">
-          <slot />
-        </main>
-      </SidebarInset>
-    </div>
+    <Sidebar>
+      <AdminSidebar />
+    </Sidebar>
+    <SidebarInset class="flex-1">
+      <main class="p-6">
+        <slot />
+      </main>
+    </SidebarInset>
   </SidebarProvider>
 </template>

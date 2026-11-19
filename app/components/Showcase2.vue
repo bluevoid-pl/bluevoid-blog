@@ -29,12 +29,12 @@ const description = props.item?.description ?? props.fallbackDescription ?? ''
     <div class="order-1 flex w-full flex-col md:order-none md:w-[46%]">
       <CardHeader class="gap-3 p-6 sm:p-8 lg:p-10">
         <CardTitle
-          class="text-3xl font-extrabold leading-tight tracking-tight text-transparent md:text-4xl bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text dark:from-cyan-300 dark:via-purple-300 dark:to-pink-300"
+          class="text-3xl font-extrabold leading-tight tracking-tight text-balance text-transparent md:text-4xl bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text dark:from-cyan-300 dark:via-purple-300 dark:to-pink-300"
         >
           {{ title }}
         </CardTitle>
 
-        <CardDescription v-if="description" class="text-base leading-relaxed md:text-lg">
+        <CardDescription v-if="description" class="text-base leading-relaxed text-pretty md:text-lg">
           {{ description }}
         </CardDescription>
       </CardHeader>

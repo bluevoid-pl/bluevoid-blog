@@ -9,7 +9,8 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell, TableCaption } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { IconArrowsUpDown as ArrowUpDown } from '@tabler/icons-vue'
+import { Checkbox } from '@/components/ui/checkbox'
+import { IconArrowsUpDown as ArrowUpDown, IconArrowNarrowUp as ArrowUp, IconArrowNarrowDown as ArrowDown } from '@tabler/icons-vue'
 import { toast } from 'vue-sonner'
 
 const props = defineProps<{
@@ -92,6 +93,11 @@ function toggleSort(key: keyof T) {
   }
 }
 
+function sortLabel(key: keyof T) {
+  if (sortKey.value !== key) return undefined
+  return sortDir.value === 'asc' ? 'ascending' : 'descending'
+}
+
 function clearFilters() {
   search.value = ''
   debouncedSearch.value = ''
@@ -129,16 +135,35 @@ function clearFilters() {
           <TableCaption>{{ filtered.length }} items found</TableCaption>
           <TableHeader class="sticky top-0 bg-background">
             <TableRow>
-              <TableHead class="w-[50px]">
-                <input type="checkbox" :checked="selectedIds.length===paginated.length && paginated.length>0" @change="selectedIds = $event.target.checked ? paginated.map(i=>i.id) : []" />
+              <TableHead scope="col" class="w-[50px]">
+                <Checkbox
+                  :model-value="selectedIds.length === paginated.length && paginated.length > 0"
+                  @update:model-value="(v) => selectedIds = v ? paginated.map(i => i.id) : []"
+                  aria-label="Select all rows"
+                />
               </TableHead>
-              <TableHead v-for="col in columns" :key="String(col.key)" :class="col.class">
-                <Button variant="ghost" size="sm" @click="toggleSort(col.key)">
+              <TableHead
+                v-for="col in columns"
+                :key="String(col.key)"
+                scope="col"
+                :aria-sort="sortLabel(col.key)"
+                :class="col.class"
+              >
+                <Button
+                  v-if="col.sortable"
+                  variant="ghost"
+                  size="sm"
+                  class="-ml-2"
+                  @click="toggleSort(col.key)"
+                >
                   {{ col.label }}
-                  <ArrowUpDown v-if="sortKey!==col.key" class="ml-2 h-4 w-4" />
+                  <ArrowUp v-if="sortKey === col.key && sortDir === 'asc'" class="ml-2 h-4 w-4" />
+                  <ArrowDown v-else-if="sortKey === col.key" class="ml-2 h-4 w-4" />
+                  <ArrowUpDown v-else class="ml-2 h-4 w-4 opacity-50" />
                 </Button>
+                <template v-else>{{ col.label }}</template>
               </TableHead>
-              <TableHead class="text-right">Actions</TableHead>
+              <TableHead scope="col" class="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -150,7 +175,11 @@ function clearFilters() {
             <template v-else-if="paginated.length">
               <TableRow v-for="item in paginated" :key="item.id">
                 <TableCell>
-                  <input type="checkbox" :checked="selectedIds.includes(item.id)" @change="selectedIds = $event.target.checked ? [...selectedIds, item.id] : selectedIds.filter(id=>id!==item.id)" />
+                  <Checkbox
+                    :model-value="selectedIds.includes(item.id)"
+                    @update:model-value="(v) => selectedIds = v ? [...selectedIds, item.id] : selectedIds.filter(id => id !== item.id)"
+                    aria-label="Select row"
+                  />
                 </TableCell>
                 <TableCell v-for="col in columns" :key="String(col.key)">
                   <template v-if="col.render">{{ col.render(item) }}</template>

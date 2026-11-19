@@ -1,20 +1,16 @@
 <script setup lang="ts">
-import { Badge } from '~/components/ui/badge'
-
 const year = new Date().getFullYear()
 </script>
 
 <template>
   <footer data-site-chrome="footer">
-    <div class="container mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
-      <Badge variant="secondary" class="text-base bg-background">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
+      <p class="text-sm text-muted-foreground">
         BlueVoid &copy; {{ year }} &middot; Mateusz Kifner
-      </Badge>
-      <div class="flex items-center gap-2">
-        <NuxtLink to="/test">
-          <Badge variant="secondary" class="text-base bg-background">Tests</Badge>
-        </NuxtLink>
-      </div>
+      </p>
+      <NuxtLink to="/test" class="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline">
+        Tests
+      </NuxtLink>
     </div>
   </footer>
 </template>

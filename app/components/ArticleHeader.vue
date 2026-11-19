@@ -38,8 +38,8 @@ const readingTime = computed(() => {
       :client="item.client"
       :showClient="showClient"
     />
-    <h1 class="text-3xl font-bold tracking-tight">{{ item.title }}</h1>
-    <p v-if="item.description" class="text-base text-muted-foreground leading-relaxed">{{ item.description }}</p>
+    <h1 class="text-3xl font-bold tracking-tight text-balance">{{ item.title }}</h1>
+    <p v-if="item.description" class="text-base text-muted-foreground leading-relaxed text-pretty">{{ item.description }}</p>
     <TagList :tags="item.tags" :language="item.language" variant="detail" />
   </header>
 </template>

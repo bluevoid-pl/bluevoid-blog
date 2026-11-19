@@ -20,6 +20,10 @@ const props = defineProps<{
             v-if="imgSrc"
             :src="imgSrc"
             :alt="alt ?? ''"
+            width="360"
+            height="780"
+            loading="lazy"
+            decoding="async"
             class="h-full w-full object-cover"
           />
           <!-- Mobile status bar -->

@@ -24,8 +24,8 @@ defineProps<{
 
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-2xl font-bold">{{ title }}</h1>
-        <p v-if="subtitle" class="text-muted-foreground">{{ subtitle }}</p>
+        <h1 class="text-2xl font-bold text-balance">{{ title }}</h1>
+        <p v-if="subtitle" class="text-muted-foreground text-pretty">{{ subtitle }}</p>
       </div>
       <slot name="actions" />
     </div>

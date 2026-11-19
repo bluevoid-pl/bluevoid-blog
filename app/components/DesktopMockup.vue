@@ -12,6 +12,10 @@ const props = defineProps<{
     <img
       :src="props.imgSrc"
       :alt="props.alt"
+      width="1200"
+      height="675"
+      loading="lazy"
+      decoding="async"
       :class="innerClass || 'absolute inset-0 w-full h-full object-cover object-left-top'"
     />
   </div>

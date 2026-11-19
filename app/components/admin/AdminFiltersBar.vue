@@ -28,11 +28,12 @@ const emit = defineEmits<{
         :value="search"
         @update:modelValue="(v) => emit('update:search', v)"
         :placeholder="searchPlaceholder || 'Search...'"
+        aria-label="Search"
         class="w-full sm:w-[300px]"
       />
       <template v-for="f in filters" :key="f.key">
         <Select :modelValue="f.value" @update:modelValue="(v) => emit('update:filter', f.key, v)">
-          <SelectTrigger class="w-full sm:w-[180px]">
+          <SelectTrigger class="w-full sm:w-[180px]" :aria-label="f.label">
             <SelectValue :placeholder="f.label" />
           </SelectTrigger>
           <SelectContent>
@@ -47,12 +48,28 @@ const emit = defineEmits<{
   </div>
 
   <div class="flex gap-2 mt-3">
-    <Badge v-if="search" variant="secondary" class="cursor-pointer" @click="emit('update:search', '')">
-      Search: {{ search }} <X class="w-3 h-3 ml-1"/>
+    <Badge
+      v-if="search"
+      as-child
+      variant="secondary"
+      class="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <button type="button" @click="emit('update:search', '')">
+        Search: {{ search }} <X class="w-3 h-3 ml-1" aria-hidden="true" />
+        <span class="sr-only">Remove filter</span>
+      </button>
     </Badge>
     <template v-for="f in filters" :key="`badge-${f.key}`">
-      <Badge v-if="f.value !== 'All' && f.value !== ''" variant="secondary" class="cursor-pointer" @click="emit('update:filter', f.key, 'All')">
-        {{ f.label }}: {{ f.value }} <X class="w-3 h-3 ml-1"/>
+      <Badge
+        v-if="f.value !== 'All' && f.value !== ''"
+        as-child
+        variant="secondary"
+        class="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <button type="button" @click="emit('update:filter', f.key, 'All')">
+          {{ f.label }}: {{ f.value }} <X class="w-3 h-3 ml-1" aria-hidden="true" />
+          <span class="sr-only">Remove filter</span>
+        </button>
       </Badge>
     </template>
   </div>

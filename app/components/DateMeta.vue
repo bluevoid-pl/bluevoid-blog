@@ -1,33 +1,43 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Badge } from '~/components/ui/badge'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   date?: string | Date
   showNewBadge?: boolean
   readingTime?: number
-}>()
+}>(), {
+  showNewBadge: true,
+})
 
-const showNewBadge = props.showNewBadge ?? true
+// One Intl.DateTimeFormat instance is reused; per the Intl guide, repeated
+// formatting goes through the object form instead of creating one per call.
+const dateFormatter = new Intl.DateTimeFormat('pl-PL', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
 
-function formatDate(d: any): string {
-  if (!d) return ''
-  return new Date(d).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })
-}
+const formattedDate = computed(() => {
+  if (!props.date) return ''
+  return dateFormatter.format(new Date(props.date))
+})
 
-function isNew(d: any): boolean {
-  if (!d) return false
+const isNewPost = computed(() => {
+  if (!props.date) return false
+  // Copy first, then roll the month back — no mutation of the live Date.
   const oneMonthAgo = new Date()
   oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
-  return new Date(d) >= oneMonthAgo
-}
+  return new Date(props.date) >= oneMonthAgo
+})
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-4 items-center">
+  <div class="flex flex-wrap items-center gap-4">
     <time class="text-sm text-muted-foreground" :datetime="date">
-      {{ date ? formatDate(date) : '---' }}
+      {{ formattedDate || '---' }}
     </time>
-    <Badge v-if="showNewBadge && isNew(date)" variant="default" class="text-[10px] font-bold uppercase tracking-wide">
+    <Badge v-if="showNewBadge && isNewPost" variant="default" class="text-[10px] font-bold uppercase tracking-wide">
       New
     </Badge>
   </div>

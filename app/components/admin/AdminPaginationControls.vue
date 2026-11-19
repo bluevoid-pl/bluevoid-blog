@@ -25,7 +25,7 @@ const totalPages = computed(() => Math.max(1, Math.ceil((props.total || 0) / pro
     </div>
     <div class="flex items-center gap-2">
       <Select :modelValue="pageSize" @update:modelValue="(v) => emit('update:pageSize', Number(v))">
-        <SelectTrigger class="w-[90px]">
+        <SelectTrigger class="w-[90px]" aria-label="Rows per page">
           <SelectValue placeholder="Rows" />
         </SelectTrigger>
         <SelectContent>
